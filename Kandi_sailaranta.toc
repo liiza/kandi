@@ -1,0 +1,14 @@
+\select@language {swedish}
+\select@language {finnish}
+\select@language {finnish}
+\select@language {finnish}
+\contentsline {section}{K\IeC {\"a}ytetyt symbolit ja lyhenteet}{4}
+\contentsline {section}{\numberline {1}Johdanto}{5}
+\contentsline {subsection}{\numberline {1.1}Johdantoluku}{5}
+\contentsline {section}{\numberline {2}Eletunnistus videokuvalta}{5}
+\contentsline {section}{\numberline {3}ChaLearn Gesture Challenge -kilpailu}{6}
+\contentsline {subsection}{\numberline {3.1}Kilpailun esittely}{6}
+\contentsline {subsection}{\numberline {3.2}Katsaus kilpailut\IeC {\"o}ihin}{7}
+\contentsline {section}{\numberline {4}Loppuluku}{8}
+\contentsline {section}{L\IeC {\"a}hteet}{9}
+\contentsline {section}{\numberline {A}Esimerkkiliite}{10}

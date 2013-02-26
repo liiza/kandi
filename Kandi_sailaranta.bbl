@@ -1,0 +1,77 @@
+\begin{thebibliography}{9}
+\input babelbst.tex
+\newcommand{\Capitalize}[1]{\uppercase{#1}}
+\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hirsjärvi \bbletal{}.(2009)Hirsjärvi, Remes, \bbland{}
+  Sajavaara]{hirsjarvi2009}
+Sirkka Hirsjärvi, Pirkko Remes \bbland{} Paula Sajavaara.
+\newblock \emph{Tutki ja kirjoita}.
+\newblock Tammi, Hämeenlinna, 2009.
+\newblock ISBN 978-951-31-4836-2.
+\newblock 15. uudistettu painos.
+
+\bibitem[{IPDC Forum}(2004)]{ipdcforum_def}
+{IPDC Forum}.
+\newblock {About {IP} Datacasting - Overview}, 2004.
+\newblock URL \url{http://www.ipdc-forum.org/about/index.html}.
+\newblock {IPDC Forumin WWW-sivu. Viitattu 18.2.2004.}
+
+\bibitem[Kankaanpää \bbletal{}.(2010)Kankaanpää, Heikkilä, Korhonen,
+  Maamies, \bbland{} Piehl]{oikeinkirjoitus2010}
+Salli Kankaanpää, Elina Heikkilä, Riitta Korhonen, Sari Maamies \bbland{}
+  Aino Piehl, \bbleditors{}.
+\newblock \emph{Kielitoimiston oikeinkirjoitusopas}.
+\newblock Kotimaisten kielten tutkimuskeskus, 2010.
+\newblock 8. painos.
+
+\bibitem[Kauranen \bbletal{}.(2006)Kauranen, Mustakallio, \bbland{}
+  Palmgren]{kauranen2006}
+Ilkka Kauranen, Mikko~A. Mustakallio \bbland{} Virpi Palmgren.
+\newblock \emph{Tutkimusraportin kirjoittamisen opas opinnäytetyön
+  tekijöille}.
+\newblock Teknillinen korkeakoulu, Espoo, 2006.
+\newblock ISBN 951-22-8359-X (nid.).
+\newblock Lisäpainokset: 2. korj. p. 2007.
+
+\bibitem[Kivelä()]{mattakivela}
+Simo~K. Kivelä.
+\newblock {LaTeX-kurssi}.
+\newblock Saatavissa \url{http://matta.hut.fi/matta2/latex/index.html}.
+  Viitattu 28.1.2011.
+
+\bibitem[Mittelbach \bbletal{}.(2004)Mittelbach, Goossens, \bbland{}
+  Braams]{mittelbach2004}
+Frank Mittelbach, Michel Goossens \bbland{} Johannes Braams.
+\newblock \emph{{The LaTeX companion}}.
+\newblock Addison-Wesley, Boston, \bblsecond{} \bbledition{}, 2004.
+\newblock ISBN 0-201-36299-6 (nid.).
+\newblock Lisäpainokset: Repr. 2006.
+
+\bibitem[Oetiker()]{lyhyt2e}
+Tobias Oetiker.
+\newblock {Pitkänpuoleinen johdanto LaTeX2e:n käyttöön}.
+\newblock Saatavissa
+  \url{ftp://www.ctan.org/ctan/info/lshort/finnish/lyhyt2e.pdf}. Viitattu
+  28.1.2011.
+
+\bibitem[Puolakka(2002)]{tktl}
+Mikael Puolakka.
+\newblock \emph{BiBTeX-tyylin tktl käyttöohje}.
+\newblock Helsingin yliopiston tietojenkäsittelytieteen laitos, 2002.
+
+\bibitem[Teekkari(2010)]{Teekkari2010}
+Teemu Teekkari.
+\newblock Diplomityöni.
+\newblock Diplomityö, Aalto-yliopiston perustieteiden korkeakoulu, Espoo,
+  2010.
+\newblock Saatavissa \url{http://www.cis.hut.fi/ teemu/katkotaan/ rivia/ jotta/
+  helpompi/ katkaista/ sopivasta/ kohtaa/ tamakin/ litania/ poikki/ rtfm.html}.
+  Viitattu 25.1.2011.
+
+\end{thebibliography}

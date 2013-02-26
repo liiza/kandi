@@ -1,0 +1,143 @@
+\documentclass[12pt,a4paper,finnish,oneside]{article}
+
+% Valitse 'input encoding':
+%\usepackage[latin1]{inputenc} % merkistökoodaus, jos ISO-LATIN-1:tä.
+\usepackage[utf8]{inputenc}   % merkistökoodaus, jos käytetään UTF8:a
+% Valitse 'output/font encoding':
+\usepackage[T1]{fontenc}      % korjaa ääkkösten tavutusta, bittikarttana
+\usepackage{ae,aecompl}       % ed. lis. vektorigrafiikkana bittikartan sijasta
+% Kieli- ja tavutuspaketit:
+\usepackage[finnish]{babel}
+% Muita paketteja:
+% \usepackage{amsmath}   % matematiikkaa
+\usepackage{url}       % \url{...}
+
+% Kappaleiden erottaminen ja sisennys
+\parskip 1ex
+\parindent 0pt
+\evensidemargin 0mm
+\oddsidemargin 0mm
+\textwidth 159.2mm
+\topmargin 0mm
+\headheight 0mm
+\headsep 0mm
+\textheight 246.2mm
+
+\pagestyle{plain}
+
+% ---------------------------------------------------------------------
+
+\begin{document}
+
+% Otsikkotiedot: muokkaa tähän omat tietosi
+
+\title{TIK.kand tutkimussuunnitelma:\\[5mm]
+Eleentunnistus Kinect sensorilla}
+
+\author{Liisa Sailaranta, 84429P\\
+Aalto-yliopisto,\\
+\url{liisa.sailaranta@aalto.fi}}
+
+\date{\today}
+
+\maketitle
+
+% ---------------------------------------------------------------------
+
+
+
+\vspace{10mm}
+
+% MUOKKAA TÄHÄN. Jos tarvitset tähän viitteitä, käytä
+% tässä dokumentissa numeroviitejärjestelmää komennolla \cite{kahva}.
+%
+% Paljon kandidaatintöitä ohjanneen Vesa Hirvisalon tarjoama 
+% sabluuna. Kursivoidut osat \emph{...} ovat kurssin henkilökunnan
+% lisäämiä. 
+
+\textbf{Kandidaatintyön nimi:} Eleentunnistus Kinect sensorilla
+
+\textbf{Työn tekijä:} Liisa Sailaranta
+
+\textbf{Ohjaaja:} Markus Koskela
+
+
+\section{Tiivistelmä tutkimuksesta}
+
+Tutustun tutkimuksessani eleentunnistukseen Kinect-sensorilla. Pääpaino tutkimuksessani on ChaLearn Gesture Challenge -kilpailun kilpailutyöt.\\
+Kinect -sensori on syvyyskamera, joka antaa RGB videokuvan lisäksi syvyyskuvaa kohteesta. ChaLearn Gesture Challenge -kilpailussa kilpailijat pyrkivät kehittämään menetelmiä, joiden avulla Kinectin videokuvasta voidaan tunnistaa tiettyjä eleitä, esimerkiksi viittomakielen viittomia. 
+
+\section{Tavoitteet ja näkökulmat}
+
+Tutkimuksen tarkoitus on tutustua Kinect videokuvan eleentunnistusmenetelmiin ja niiden käyttösovelluksiin. Työssä voidaan keskittyä tarkemmin muutamaan ChaLearn Gesture Challenge -kilpailussa esitettyyn menetelmään tai hakea yhteispiirteitä kaikista kilpailussa esitetyissä menetelmistä. Tarkoitus on löytää keinoja hyödyntää Kinect sensoria käytännön sovelluksissa, esimerkiksi elekäyttöliittymissä.\\ Tutkimuskysymyksiä voisivat olla esimerkiksi: Minkälaiset eleentunnistusmenetelmät soveltuvat parhaiten Kinect-sensorin 3D videokuvan tunnistukseen? tai mitä sovelluskohteita erilaisilla menelmillä on?
+
+
+\section{Tutkimusmateriaali}
+
+Keskeistä aineistoa ovat ChaLearn Gesture Challenge -kilpailun kilpailutyöt. Kaikki kilpailutyöt eivät ole vielä julkisia sillä kilpailussa on luvassa vielä toinen kierros.
+Yleinen kuvaus jokaisesta kilpailutyöstä on jo kuitenkin saatavilla. Hahmontunnistus 3D kuvasta on vielä suhteellisen uusi tutkimusala, mutta 2D video kuvasta ja valokuvista on paljon aineistoa.
+
+
+\section{Tutkimusmenetelmät}
+
+
+Lähden liikkeelle hakemalla aineistoa eleentunnistuksesta 2D tai 3D-videokuvasta. Aineiston avulla pyrin saamaan yleiskuvan eleentunnistuksen keskeisimmistä haasteista ja työvaiheista. Tästä aineistosta kootaan tutkimuksen  ensimmäinen osio.\\
+Työn pääpaino on ChaLearn Gesture Challenge -kilpailun töillä. Kilpailua kuvaavassa yleisartikkelissa on kuvattu pääpiirteittein jokaisen osallistujan menetelmät. Perehdyn kilpailijoiden töihin siinä määrin missä ne ovat julkisia ja haen tietoa heidän käyttämistään menetelmistä. Tässä vaiheessa teen todennäköisesti päätöksen tuleeko työni keskittymään yhteen tai muutamaan hyvin kuvattuun menetelmään vai teenkö yleiskatsauksen kaikista töistä.\\
+Analysoin kilpailussa käytettyjen menetelmien hyviä ja huonoja puolia ja sovetuvuutta tiettyihin käyttötarkoituksiin. Pyrin hahmottamaan työt suhteessa alan tutkimukseen: edustavatko työt uraauurtavaa tutkimusta vai tyypillisiä tapoja hahmottaa tämänkaltaista ongelmaa? On hyvä huomioida myös kilpailutöiden sijoitus kilpailun ensimmäisellä kierroksella
+
+Työhön saatetaan liittää myös empiirinen osuus johon kuuluu jonkin kuvatun menetelmän toteuttaminen ja kokeileminen käytännössä.
+
+\section{Haasteet}
+
+Haasteeksi saattaa muodostua se, että kilpailu on vielä kesken eivätkä kaikki kilpailutyöt ole vielä julkisia.
+3D videokuva on vielä suhteellisen uutta eikä eleentunnistusta ole välttämättä tutkittu siinä vielä paljon.
+Kilpailutöiden ansioituneisuutta voi olla vaikea arvioida kun ei ole vertailukohtia.
+
+\section{Resurssit}
+
+
+Työhön saatetaan liittää myös empiirinen osuus johon kuuluu jonkin kuvatun menetelmän toteuttaminen ja kokeileminen käytännössä.
+Tässä huomioidaan kuitenkin resurssejen riittäminen.
+
+\section{Aikataulu}
+
+
+\begin{tabular}{|p{170mm}|p{500mm}|}
+\hline
+Vko. 07 Tutustuminen eleentunnitustukseen 2D- ja 3D -videokuvassa, alustava katsaus kilpailutöihin.  \\ \hline
+17.02 DL Johdanto \\ \hline
+Vko. 08-10 Tutustuminen kilpailutöihin. Taustatietojen hakeminen töissä käytetyistä menetelmistä. Valitaan lähestymistapa työhön: yleiskatsaus kaikkiin vai tarkempi katsaus muutamaan työhön. Työkaluihin Latex, Refworks tutustuminen. \\ \hline
+DL 10.3 Kandi 10s. \\ \hline
+Vko 11-14 Kirjoitusta. Kuvataan valittuja kilpailutöitä, menetelmiä ja sovelluksia. Verrataan olemassa oleviin ratkaisuihin ja aiemmin esittettyihin haasteisiin. Mahdollisen oman prototyypin toteutus\\ \hline
+DL 7.4 Valmis kandi \\ \hline
+Tutustutaan ohjaajalta saatuun palautteeseen ja tehdään sen pohjalta parannuksia kandiin.\\ \hline
+DL 25.04 Lopullinen kandi.\\ \hline
+\end{tabular}
+
+
+
+
+
+
+
+% ---------------------------------------------------------------------
+%
+% ÄLÄ MUUTA MITÄÄN TÄÄLTÄ LOPUSTA
+
+% Tässä on käytetty siis numeroviittausjärjestelmää. 
+% Toinen hyvin yleinen malli on nimi-vuosi-viittaus.
+
+% \bibliographystyle{plainnat}
+\bibliographystyle{finplain}  % suomi
+%\bibliographystyle{plain}    % englanti
+% Lisää mm. http://amath.colorado.edu/documentation/LaTeX/reference/faq/bibstyles.pdf
+
+% Muutetaan otsikko "Kirjallisuutta" -> "Lähteet"
+\renewcommand{\refname}{Lähteet}  % article-tyyppisen
+
+% Määritä bib-tiedoston nimi tähän (eli lahteet.bib ilman bib)
+\bibliography{lahteet}
+
+% ---------------------------------------------------------------------
+
+\end{document}

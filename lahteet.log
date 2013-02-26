@@ -1,0 +1,98 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdftex 2013.2.26)  26 FEB 2013 00:34
+entering extended mode
+**C:/Users/Liisa/Documents/Kandi/TIK_kand_pohja__latex-pohja_kandityolle_ja_tut
+kimussuunnitelmalle_2/lahteet.bib
+
+(C:/Users/Liisa/Documents/Kandi/TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
+imussuunnitelmalle_2/lahteet.bib
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¶ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¶ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+
+Overfull \hbox (3.27397pt too wide) in paragraph at lines 19--30
+[]\tenrm @bookkauranen2006, au-thor=Kauranen,Ilkka and Mus-takallio,Mikko A. an
+d Palm-gren,Virpi, year=2006,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm b
+.\kern0.27779
+.\tenrm o
+.etc.
+
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+
+Overfull \hbox (4.14883pt too wide) in paragraph at lines 61--71
+[]\tenrm @bookgoossens1994, au-thor=Goossens,Michel and Mit-tel-bach,Frank and 
+Samarin,Alexander, year=1994,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm b
+.\kern0.27779
+.\tenrm o
+.etc.
+
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+
+Overfull \hbox (6.28773pt too wide) in paragraph at lines 83--96
+[]\tenrm @bookmittelbach2004, au-thor=Mittelbach,Frank and Goossens,Michel and 
+Braams,Johannes, year=2004,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm b
+.\kern0.27779
+.\tenrm o
+.etc.
+
+
+Overfull \hbox (2.83873pt too wide) in paragraph at lines 83--96
+\tenrm ed., note=Lispainokset: Repr. 2006., key-words=textbehandling - dat-apro
+-gram; textpro-duk-tion; da-torsttning;|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\tenrm e
+.\tenrm d
+.\tenrm .
+.\tenrm ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.etc.
+
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¤ in font cmr10!
+! Undefined control sequence.
+l.107   note = 	 {Saatavissa \url
+                                 {http://matta.hut.fi/matta2/latex/index.htm...
+
+? 
+! Emergency stop.
+l.107   note = 	 {Saatavissa \url
+                                 {http://matta.hut.fi/matta2/latex/index.htm...
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!
