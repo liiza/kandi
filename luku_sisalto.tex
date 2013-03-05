@@ -96,7 +96,68 @@ Immortals käytti valmista databasea useista liikkeista ja koosti liikkeistä ma
 
 Ensimmäinen ryhmä näytti keskittyvän piirrevalintaan, toinen ryhmä regressioon ja kolmas ryhmä videokuvan tunnistuspuoleen.
 
+\subsection{xiaozhuwudi ja laajennettu MHI}
+Ryhmä xiaozhuwudi lähti liikkeelle MHI eli Motion History Image -tekniikasta. MHI tutkii liikkeen määrää videokuvalla.
+Videopätkä tiivistetään yhteen liikekuvaan, joka kuvaa liikkeen viimeaikaisuutta. Kohdat, joissa videokuvalla on ollut
+liikettä esitetään harmaasävyillä. Mitä viimeaikasempaa liike on ollut sitä valkoisempana se näkyy kuvassa. Liikkumattomat
+alueet näkyvät täysin mustana. Videokuvalta tutkitaan siis vain liikettä, eikä pyritä esimerkiksi tunnistamaan kuvalla olevia kohteita
+tai ihmiskehon osia. Tämä menetelmä matkii ihmisen tapaa tunnistaa eleitä. Ihminen tunnistaa erittäin hyvin eleet kuten vilkutuksen 
+sumealta videokuvalta vaikka ei yksittäisestä framesta tunnistaisi edes ihmishahmoa.  \\
+Xiaozhuwudi-ryhmä tunnistaa MHI:ssa kuitenkin ongelmia. MHI ei tunnista kovin hyvin eleitä jotka sisältävät toistuvia liikkeitä kuten vilkutusta.
+Liikkeen toistuessa liikerata vahvistuu MHI-kuvassa, mutta samalla ajallinen tieto katoaa. Esimerkiksi missä käsi oli ensin ja kuinka nopeasti se liikkui.
+Xiaozhuwudi ehdottaa MHI:n laajentamista INV ja GEI -kuvilla. INV oon käänteinen kuvaus MHI:ille. INV:ssa katsotaan videokuvaa alusta loppuun päin.
+Mitä aikasemmin liike esiintyy videolla sitä vaalempana se näytetään kuvassa. INV:n avulla saadaan kuvaus videon alkutilanteesta jolla voidaan
+täydentää MHI kuvaa. GEI kuvaa liikkeen määrää keskimäärin koko videon aikana. Se muistuttaa MEI:tä (Motion Energy Image) eli siinä summataan
+koko videon liike. Voidaan ajatella että siinä missä MHI mittaa liikettä MEI ja GEI mittaavat energiaa, joka on kulunut liikkeeseen. GEI:ssä 
+lopuksi jaetaan energia koko aikavälille. GEI:n avulla liikkeestä saadaan hyvä kokonaiskuva ja se tukee hyvin etenkin toistuvan liikkeen tunnistuksessa. \\
+Datan esikäsittelyssä xiaozhuwudi hyödynsi Kinectin syvyyskuvaa poistamalla taustan ihmishahmolta. Lisäksi esikäsittelyssä poistettiin häiriöitä.
+MHI, GEI ja INV -kuville suoritettiin dimensioiden vähennys. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa.
+xiaozhuwudi sijoittui kilpailussa kahdeksannelle sijalle.
 
+
+Aaron F. Bobick, Member, IEEE Computer Society, and
+James W. Davis, Member, IEEE Computer Society
+The Recognition of Human Movement Using Temporal Templates
+00910878.pdf
+
+Silhouette Analysis-Based Action Recognition Via
+Exploiting Human Poses
+Di Wu, Student Member, IEEE, and Ling Shao, Senior Member, IEEE
+
+
+\subsection{immortals ja Hidden Markov Model}
+
+Ryhmä immortals käytti erilaista lähestymistapaa. Ryhmä oletti vastoin yleistä tapaa,
+että yksittäinen ele koostuu ennen kaikkia useista yksittäisistä liikkeistä. Sen mukaan eleet tunnistetaan parhaiten
+käsittelmällä elettä useasta liikkeestä koostuvana yhdistelmänä. Tämä eroaa esimerkiksi ryhmän xiaozhuwudi, joka käsitteli
+eleitä kokonaisuuksina.\\
+Ryhmä lähti liikkeelle opetusvaiheessa yksittäisistä liikkeistä. Yksittäisille liikkeille luodaan allekirjoitus tai malli,
+jonka avulla ne voidaan tunnistaa. Allekirjoituksen luominen on monivaiheinen operaatio. Ensin kuvista poimitaan niin sanotut
+tärkeät pisteet eli pisteet joilla on merkitystä liikkeen tunnistamisen kannalta. Tässä Immortals hyödynsi Kinectin syvyyskuvaa.
+Immortals arvioi, että ne kohdat kuvasta joissa on tapahtunut muutosta syvyyskameran kuvassa ovat kyseisen videon pysäytyskuvan
+tärkeitä pisteitä. Tämän jälkeen tärkeille pisteille lasketaan HOG (Histogram of oriented gradients) ja HOF (Histogram of Flow). 
+Kuva jaetaan pieniin alueisiin joille lasketaan gradienttien suuntien histogrammi. Ajatuksen on päätellä minkä suuntaisia 
+viivoja alueelta voidaan erottaa. Tämän jälkeen historgrammin ryhmitellään "visuaalisiksi sanoiksi" tavallisen ryhmittelyalgoritmin avulla.
+Tarkoituksena on tutkia sanojen esiintymistä yhdessä ja muodostaa niistä "otsikoita". Voidaan siis kuvata yksittäistä pysäytyskuvaa
+sillä, mitkä sanat esiintyvät siinä.\\
+Tämän luodaan liikkeelle piirteiden perusteella malli jolla se voidaan tunnistaa. Mallin perustana on Markovin piilomalli eli HMM (Hidden Markov Model).
+Malli kertoo kuinka todennäköisesti tietty havainto kuuluu luokkaan, jota se kuvaa. Koska tutkitaan kahta ominaisuutta HOG ja HOF,
+käytetään monikanavaista Markovin piilomallia eli McHMM. HOG ja HOF paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan.
+McHMM parametreja ovat alkutila, todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja kuvaaja. Tilalla tarkoitetaan
+yksittäistä pysäytyskuvaa. Parametrien arvot optimoidaan niin, että todennököisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri.
+
+LÄHDE HOGILLE, joku muu kuin wikipedia :)
+A Temporal Bayesian Model for Classifying, Detecting and Localizing Activities
+in Video Sequences
+Manavender R. Malgireddy
+University at Buffalo
+mrm42@buffalo.edu
+Ifeoma Inwogu
+University at Buffalo
+inwogu@buffalo.edu
+Venu Govindaraju
+University at Buffalo
+govind@buffalo.edu
 % --------------------------------------------------------------------
 
 \section{Loppuluku}

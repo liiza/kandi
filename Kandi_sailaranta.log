@@ -1,10 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.2.10)  26 FEB 2013 00:50
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.2.10)  5 MAR 2013 01:00
 entering extended mode
-**C:/Users/Liisa/Documents/Kandi/TIK_kand_pohja__latex-pohja_kandityolle_ja_tut
-kimussuunnitelmalle_2/Kandi_sailaranta.tex
-
-(C:/Users/Liisa/Documents/Kandi/TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2/Kandi_sailaranta.tex
+**C:/Users/Liisa/Documents/Kandi/kandi/Kandi_sailaranta.tex
+(C:/Users/Liisa/Documents/Kandi/kandi/Kandi_sailaranta.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -296,8 +293,7 @@ Language: english 2005/03/30 v3.3o English support from the babel system
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\swedish.ldf"
 Language: swedish 2005/03/31 v2.3d Swedish support from the babel system
 ))
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\aaltosci_t.sty
+(C:\Users\Liisa\Documents\Kandi\kandi\aaltosci_t.sty
 Package: aaltosci_t 2011/02/01 v1.02 TIK.kand style
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
@@ -516,8 +512,7 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \extratabsurround=\skip56
 \backup@length=\skip57
 )
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\Kandi_sailaranta.aux)
+(C:\Users\Liisa\Documents\Kandi\kandi\Kandi_sailaranta.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
 LaTeX Font Info:    ... okay on input line 62.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
@@ -546,9 +541,7 @@ LaTeX Font Info:    ... okay on input line 62.
 \everyMPtoPDFconversion=\toks29
 )
 \c@lstlisting=\count126
-
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\makroja.tex)
+ (C:\Users\Liisa\Documents\Kandi\kandi\makroja.tex)
 Underfull \hbox (badness 10000) in paragraph at lines 222--222
 
  []
@@ -556,8 +549,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 222--222
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\luku_abstraktit.tex
+(C:\Users\Liisa\Documents\Kandi\kandi\luku_abstraktit.tex
 LaTeX Font Info:    Try loading font information for U+msa on input line 8.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
@@ -572,24 +564,19 @@ Overfull \hbox (5.22842pt too wide) in paragraph at lines 8--44
 [][]  [][][][] 
  []
 
-[2])
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\Kandi_sailaranta.toc)
+[2]) (C:\Users\Liisa\Documents\Kandi\kandi\Kandi_sailaranta.toc)
 \tf@toc=\write3
  [3
 
 ]
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\luku_lyhenteet.tex
+(C:\Users\Liisa\Documents\Kandi\kandi\luku_lyhenteet.tex
 Underfull \hbox (badness 10000) in paragraph at lines 23--24
 []|\T1/aer/m/n/12 Encapsulating Secu-ri-ty Pay-load; Yk-si IPsec-
  []
 
 ) [4
 
-]
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\luku_sisalto.tex
+] (C:\Users\Liisa\Documents\Kandi\kandi\luku_sisalto.tex
 Underfull \hbox (badness 10000) in paragraph at lines 28--33
 
  []
@@ -634,13 +621,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--87
 
  []
 
-[7]) [8]
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\Kandi_sailaranta.bbl
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\babelbst.tex
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\finnbst.tex))
+[7]) [8] (C:\Users\Liisa\Documents\Kandi\kandi\Kandi_sailaranta.bbl
+(C:\Users\Liisa\Documents\Kandi\kandi\babelbst.tex
+(C:\Users\Liisa\Documents\Kandi\kandi\finnbst.tex))
 LaTeX Font Info:    Try loading font information for T1+aett on input line 22.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
@@ -653,30 +636,27 @@ litania / poikki / rtfm .$
 
 ) [9
 
-]
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\luku_liitteet.tex) [10
+] (C:\Users\Liisa\Documents\Kandi\kandi\luku_liitteet.tex) [10
 
 ]
-(C:\Users\Liisa\Documents\Kandi\TIK_kand_pohja__latex-pohja_kandityolle_ja_tutk
-imussuunnitelmalle_2\Kandi_sailaranta.aux) ) 
+(C:\Users\Liisa\Documents\Kandi\kandi\Kandi_sailaranta.aux) ) 
 Here is how much of TeX's memory you used:
  5402 strings out of 494045
- 71143 string characters out of 3145969
+ 69469 string characters out of 3145969
  131448 words of memory out of 3000000
  8534 multiletter control sequences out of 15000+200000
  33258 words of font info for 72 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 34i,13n,32p,393b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmtt12.pfb>
-Output written on Kandi_sailaranta.pdf (10 pages, 106860 bytes).
+ 34i,13n,32p,331b,346s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on Kandi_sailaranta.pdf (10 pages, 106845 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
