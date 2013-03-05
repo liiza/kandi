@@ -143,8 +143,14 @@ sillä, mitkä sanat esiintyvät siinä.\\
 Tämän luodaan liikkeelle piirteiden perusteella malli jolla se voidaan tunnistaa. Mallin perustana on Markovin piilomalli eli HMM (Hidden Markov Model).
 Malli kertoo kuinka todennäköisesti tietty havainto kuuluu luokkaan, jota se kuvaa. Koska tutkitaan kahta ominaisuutta HOG ja HOF,
 käytetään monikanavaista Markovin piilomallia eli McHMM. HOG ja HOF paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan.
-McHMM parametreja ovat alkutila, todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja kuvaaja. Tilalla tarkoitetaan
-yksittäistä pysäytyskuvaa. Parametrien arvot optimoidaan niin, että todennököisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri.
+McHMM parametreja ovat alkutila, todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja kuvaus visuaalisten sanojen avulla. Tilalla tarkoitetaan
+yksittäistä tässä pysäytyskuvaa. Parametrien arvot optimoidaan niin, että todennököisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri.\\
+tähän joku kaava? \\
+Tunnistusongelma pelkistyy siis kysymykseen, mikä liike joukko kaikken todennäköisimmin on muodostanut tämän videon.
+Tämän tyylinen ongelma voidaan ratkaista Viterbin alkorytmillä. Tämä vaatii kuitenkin, että ele rajataan koostumaan tietystä määrästä liikkeitä.
+Kilpailussa oli määritelty, että jokainen ele sisältää viisi liikettä. Kilpailussa ongelmaa ei siis ollut, mutta ryhmä myöntää, että sidottu lukumäärä on rajoite.
+Viterbin alkorytmi pyrkii löytämään todennököismmän polun eri liikkeiden välillä. Alkorytmi käy videota läpi liike kerrallaan ja laskee mikä
+on mallien perusteella mikä on todennäköisin liike. Lopuksi saadaan todennököisin liikesarja josta ele koostuu.\\
 
 LÄHDE HOGILLE, joku muu kuin wikipedia :)
 A Temporal Bayesian Model for Classifying, Detecting and Localizing Activities
