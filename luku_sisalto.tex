@@ -85,36 +85,63 @@ Videokuva jaetaan ajallisesti osioihin perustuen videokuvan samankaltaisuuteen. 
 kuten Hidden Markov Model ja Conditional Random Fields. Itse luokittelu tapahtui KNN tai muilla yksinkertaisilla keinoilla. 
 Kilpailun järjestejien odottamaa metodia Transfer learning käytettiin, tosin kukaan menestyneistä kilpailijoista ei käyttänyt sitä.\\
 
-Kilpailutöissä huomattavaa oli että ne käyttivät hyvin erilaista lähestymistapaa. 
-Ryhmä xiaozhuwudi käytti työssään MHI-tekniikkaa eli tutkittiin viimeaikaisen liikkeen määrää videokuvassa eri ajan hetkinä.
 
-Ryhmä zunga valitsi piirteiksi horisontaalisen ja vertikaalisen liikkeen seka kuvan ulkoasun. Tämä jälkeen yritetään löytää
-regressio eli funktio joka kuvaa piirteet oikeaan luokkaan. Oikea funktio haetaan minimoimalla virheen neliötä.
+\begin{table}[th]
+\caption{ChaLearn Challenge kahdeksan parhaiten sijoittunutta ryhmää}
+\label{table:dvbt_param}
+\begin{center}
+\begin{tabular}{|p{0.35\textwidth}|p{0.45\textwidth}|} 
+    \hline
+Ryhmän nimi & Menetelmä \\
+    \hline
+    \hline
+alfnie & Motion Signature analyses\\ 
+    \hline
+Pennect & HMM-style method using HOG/HOF features
+with a temporal segmentation based on candidate cuts.
+Only RGB images were used.\\
+    \hline
+One Million Monkeys & HMM\\
+    \hline
+immortals & HOG/HOF features\\
+    \hline
+Zonga & Least Squares Regression, HOSVD\\
+    \hline
+Balazs Godeny & Thumbnail Dynamic Time Warping” (DTW).\\
+    \hline
+SkyNet & Dynamic Time Warping(DTW)\\
+    \hline
+xiaozhuwudi & MHI by adding GEI and INV\\
+    \hline	
+\end{tabular}
+\end{center}
+\end{table}
 
-Ryhmä immortals lähti liikkeelle ajatukseta että liikkeet koostuvat sarjaista yksittäisä eleitä.
-Immortals käytti valmista databasea useista liikkeista ja koosti liikkeistä malleja joita se käytti tunnistuksessa.
+\newpage
 
-Ensimmäinen ryhmä näytti keskittyvän piirrevalintaan, toinen ryhmä regressioon ja kolmas ryhmä videokuvan tunnistuspuoleen.
+\section {Katsaus menestyneisiin kilpailutöihin}
 
 \subsection{xiaozhuwudi ja laajennettu MHI}
 Ryhmä xiaozhuwudi lähti liikkeelle MHI eli Motion History Image -tekniikasta. MHI tutkii liikkeen määrää videokuvalla.
 Videopätkä tiivistetään yhteen liikekuvaan, joka kuvaa liikkeen viimeaikaisuutta. Kohdat, joissa videokuvalla on ollut
 liikettä esitetään harmaasävyillä. Mitä viimeaikasempaa liike on ollut sitä valkoisempana se näkyy kuvassa. Liikkumattomat
 alueet näkyvät täysin mustana. Videokuvalta tutkitaan siis vain liikettä, eikä pyritä esimerkiksi tunnistamaan kuvalla olevia kohteita
-tai ihmiskehon osia. Tämä menetelmä matkii ihmisen tapaa tunnistaa eleitä. Ihminen tunnistaa erittäin hyvin eleet kuten vilkutuksen 
-sumealta videokuvalta vaikka ei yksittäisestä framesta tunnistaisi edes ihmishahmoa.  \\
+tai ihmiskehon osia. Tämä menetelmä matkii ihmisen tapaa tunnistaa eleitä. Ihminen tunnistaa erittäin hyvin inhimilliset eleet  
+sumealtakin videokuvalta vaikka ei yksittäisestä framesta tunnistaisi edes ihmishahmoa.  \\
 
-Xiaozhuwudi-ryhmä tunnistaa MHI:ssa kuitenkin ongelmia. MHI ei tunnista kovin hyvin eleitä jotka sisältävät toistuvia liikkeitä kuten vilkutusta.
-Liikkeen toistuessa liikerata vahvistuu MHI-kuvassa, mutta samalla ajallinen tieto katoaa. Esimerkiksi missä käsi oli ensin ja kuinka nopeasti se liikkui.
-Xiaozhuwudi ehdottaa MHI:n laajentamista INV ja GEI -kuvilla. INV oon käänteinen kuvaus MHI:ille. INV:ssa katsotaan videokuvaa alusta loppuun päin.
-Mitä aikasemmin liike esiintyy videolla sitä vaalempana se näytetään kuvassa. INV:n avulla saadaan kuvaus videon alkutilanteesta jolla voidaan
-täydentää MHI kuvaa. GEI kuvaa liikkeen määrää keskimäärin koko videon aikana. Se muistuttaa MEI:tä (Motion Energy Image) eli siinä summataan
-koko videon liike. Voidaan ajatella että siinä missä MHI mittaa liikettä MEI ja GEI mittaavat energiaa, joka on kulunut liikkeeseen. GEI:ssä 
-lopuksi jaetaan energia koko aikavälille. GEI:n avulla liikkeestä saadaan hyvä kokonaiskuva ja se tukee hyvin etenkin toistuvan liikkeen tunnistuksessa. \\
+Xiaozhuwudi-ryhmä tunnistaa MHI:ssa kuitenkin ongelmia. MHI ei tunnista kovin hyvin eleitä, jotka sisältävät toistuvaa liikkeitä esimerkiksi vilkutusta.
+Liikkeen toistuessa MHI -kuva muuttuu helposti sekavaksi ja on vaikea erottaa tarkkaa liikerataa. Xiaozhuwudi ehdottaa MHI:n laajentamista INV ja GEI -kuvilla.
+INV oon käänteinen kuvaus MHI:ille. INV:ssa katsotaan videokuvaa alusta loppuun päin.
+Mitä aikasemmin liike esiintyy videolla sitä vaalempana se näytetään kuvassa. INV:n avulla saadaan kuvaus videon alkutilanteesta, mikä täydentää MHI kuvaa. 
+GEI-kuva esittäää liikkeen määrää keskimäärin koko videon aikana. Siinä summataan koko videon liike yhdelle kuvalle ja jaetaan lopuksi koko aikavälille.
+GEI muistuttaa MEI:tä (Motion Energy Image), jossa myös lasketaan liikkeelle summa. Voidaan ajatella että siinä missä MHI ja INV mittaavat liikettä 
+MEI ja GEI mittaavat energiaa, joka on kulunut liikkeeseen. GEI:n avulla liikkeestä saadaan hyvä kokonaiskuva ja se on hyödyllinen etenkin toistuvan
+liikkeen tunnistuksessa. \\
 
 Datan esikäsittelyssä xiaozhuwudi hyödynsi Kinectin syvyyskuvaa poistamalla taustan ihmishahmolta. Lisäksi esikäsittelyssä poistettiin häiriöitä.
-MHI, GEI ja INV -kuville suoritettiin dimensioiden vähennys. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa.
-xiaozhuwudi sijoittui kilpailussa kahdeksannelle sijalle.
+MHI, GEI ja INV -kuville suoritettiin dimensioiden vähennys. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa.\\
+
+xiaozhuwudi sijoittui kilpailussa kahdeksannelle sijalle. 
 
 
 Aaron F. Bobick, Member, IEEE Computer Society, and
@@ -138,23 +165,29 @@ jonka avulla ne voidaan tunnistaa. Allekirjoituksen luominen on monivaiheinen op
 tärkeät pisteet eli pisteet joilla on merkitystä liikkeen tunnistamisen kannalta. Tässä Immortals hyödynsi Kinectin syvyyskuvaa.
 Immortals arvioi, että ne kohdat kuvasta joissa on tapahtunut muutosta syvyyskameran kuvassa ovat kyseisen videon pysäytyskuvan
 tärkeitä pisteitä. Tämän jälkeen tärkeille pisteille lasketaan HOG (Histogram of oriented gradients) ja HOF (Histogram of Flow). 
-Kuva jaetaan pieniin alueisiin joille lasketaan gradienttien suuntien histogrammi. Ajatuksen on päätellä minkä suuntaisia 
-viivoja alueelta voidaan erottaa. Tämän jälkeen historgrammin ryhmitellään "visuaalisiksi sanoiksi" tavallisen ryhmittelyalgoritmin avulla.
-Tarkoituksena on tutkia sanojen esiintymistä yhdessä ja muodostaa niistä "otsikoita". Voidaan siis kuvata yksittäistä pysäytyskuvaa
-sillä, mitkä sanat esiintyvät siinä.\\
+Kuva jaetaan pieniin alueisiin, joissa tarkastellaan alueen värityksen intensiteettivaihtelua.
+Alueelle lasketaan intensiteettivihtelun gradienttien suuntien histogrammi. Ajatuksen on päätellä minkä suuntaisia 
+viivoja alueelta voidaan erottaa. Tämän jälkeen histogrammit ryhmitellään tavallisen ryhmittelyalgoritmin avulla.
+Histogrammeja kutsutaan tässä "visuaalisiksi sanoiksi". Tarkoituksena on tutkia sanojen esiintymistä yhdessä ja muodostaa niistä "otsikoita". 
+Yksittäistä pysäytyskuvaa voidaan kuvata sillä, mitä sanoja ja mistä otsikoitsta esiintyy siinä.\\
 
-Tämän luodaan liikkeelle piirteiden perusteella malli jolla se voidaan tunnistaa. Mallin perustana on Markovin piilomalli eli HMM (Hidden Markov Model).
-Malli kertoo kuinka todennäköisesti tietty havainto kuuluu luokkaan, jota se kuvaa. Koska tutkitaan kahta ominaisuutta HOG ja HOF,
-käytetään monikanavaista Markovin piilomallia eli McHMM. HOG ja HOF paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan.
-McHMM parametreja ovat alkutila, todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja kuvaus visuaalisten sanojen avulla. Tilalla tarkoitetaan
-yksittäistä tässä pysäytyskuvaa. Parametrien arvot optimoidaan niin, että todennököisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri.\\
+Liikkeelle luodaan sanojen perusteella perusteella malli, jota käytetään tunnistusvaiheesa. Mallin perustana on Markovin piilomalli 
+eli HMM (Hidden Markov Model). Malli kertoo kuinka todennäköisesti annettu havainto kuuluu kuvaamansa luokkaan. 
+Ajatuksena on, että annetun havainnon malli on piilossa, mutta voimme löytää etsimällä todennököisin malli.
+Koska tutkitaan kahta ominaisuutta HOG ja HOF, käytetään monikanavaista Markovin piilomallia eli McHMM. 
+HOG ja HOF paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan.\\
+
+McHMM parametreja ovat alkutila, todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja tilan kuvaus visuaalisten sanojen avulla. 
+Tilalla tarkoitetaan tässä yksittäistä pysäytyskuvaa. Kyseessä on Bayesiamlainen menetelmä, jakauma tunnetaan, mutta ei parametreja.
+Parametrien arvot optimoidaan niin, että todennököisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri.\\
 tähän joku kaava? \\
 
-Tunnistusongelma pelkistyy siis kysymykseen, mikä liike joukko kaikken todennäköisimmin on muodostanut tämän videon.
-Tämän tyylinen ongelma voidaan ratkaista Viterbin alkorytmillä. Tämä vaatii kuitenkin, että ele rajataan koostumaan tietystä määrästä liikkeitä.
-Kilpailussa oli määritelty, että jokainen ele sisältää viisi liikettä. Kilpailussa ongelmaa ei siis ollut, mutta ryhmä myöntää, että sidottu lukumäärä on rajoite.
+Tunnistusongelma pelkistyy lopulta kysymykseen: Mikä liikejoukko kaikken todennäköisimmin on muodostanut tämän videon?
+Tämän tyylinen ongelma voidaan ratkaista Viterbin algoritmillä. Tämä vaatii kuitenkin, että ele rajataan koostumaan tietystä määrästä liikkeitä.
+Kilpailussa on määritelty, että jokainen elenäyte sisältää viisi liikettä.
 Viterbin alkorytmi pyrkii löytämään todennököismmän polun eri liikkeiden välillä. Alkorytmi käy videota läpi liike kerrallaan ja laskee mikä
-on mallien perusteella mikä on todennäköisin liike. Lopuksi saadaan todennököisin liikesarja josta ele koostuu.\\
+on mallien perusteella mikä on todennäköisin liike. Lopuksi saadaan todennököisin liikesarja josta ele koostuu.
+Liikesarja voidaan tunnistusvaiheessa liittää tiettyyn eleeseen.\\
 
 LÄHDE HOGILLE, joku muu kuin wikipedia :)
 A Temporal Bayesian Model for Classifying, Detecting and Localizing Activities
@@ -207,6 +240,18 @@ Zonga suorittaa kuvauksen Karcher -keskiarvomenetelmää muistuttavalla menetelm
 
 Tunnistus tapahtuu vertaamalla kuvaamalla annetut pisteet monistoon ja vertaamalla niitä luokkiin etäisyyden avulla.\\
 
+
+\subsection{Yhteenveto menestyneistä kilpailutöistä}
+Kilpailutöissä huomattavaa oli että ne käyttivät hyvin erilaista lähestymistapaa. 
+Ryhmä xiaozhuwudi käytti työssään MHI-tekniikkaa eli tutkittiin viimeaikaisen liikkeen määrää videokuvassa eri ajan hetkinä.
+
+Ryhmä zunga valitsi piirteiksi horisontaalisen ja vertikaalisen liikkeen seka kuvan ulkoasun. Tämä jälkeen yritetään löytää
+regressio eli funktio joka kuvaa piirteet oikeaan luokkaan. Oikea funktio haetaan minimoimalla virheen neliötä.
+
+Ryhmä immortals lähti liikkeelle ajatukseta että liikkeet koostuvat sarjaista yksittäisä eleitä.
+Immortals käytti valmista databasea useista liikkeista ja koosti liikkeistä malleja joita se käytti tunnistuksessa.
+
+Ensimmäinen ryhmä näytti keskittyvän piirrevalintaan, toinen ryhmä regressioon ja kolmas ryhmä videokuvan tunnistuspuoleen.
 
 
 
