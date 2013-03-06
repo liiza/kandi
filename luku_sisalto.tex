@@ -7,47 +7,45 @@
 \subsection{Johdantoluku}
 
 Tämä kandinaatintyö käsittelee eletunnistusta Kinect syvyyskameran avulla. 
-Työn tarkoitus on tutustua erilaisiin eletunnistusmenetelmiin ja tutkia niitä käytännönsovellusten kuten
-elekäyttöliittymien näkökulmasta. Tutkimuksessa kiinnitetäänkin huomioita erityisesti "yhdestä otoksesta oppimiseen" 
-ja tranfer-oppimiseen eli perehdytään siihen miten eletunnistusmenetelmät oppivat tunnistamaan liikkeitä mahdollisimman
-pienellä määrällä annettua dataa. Tämä on kuluttujaystävällistä, loppukäyttäjät eivät usein halua treenata kameraa tuhansilla toistoilla.\\
-One Shot Learning Gesture Recognition with Kinect Sensor, Di Wu, Fan Zhu, Ling Shao
-Kuvaa ja videokuvaa on tutkittu paljon mutta eletunnistus on vielä melko uusi haaste. Elentunnistuksen mahdollistavat uudet kehittyneet
-sensorit kuten Microsoftin Kinect -sensori ja kehittynyt laskentateho. Lisätäkseen alan kiinnostusta järjestttiin ChaLearn challenge
-eletunnistuskilpailu, joissa kilpailijat kehittivät Kinect sensorin datalle suunnattuja eletunnistus menetelmiä. Tämä kandinaatin työ 
-tutustuu kilpailutöihin ja kartoittaa niiden avulla alan uusinta tutkimusta.\\
+Työn tarkoitus on tutustua erilaisiin eletunnistusmenetelmiin ja erityisesti ChalearnChallenge kilpailun kilpailutöihin. 
+\\
+One Shot Learning Gesture Recognition with Kinect Sensor, Di Wu, Fan Zhu, Ling Shao\\
+Kuvaa ja videokuvaa on tutkittu paljon mutta eletunnistus on edelleen suuri haaste. Uudet kehittyneet
+sensorit kuten Microsoftin Kinect -sensori ja kehittynyt laskentateho tuovat kuitenkin uusia mahdollisukksia. 
+Kinect sensori tarjoaa ns. 3D -videokuvaa eli tavallisen värikuvan lisäksi Kinect -kamera antaa infrapunakameralla mitattua syvyyskuvaa.
+Lisätäkseen kiinnostusta 3D-kuvan järjestttiin ChaLearn challenge eletunnistuskilpailu, joissa kilpailijat kehittivät Kinect sensorin datalle suunnattuja 
+eletunnistus menetelmiä. Tämä kandinaatin työ tutustuu kilpailutöihin ja kartoittaa niiden avulla alan uusinta tutkimusta.\\
 Aaron F. Bobick, Member, IEEE Computer Society, and
 James W. Davis, Member, IEEE Computer Society
 The Recognition of Human Movement Using Temporal Templates\\
-Kinect sensori tarjoaa ns. 3D -videokuvaa eli tavallisen värikuvan lisäksi Kinect -kamera antaa infrapunakameralla mitattua syvyyskuvaa.
+
 
 
 \section{Eletunnistus videokuvalta}
 \label{Eletunnistus videokuvalta}
 
-Eletunnistusvideokuvalta koostuu seuraavista vaiheista. Kuvaa esikäsitellään, siitä poistetaan esim häiriötä tai Kinectin tapauksessa taustaa.
-Kuvasta valitaan piirteet joiden mukaan sitä luokitellaan. Piirrevalintaa voisi tarkoittaa vaikka sitä että jos haluamme luokitella ihmisiä 
-valitsemmeko pituuden tai painon tai jonkin täysin muun tekijän kuten laulutaidon. Piirteitä voidaan valita useita
-jolloin meillä on moniulottoinen avaruus, jossa pisteitä käsitellään. Tällainen on hankala piirtää 2D -tasoon ja se tekee laskennasta usein raskasta
-mutta on välttämätön jotta voidaan erottaa useampia eri luokkia. Jostain tilanteissa piirteiden määrää voidaa vähentää sopivalla lineaarikuvauksella.\\
 
-Videokuvan tapauksessa suoritetaan seuraavaksi ajallinen jako. Videokuva jaetaan siis pätkiin joiden sisällä ei ole liikettä. 
-Tyypilliset videopätkät tiivistetään yksittäiseen kuvaan, hävittäen aikaulottovuus. Videokuvan ajallinen jako voidaan suorittaa etukäteen
-vertailemalla esimerkiksi vertailemalla peräkkäisten framejen samankaltaisuutta. Esimerkiksi videokuvassa jossa ihminen ensin istuu ja sitten nousee seisomaan
-voidaan erottaa ainakin kolme erillistä jaksoa: istuminen, nouseminen ja seisominen. Jako voi tapahtua myös tunnistuksen aikana.\\
+\subsection{Videokuvan erityispiirteet}
+Eletunnistus videokuvalta koostuu seuraavista vaiheista. Kuvaa esikäsitellään, siitä poistetaan häiriötä tai esimerkiksi pienennetään laskennan helpottamiseksi.
+Kuvasta valitaan piirteet joiden mukaan sitä luokitellaan. Piirteitä voidaan valita useita jolloin meillä on moniulottoinen avaruus, jossa pisteitä käsitellään. Tällainen on hankala piirtää 2D -tasoon ja se tekee laskennasta usein raskasta
+mutta on välttämätön, jotta voidaan erottaa useampia eri luokkia. Jostain tilanteissa piirteiden määrää voidaa vähentää sopivalla lineaarikuvauksella.\\
+
+Videokuvan tapauksessa suoritetaan seuraavaksi ajallinen jako. Videokuva jaetaan siis osioihin, joiden sisällä ei ole suurta vaihtelua. 
+Videopätkät saatetaan tiivistää yksittäiseen kuvaan jolloin niitä on helpompi käsitellä. Kuvaa voidaan käsitellä myös yksittäinen pysäytyskuva kerrallaan.
+Videokuvan ajallinen jako voidaan suorittaa etukäteen vertailemalla esimerkiksi vertailemalla peräkkäisten framejen samankaltaisuutta. Esimerkiksi videokuvassa,
+jossa ihminen ensin istuu ja sitten nousee seisomaan voidaan erottaa ainakin kolme erillistä jaksoa: istuminen, nouseminen ja seisominen. 
+Jako voi tapahtua myös tunnistuksen aikana.\\
 
 Tämän jälkeen pyritään löytämään jokin yhteys piirteiden ja luokan välillä. Ongelmamme on luokitusongelma; tiedämme etukäteen mitä luokkia on olemassa.
 Opetusvaiheessa tiedämme luokan voimme johtaa jonkin funktion näytteen ja luokan välille. 
 Tutkimus riippuu valitsemistamme piirteistä, joita voisivat olla esimerkiksi: onko kuvassa tapahtunut vaakasuuntaista liikettä? Onko kuvissa havaittavissa paljon pystysuoria viivoja?
 Tässä voidaan käyttää erilaisia luokittelualgoritmea lähin naapuri esimerkiksi.\\
 
-Luotuamme funktion ja näytteen välille voimme siirtyä opetusdataan. Opetusdatassa tiedämme oikeat vastaukset, mutta suoritamme laskennat kuin emme tietäisi.
+Luotuamme funktion ja näytteen välille voimme siirtyä testidataan. Opetusdatassa tiedämme oikeat vastaukset, mutta suoritamme laskennat kuin emme tietäisi.
 Opetusdataa voidaan käyttää arvoimaan luokittimen kykyä arvioida muuta dataa kuin sitä millä se on luotu.\\
 
-Ihminen on erittäin taitava eletunnistuksessa. Ihminen oppii uuden eleen yhdestä näytteestä. Ihminen tunnistaa liikkeen tai eleen vaikka
-kuva oli sumea eikä yksittäisestä framesta erottaisi hahmoa. Eletunnistuksessa ollaan kiinnostuneita ihmisen kyvystä tunnistaa eleitä ja
-pyritään matkimaan ihmisen eletunnistus näköä. Kuvista ei esimerkiksi pyritään erottamaan hahmoa vaan ihmisen havaitsemiskyvyn tavoin
-tutkitaan pelkkää liikettä.\\
+
+\subsection{Kinect ja 3D-kuva}
 
 
 
@@ -61,9 +59,11 @@ Kilpailussa jaettiin 50 000 Kinect-sensorilla kuvattua videonäytettä. Videonä
 tai poliisin käsimerkkejä. Kilpailijoiden tarkoitus oli kehittää eletunnistusmenetelmä jonka avulla eleet opitaan yhdestä opetusnäytteestä.
 Eleitä oli jaettu kategorioihin käyttötilanteen mukaan esimerksi poliisin käsimerkit olivat yksi kategoria. Eleet joilla kilpailutöitä
 testattiin olivat eri eleitä kuin opetusdatassa mutta samoista kategorioista.\\
+
 Videoklipeillä esiintyi aina yksi ihminen kerrallaan suorittamassa tiettyä elesarjaa. Kuva rajatttiin yläruumiiseen ja eleet tehtiin
 pääasiallisesti käsillä. Liikkeet lopetettiin ja aloitettiin aina samasta lepoasennosta. Videonäytteet sisälsivät syvyyskamerakuvan sekä värikuvan 
 mutta ei ranganseurausta. Haasteita toivat vaihtelevat taustat ja valaistukset videoilla.\\
+
 Kilpailijoille jaettiin kolme datajoukko: kehitysdata, validointidata ja lopullinen arviointidata. Dataa oli luokiteltu kategorioihin sen mukaan
 oliko kyseessä esimerkiksi viittoma, luonnollinen ele vai tanssiasento. Opetusdatassa näytteille annettiin laabelit kuvaamaan oikeaa ratkaisua.
 Validointi ja arviointi datassa vain osalla oli oikeat laabelit. Kilpailun loppupuolella paljastettiin lopullinen testidata jonka avulla tuloksia arvioitiin\\
@@ -103,6 +103,7 @@ liikettä esitetään harmaasävyillä. Mitä viimeaikasempaa liike on ollut sit
 alueet näkyvät täysin mustana. Videokuvalta tutkitaan siis vain liikettä, eikä pyritä esimerkiksi tunnistamaan kuvalla olevia kohteita
 tai ihmiskehon osia. Tämä menetelmä matkii ihmisen tapaa tunnistaa eleitä. Ihminen tunnistaa erittäin hyvin eleet kuten vilkutuksen 
 sumealta videokuvalta vaikka ei yksittäisestä framesta tunnistaisi edes ihmishahmoa.  \\
+
 Xiaozhuwudi-ryhmä tunnistaa MHI:ssa kuitenkin ongelmia. MHI ei tunnista kovin hyvin eleitä jotka sisältävät toistuvia liikkeitä kuten vilkutusta.
 Liikkeen toistuessa liikerata vahvistuu MHI-kuvassa, mutta samalla ajallinen tieto katoaa. Esimerkiksi missä käsi oli ensin ja kuinka nopeasti se liikkui.
 Xiaozhuwudi ehdottaa MHI:n laajentamista INV ja GEI -kuvilla. INV oon käänteinen kuvaus MHI:ille. INV:ssa katsotaan videokuvaa alusta loppuun päin.
@@ -110,6 +111,7 @@ Mitä aikasemmin liike esiintyy videolla sitä vaalempana se näytetään kuvass
 täydentää MHI kuvaa. GEI kuvaa liikkeen määrää keskimäärin koko videon aikana. Se muistuttaa MEI:tä (Motion Energy Image) eli siinä summataan
 koko videon liike. Voidaan ajatella että siinä missä MHI mittaa liikettä MEI ja GEI mittaavat energiaa, joka on kulunut liikkeeseen. GEI:ssä 
 lopuksi jaetaan energia koko aikavälille. GEI:n avulla liikkeestä saadaan hyvä kokonaiskuva ja se tukee hyvin etenkin toistuvan liikkeen tunnistuksessa. \\
+
 Datan esikäsittelyssä xiaozhuwudi hyödynsi Kinectin syvyyskuvaa poistamalla taustan ihmishahmolta. Lisäksi esikäsittelyssä poistettiin häiriöitä.
 MHI, GEI ja INV -kuville suoritettiin dimensioiden vähennys. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa.
 xiaozhuwudi sijoittui kilpailussa kahdeksannelle sijalle.
@@ -127,11 +129,11 @@ Di Wu, Student Member, IEEE, and Ling Shao, Senior Member, IEEE
 
 \subsection{immortals ja Hidden Markov Model}
 
-Ryhmä immortals käytti erilaista lähestymistapaa. Ryhmä oletti vastoin yleistä tapaa,
-että yksittäinen ele koostuu ennen kaikkia useista yksittäisistä liikkeistä. Sen mukaan eleet tunnistetaan parhaiten
-käsittelmällä elettä useasta liikkeestä koostuvana yhdistelmänä. Tämä eroaa esimerkiksi ryhmän xiaozhuwudi, joka käsitteli
-eleitä kokonaisuuksina.\\
-Ryhmä lähti liikkeelle opetusvaiheessa yksittäisistä liikkeistä. Yksittäisille liikkeille luodaan allekirjoitus tai malli,
+Ryhmä Immostals lähti kilpailutyössään liikkeelle oletuksesta, että ele koostuu ennen kaikkia useista yksittäisistä liikkeistä. 
+Sen mukaan eleet tunnistetaan parhaiten käsittelmällä elettä jokkona liikkeitä. Tämä eroaa ryhmän mukaan tyypillisestä 
+tavasta lähestyä ongelmaa.\\
+
+Ryhmä lähti liikkeelle opetusvaiheessa yksittäisistä liikkeistä. Yksittäisille liikkeille luodaan allekirjoitus eli malli,
 jonka avulla ne voidaan tunnistaa. Allekirjoituksen luominen on monivaiheinen operaatio. Ensin kuvista poimitaan niin sanotut
 tärkeät pisteet eli pisteet joilla on merkitystä liikkeen tunnistamisen kannalta. Tässä Immortals hyödynsi Kinectin syvyyskuvaa.
 Immortals arvioi, että ne kohdat kuvasta joissa on tapahtunut muutosta syvyyskameran kuvassa ovat kyseisen videon pysäytyskuvan
@@ -140,12 +142,14 @@ Kuva jaetaan pieniin alueisiin joille lasketaan gradienttien suuntien histogramm
 viivoja alueelta voidaan erottaa. Tämän jälkeen historgrammin ryhmitellään "visuaalisiksi sanoiksi" tavallisen ryhmittelyalgoritmin avulla.
 Tarkoituksena on tutkia sanojen esiintymistä yhdessä ja muodostaa niistä "otsikoita". Voidaan siis kuvata yksittäistä pysäytyskuvaa
 sillä, mitkä sanat esiintyvät siinä.\\
+
 Tämän luodaan liikkeelle piirteiden perusteella malli jolla se voidaan tunnistaa. Mallin perustana on Markovin piilomalli eli HMM (Hidden Markov Model).
 Malli kertoo kuinka todennäköisesti tietty havainto kuuluu luokkaan, jota se kuvaa. Koska tutkitaan kahta ominaisuutta HOG ja HOF,
 käytetään monikanavaista Markovin piilomallia eli McHMM. HOG ja HOF paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan.
 McHMM parametreja ovat alkutila, todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja kuvaus visuaalisten sanojen avulla. Tilalla tarkoitetaan
 yksittäistä tässä pysäytyskuvaa. Parametrien arvot optimoidaan niin, että todennököisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri.\\
 tähän joku kaava? \\
+
 Tunnistusongelma pelkistyy siis kysymykseen, mikä liike joukko kaikken todennäköisimmin on muodostanut tämän videon.
 Tämän tyylinen ongelma voidaan ratkaista Viterbin alkorytmillä. Tämä vaatii kuitenkin, että ele rajataan koostumaan tietystä määrästä liikkeitä.
 Kilpailussa oli määritelty, että jokainen ele sisältää viisi liikettä. Kilpailussa ongelmaa ei siis ollut, mutta ryhmä myöntää, että sidottu lukumäärä on rajoite.
@@ -164,6 +168,64 @@ inwogu@buffalo.edu
 Venu Govindaraju
 University at Buffalo
 govind@buffalo.edu
+
+\subsection{Zonga ja pieninimmän neliösumman menetelmä sovelluttuna monistoon}
+Ryhmä Zonga käyttää kehittämäänsä menetelmää, joka soveltuu yleisesti videokuvan luokitteluun. 
+Menetelmää on kuitenkin kustomoitu eletunnistusta varten tähän haasteeseen.\\
+
+Videonkuvan käsittelyssä ensimmäinen tehtävä on usein kuvata videokuva vektoriksi tai tensoriksi, joka voidaan esittää tila-avaruudessa. 
+Videokuva ei ole lähtökohtaisesti piste Euklidisessa avaruudessa, vaan monimuotoinen datajoukko. Avaruudessa olevia pisteitä voidaan käsitellä
+ja esimerkiksi luokitella yksinkertaisten algoritmien avulla.\\
+
+Ryhmä Zonga ehdottaa videon kuvamista pisteenä Grassmannin monistossa. Videokuvan kolme ulottuvuutta (leveys, korkeus ja aika) ovat moniston ulottuvuudet.
+Monisto säilyttää alkuperäisen havainnon geometrisen rakenteen paremmin kuin Euklidinen avaruus.
+Havainnon alkuperäinen rakenne usein kadotetaan muissa eletunnistusmenetelmissä. \\
+
+Monistojen käyttäminen ei ole kuitenkaan täysin uusi asia eletunnistuksessa.
+Ryhmä Zonga yhdistää kuitenkin monistoihin pienimmän neliösumman menetelmän, mikä tekee ryhmän tekniikasta ainutlaatuisen. 
+Video on tyypillisesti kolmiulottoinen tensori, joten on luonnollista käsitellä sitä monistossa.
+Pienimmän neliösumman menetelmä on regressio-ongelma, eli etsinään jonkinlaista suhdetta havainnon ja luokan välille.
+Regressio-ongelma on tyypillisesti muotoa y = A * beta, jossa y -vektori esittää pisteet tulosavaruudessa, A on havaintomatriisi 
+ja b -vektori on painovektori, joka kuvaa havaintomatriisin pisteet tulospisteiksi.
+Meillä on siis opetusvaiheessa käytössä havainto ja sitä vastaava luokka joiden välille kehitän funktio.\\
+
+Pienimmän neliösumman menetelmässä pyritään minimoimaan luokitteluvirheen neliötä eli oikean tulokset ja arvioidun tuloksen erotuksen neliötä.
+Minimoidaan siis funktiota: \\
+R(beta) = ||y-A*beta|| \\
+jolloin b:lle saadaan funktio\\
+funktio tähän\\
+
+Havaintomatriisi A muodostetaan kolmesta tekijästä: videon korkeussuuntaisesta kuvaajasta, leveyssuuntaisesta sekä ajallisesta vaihtelusta.
+Havaintomatriisin luomisessa käytetään HOSVD:ia. Painovektori b kuvaa havaintomatriisin A vektoriavaruuteen, missä kadotetaan tieto alkuperäisistä tekijöistä. 
+Lopullista regressiota varten halutaan kuintenkin palauttaa pisteet havainnon tekijöihin.
+Näin luokittelussa huomioidaan alkuperäisen havainnon rakenne ja vastataan eletunnistusongelmaan tehokkaammin. 
+Lopullinen regressio kaava on siis muotoa\\
+tähän se lopullinen kaava pisteen kera\\
+Pistefunktio on operaatio joka kuvaa havainnot Grasmanin monistossa. Grasmmanin monisto parametrisoi jokaisen vektoriavaruuden aliavaruuden.
+Tässä tapauksessa parametreja on kolme, jokaiselle havainnon tekijälle.
+Zonga suorittaa kuvauksen Karcher -keskiarvomenetelmää muistuttavalla menetelmällä.\\
+
+Tunnistus tapahtuu vertaamalla kuvaamalla annetut pisteet monistoon ja vertaamalla niitä luokkiin etäisyyden avulla.\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % --------------------------------------------------------------------
 
 \section{Loppuluku}
