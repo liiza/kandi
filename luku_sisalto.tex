@@ -9,15 +9,12 @@
 Tämä kandinaatintyö käsittelee eletunnistusta Kinect syvyyskameran avulla. 
 Työn tarkoitus on tutustua erilaisiin eletunnistusmenetelmiin ja erityisesti ChalearnChallenge kilpailun kilpailutöihin. 
 \\
-One Shot Learning Gesture Recognition with Kinect Sensor, Di Wu, Fan Zhu, Ling Shao\\
 Kuvaa ja videokuvaa on tutkittu paljon mutta eletunnistus on edelleen suuri haaste. Uudet kehittyneet
 sensorit kuten Microsoftin Kinect -sensori ja kehittynyt laskentateho tuovat kuitenkin uusia mahdollisukksia. 
-Kinect sensori tarjoaa ns. 3D -videokuvaa eli tavallisen värikuvan lisäksi Kinect -kamera antaa infrapunakameralla mitattua syvyyskuvaa.
-Lisätäkseen kiinnostusta 3D-kuvan järjestttiin ChaLearn challenge eletunnistuskilpailu, joissa kilpailijat kehittivät Kinect sensorin datalle suunnattuja 
+Kinect sensori tarjoaa ns. 3D -videokuvaa eli tavallisen värikuvan lisäksi Kinect -kamera antaa infrapunakameralla mitattua syvyyskuvaa.\\
+
+Lisätäkseen kiinnostusta 3D-kuvaan järjestettiin ChaLearn challenge eletunnistuskilpailu, joissa kilpailijat kehittivät Kinect sensorin datalle suunnattuja 
 eletunnistus menetelmiä. Tämä kandinaatin työ tutustuu kilpailutöihin ja kartoittaa niiden avulla alan uusinta tutkimusta.\\
-Aaron F. Bobick, Member, IEEE Computer Society, and
-James W. Davis, Member, IEEE Computer Society
-The Recognition of Human Movement Using Temporal Templates\\
 
 
 
@@ -25,28 +22,36 @@ The Recognition of Human Movement Using Temporal Templates\\
 \label{Eletunnistus videokuvalta}
 
 
-\subsection{Videokuvan erityispiirteet}
-Eletunnistus videokuvalta koostuu seuraavista vaiheista. Kuvaa esikäsitellään, siitä poistetaan häiriötä tai esimerkiksi pienennetään laskennan helpottamiseksi.
-Kuvasta valitaan piirteet joiden mukaan sitä luokitellaan. Piirteitä voidaan valita useita jolloin meillä on moniulottoinen avaruus, jossa pisteitä käsitellään. Tällainen on hankala piirtää 2D -tasoon ja se tekee laskennasta usein raskasta
-mutta on välttämätön, jotta voidaan erottaa useampia eri luokkia. Jostain tilanteissa piirteiden määrää voidaa vähentää sopivalla lineaarikuvauksella.\\
+\subsection{Eletunnistus ongelmana}
+Eletunnistuksella tarkoitetaan tässä työssä ihmisen suorittaman eleen tunnistamista videokuvalta. Eleitä voisivat olla esimerkiksi
+viittomakielen eleet tai yksinkertaiset toiminnot kuten istuminen. Eletunnistus on haastava ongelma. Ihmisen eleet ovat usein 
+monimutkaisia ja videokuvalla on paljon muuttujia kuten valaistus, tila tai kohteen etäisyys kamerasta.\citep {1251144} Eletunnistus on hyvä erottaa
+asennon tunnistus (Pose Estimation) -ongelmasta. Asennon tunnistuksessa pyritään tunnistamaan henkilön asento videolla yhdessä pysäytyskuvassa
+käyttämättä lainkaa ajallista tietoa. \citep {hirsjarvilol2009} Yksittäisiä asentoja voidaan käyttää tunnistamaan ele, joskin se on laskennallisesti raskasta.\\
+Kiinnostus eletunnistusta kohtaan on lisääntynyt viime vuosina sen monien käyttötarkoitusten vuoksi. Eletunnistusta voidaan käyttää esimerkiksi elekäyttöliittymissä.
+\citep {1251144} Samalla parantunut laskentateho ja halvat syvyyskamerat luovat uusia mahdollisuuksia.\citep {6239178}\\
 
-Videokuvan tapauksessa suoritetaan seuraavaksi ajallinen jako. Videokuva jaetaan siis osioihin, joiden sisällä ei ole suurta vaihtelua. 
-Videopätkät saatetaan tiivistää yksittäiseen kuvaan jolloin niitä on helpompi käsitellä. Kuvaa voidaan käsitellä myös yksittäinen pysäytyskuva kerrallaan.
-Videokuvan ajallinen jako voidaan suorittaa etukäteen vertailemalla esimerkiksi vertailemalla peräkkäisten framejen samankaltaisuutta. Esimerkiksi videokuvassa,
-jossa ihminen ensin istuu ja sitten nousee seisomaan voidaan erottaa ainakin kolme erillistä jaksoa: istuminen, nouseminen ja seisominen. 
-Jako voi tapahtua myös tunnistuksen aikana.\\
-
-Tämän jälkeen pyritään löytämään jokin yhteys piirteiden ja luokan välillä. Ongelmamme on luokitusongelma; tiedämme etukäteen mitä luokkia on olemassa.
-Opetusvaiheessa tiedämme luokan voimme johtaa jonkin funktion näytteen ja luokan välille. 
-Tutkimus riippuu valitsemistamme piirteistä, joita voisivat olla esimerkiksi: onko kuvassa tapahtunut vaakasuuntaista liikettä? Onko kuvissa havaittavissa paljon pystysuoria viivoja?
-Tässä voidaan käyttää erilaisia luokittelualgoritmea lähin naapuri esimerkiksi.\\
-
-Luotuamme funktion ja näytteen välille voimme siirtyä testidataan. Opetusdatassa tiedämme oikeat vastaukset, mutta suoritamme laskennat kuin emme tietäisi.
-Opetusdataa voidaan käyttää arvoimaan luokittimen kykyä arvioida muuta dataa kuin sitä millä se on luotu.\\
+Videokuvan tunnistuksessa voidaan hyödyntää perinteisiä hahmontunnistusmenetelmiä. Monet menetelmistä ovat laskennallisti liian raskaita 
+reaaliaikaseen videokuvan tunnistukseen. \citep {1251144} Monet hahmontunnistusmenetelmät vaativat myös paljon opetusdataa. Kuluttajille suunnatuissa
+sovelluksissa olisi toivottavaa, että uuden eleen voi opettaa muutaman testinäytteen perusteella \citep {1251144}.
 
 
-\subsection{Kinect ja 3D-kuva}
+\subsection{Eletunnistus video ja 3D-videokuvalta}
 
+Eleentunnistus videokuvalta koostuu tyypillisesti seuraavista vaiheista. Videokuvaa esikäsitellään, siitä poistetaan häiriötä tai kuvaa esimerkiksi 
+pienennetään laskennan helpottamiseksi. Videolle suoritetaan usein myös jonkinlainen ajallinen jako. Videokuva jaetaan
+osioihin, joiden sisällä ei ole suurta vaihtelua pysäytyskuvien välillä. Videopätkät saatetaan tiivistää yksittäiseen kuvaan tai niitä voidaan käsitellä 
+pysäytyskuva kerrallaan. Jako voi tapahtua myös luokitteluprosessin aikana tai sitä ei välttämättä ole ollenkaan.\\
+
+Kuten tyypillisesti hahmon tunnistuksessa ratkaiseva vaihe on usein oikeiden piirteiden valinta. Videokuvasta voidaan tutkia esimerkiksi 
+tietyn suuntaista liikettä ajan funktiona. Pysäytyskuvista voidaan arvioida kontrastivaihteluita ja sitä kautta hahmottaa viivoja tai muotoja kuvassa.
+Valitut piirteet riippuvat siitä käsitelläänkö videokuvaan kokonaisuutena vai tarkastellaanko pysäytyskuvia. Piirrevalinnassa voidaan 
+myös yhdistellä molempia näkökulmia. Yksittäisistä pysäytyskuvista voidaan valita kiinnostavat pisteet tutkimalla videokuvalla tapahtuvaa liikettä \citep {6239185}. \\
+
+Tunnistusvaiheessa annettuja näytteitä verrataan opetusdatan kuvaamiin luokkiin. Tunnistusmenetelmässä huomioidaan videon aikaulottovuus.
+Jos videokuvaa käsitellään yksittäisten kuvien esimerkiksi liikekuvan avulla, kuvia voidaan vertailla tavanomaisilla menetelmillä.
+Jos videokuva kuitenkin esitetään yksittäisillä pysäytyskuvilla on tunnistuksessa käytettävä jonkinlaista rakenteellista mallia kuten 
+Markovin piilomallia \citep. Tässäkin voidaan yhdistellä molempia näkökulmia. 
 
 
 
@@ -58,18 +63,16 @@ ChaLearn Gesture Challenge kilpailun tarkoituksena oli lisätä kiinnostusta ele
 Kilpailussa jaettiin 50 000 Kinect-sensorilla kuvattua videonäytettä. Videonäytteet sisälsivät esimerkiksi viittomia
 tai poliisin käsimerkkejä. Kilpailijoiden tarkoitus oli kehittää eletunnistusmenetelmä jonka avulla eleet opitaan yhdestä opetusnäytteestä.
 Eleitä oli jaettu kategorioihin käyttötilanteen mukaan esimerksi poliisin käsimerkit olivat yksi kategoria. Eleet joilla kilpailutöitä
-testattiin olivat eri eleitä kuin opetusdatassa mutta samoista kategorioista.\\
+testattiin olivat eri eleitä kuin opetusdatassa mutta samoista kategorioista.  \\
 
 Videoklipeillä esiintyi aina yksi ihminen kerrallaan suorittamassa tiettyä elesarjaa. Kuva rajatttiin yläruumiiseen ja eleet tehtiin
 pääasiallisesti käsillä. Liikkeet lopetettiin ja aloitettiin aina samasta lepoasennosta. Videonäytteet sisälsivät syvyyskamerakuvan sekä värikuvan 
-mutta ei ranganseurausta. Haasteita toivat vaihtelevat taustat ja valaistukset videoilla.\\
+mutta ei ranganseurausta. Haasteita toivat vaihtelevat taustat ja valaistukset videoilla. \\
 
 Kilpailijoille jaettiin kolme datajoukko: kehitysdata, validointidata ja lopullinen arviointidata. Dataa oli luokiteltu kategorioihin sen mukaan
 oliko kyseessä esimerkiksi viittoma, luonnollinen ele vai tanssiasento. Opetusdatassa näytteille annettiin laabelit kuvaamaan oikeaa ratkaisua.
-Validointi ja arviointi datassa vain osalla oli oikeat laabelit. Kilpailun loppupuolella paljastettiin lopullinen testidata jonka avulla tuloksia arvioitiin\\
-
-The Recognition of Human Movement Using Temporal Templates
-00910878.pdf
+Validointi ja arviointi datassa vain osalla oli oikeat laabelit. Kilpailun loppupuolella paljastettiin lopullinen testidata jonka avulla tuloksia arvioitiin.
+\citep {6239178} \\
 
 
 \subsection{Katsaus kilpailutöihin}
@@ -84,7 +87,7 @@ Tyypillisesti kilpailijat käyttivät ominaisuuksien valintaa, tiivistystä tai 
 Videokuva jaetaan ajallisesti osioihin perustuen videokuvan samankaltaisuuteen. Tunnistuksessa voidaan käytttää erilaisia graafisia malleja
 kuten Hidden Markov Model ja Conditional Random Fields. Itse luokittelu tapahtui KNN tai muilla yksinkertaisilla keinoilla. 
 Kilpailun järjestejien odottamaa metodia Transfer learning käytettiin, tosin kukaan menestyneistä kilpailijoista ei käyttänyt sitä.\\
-
+\citep {6239178} 
 
 \begin{table}[th]
 \caption{ChaLearn Challenge kahdeksan parhaiten sijoittunutta ryhmää}
@@ -122,12 +125,12 @@ xiaozhuwudi & MHI by adding GEI and INV\\
 \section {Katsaus menestyneisiin kilpailutöihin}
 
 \subsection{xiaozhuwudi ja laajennettu MHI}
-Ryhmä xiaozhuwudi lähti liikkeelle MHI eli Motion History Image -tekniikasta. MHI tutkii liikkeen määrää videokuvalla.
+Ryhmä xiaozhuwudi lähti liikkeelle MHI eli Motion History Image -tekniikasta. \citep {6239179} MHI tutkii liikkeen määrää videokuvalla.
 Videopätkä tiivistetään yhteen liikekuvaan, joka kuvaa liikkeen viimeaikaisuutta. Kohdat, joissa videokuvalla on ollut
 liikettä esitetään harmaasävyillä. Mitä viimeaikasempaa liike on ollut sitä valkoisempana se näkyy kuvassa. Liikkumattomat
 alueet näkyvät täysin mustana. Videokuvalta tutkitaan siis vain liikettä, eikä pyritä esimerkiksi tunnistamaan kuvalla olevia kohteita
 tai ihmiskehon osia. Tämä menetelmä matkii ihmisen tapaa tunnistaa eleitä. Ihminen tunnistaa erittäin hyvin inhimilliset eleet  
-sumealtakin videokuvalta vaikka ei yksittäisestä framesta tunnistaisi edes ihmishahmoa.  \\
+sumealtakin videokuvalta vaikka ei yksittäisestä framesta tunnistaisi edes ihmishahmoa. \citep {910878}  \\
 
 Xiaozhuwudi-ryhmä tunnistaa MHI:ssa kuitenkin ongelmia. MHI ei tunnista kovin hyvin eleitä, jotka sisältävät toistuvaa liikkeitä esimerkiksi vilkutusta.
 Liikkeen toistuessa MHI -kuva muuttuu helposti sekavaksi ja on vaikea erottaa tarkkaa liikerataa. Xiaozhuwudi ehdottaa MHI:n laajentamista INV ja GEI -kuvilla.
@@ -136,22 +139,13 @@ Mitä aikasemmin liike esiintyy videolla sitä vaalempana se näytetään kuvass
 GEI-kuva esittäää liikkeen määrää keskimäärin koko videon aikana. Siinä summataan koko videon liike yhdelle kuvalle ja jaetaan lopuksi koko aikavälille.
 GEI muistuttaa MEI:tä (Motion Energy Image), jossa myös lasketaan liikkeelle summa. Voidaan ajatella että siinä missä MHI ja INV mittaavat liikettä 
 MEI ja GEI mittaavat energiaa, joka on kulunut liikkeeseen. GEI:n avulla liikkeestä saadaan hyvä kokonaiskuva ja se on hyödyllinen etenkin toistuvan
-liikkeen tunnistuksessa. \\
+liikkeen tunnistuksessa. \citep {6239179} \\
 
 Datan esikäsittelyssä xiaozhuwudi hyödynsi Kinectin syvyyskuvaa poistamalla taustan ihmishahmolta. Lisäksi esikäsittelyssä poistettiin häiriöitä.
-MHI, GEI ja INV -kuville suoritettiin dimensioiden vähennys. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa.\\
+MHI, GEI ja INV -kuville suoritettiin dimensioiden vähennys. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa. \citep {6239179}\\
 
 xiaozhuwudi sijoittui kilpailussa kahdeksannelle sijalle. 
 
-
-Aaron F. Bobick, Member, IEEE Computer Society, and
-James W. Davis, Member, IEEE Computer Society
-The Recognition of Human Movement Using Temporal Templates
-00910878.pdf
-
-Silhouette Analysis-Based Action Recognition Via
-Exploiting Human Poses
-Di Wu, Student Member, IEEE, and Ling Shao, Senior Member, IEEE
 
 
 \subsection{immortals ja Hidden Markov Model}
@@ -187,20 +181,8 @@ Tämän tyylinen ongelma voidaan ratkaista Viterbin algoritmillä. Tämä vaatii
 Kilpailussa on määritelty, että jokainen elenäyte sisältää viisi liikettä.
 Viterbin alkorytmi pyrkii löytämään todennököismmän polun eri liikkeiden välillä. Alkorytmi käy videota läpi liike kerrallaan ja laskee mikä
 on mallien perusteella mikä on todennäköisin liike. Lopuksi saadaan todennököisin liikesarja josta ele koostuu.
-Liikesarja voidaan tunnistusvaiheessa liittää tiettyyn eleeseen.\\
+Liikesarja voidaan tunnistusvaiheessa liittää tiettyyn eleeseen. \citep {6239185}\\ 
 
-LÄHDE HOGILLE, joku muu kuin wikipedia :)
-A Temporal Bayesian Model for Classifying, Detecting and Localizing Activities
-in Video Sequences
-Manavender R. Malgireddy
-University at Buffalo
-mrm42@buffalo.edu
-Ifeoma Inwogu
-University at Buffalo
-inwogu@buffalo.edu
-Venu Govindaraju
-University at Buffalo
-govind@buffalo.edu
 
 \subsection{Zonga ja pieninimmän neliösumman menetelmä sovelluttuna monistoon}
 Ryhmä Zonga käyttää kehittämäänsä menetelmää, joka soveltuu yleisesti videokuvan luokitteluun. 
@@ -238,20 +220,27 @@ Pistefunktio on operaatio joka kuvaa havainnot Grasmanin monistossa. Grasmmanin 
 Tässä tapauksessa parametreja on kolme, jokaiselle havainnon tekijälle.
 Zonga suorittaa kuvauksen Karcher -keskiarvomenetelmää muistuttavalla menetelmällä.\\
 
-Tunnistus tapahtuu vertaamalla kuvaamalla annetut pisteet monistoon ja vertaamalla niitä luokkiin etäisyyden avulla.\\
+Tunnistus tapahtuu vertaamalla kuvaamalla annetut pisteet monistoon ja vertaamalla niitä luokkiin etäisyyden avulla. \citep {6239180}\\
 
 
 \subsection{Yhteenveto menestyneistä kilpailutöistä}
-Kilpailutöissä huomattavaa oli että ne käyttivät hyvin erilaista lähestymistapaa. 
-Ryhmä xiaozhuwudi käytti työssään MHI-tekniikkaa eli tutkittiin viimeaikaisen liikkeen määrää videokuvassa eri ajan hetkinä.
+Menestyneet kilpailutyöt lähestyivät ongelmaa varsin erilaisin menetelmin ja panostivat eri vaiheesiin eleentunnistuksessa.
+ 
+Ryhmä Xiaozhuwudi käytti työssään laajennettua MHI-kuvaa eli tutki videolla tapahtuvaa liikettä ohittaen yksittäiset pysäytyskuvat.
+Ryhmä Zonga valitsi piirteiksi horisontaalisen ja vertikaalisen liikkeen videolla sekä kuvan "summan" videon yli. 
+Ryhmä immortals sen sijaan lähti tutkimaan yksittäisiä pysäytyskuvia ja tutki kuvista muotoja HOG ja HOF avulla.
 
-Ryhmä zunga valitsi piirteiksi horisontaalisen ja vertikaalisen liikkeen seka kuvan ulkoasun. Tämä jälkeen yritetään löytää
-regressio eli funktio joka kuvaa piirteet oikeaan luokkaan. Oikea funktio haetaan minimoimalla virheen neliötä.
+Tunnistusmenetelmät heijastelivat ryhmien piirrevalintoja. Xiaozhuwudi ja Zonga, jotka tiivistivät näytteet 
+yksittäisiin kuviin käyttivät tamanomaisia luokittelumenetelmiä, jotka perustuvat etäisyyden laskemiseen euklidissa tai sen kaltaisessa tilassa.
+Immortals lähti oletuksesta, että videokuva koostuu ennen kaikkea joukosta perättäisiä yksittäisiä liikkeitä.
+Markovin piilomallin ja Viterbin algoritmin avulla pyrittiin löytämään liikesarja, joka kaikken todenäköisimmin esiintyi videolla.
 
-Ryhmä immortals lähti liikkeelle ajatukseta että liikkeet koostuvat sarjaista yksittäisä eleitä.
-Immortals käytti valmista databasea useista liikkeista ja koosti liikkeistä malleja joita se käytti tunnistuksessa.
+Immortals sijoittui kilpailussa viidenneksi, Zonga kuudenneksi ja Xiaozhuwudi kahdennaksi. Parhaiten menestyneen Immortalssin
+menetelmä vaikuttaa raskaimmalta, mutta ilmoituksen perusteella se on vain lineaarinen suhteessa opetusnäytteiden määrään.
+Muut ryhmät ilmoittimat samankaltaisia lukemia.
 
-Ensimmäinen ryhmä näytti keskittyvän piirrevalintaan, toinen ryhmä regressioon ja kolmas ryhmä videokuvan tunnistuspuoleen.
+
+
 
 
 
