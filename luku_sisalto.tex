@@ -14,7 +14,7 @@ sensorit kuten Microsoftin Kinect -sensori ja kehittynyt laskentateho tuovat kui
 Kinect sensori tarjoaa ns. 3D -videokuvaa eli tavallisen värikuvan lisäksi Kinect -kamera antaa infrapunakameralla mitattua syvyyskuvaa.\\
 
 Lisätäkseen kiinnostusta 3D-kuvaan järjestettiin ChaLearn challenge eletunnistuskilpailu, joissa kilpailijat kehittivät Kinect sensorin datalle suunnattuja 
-eletunnistus menetelmiä. Tämä kandinaatin työ tutustuu kilpailutöihin ja kartoittaa niiden avulla alan uusinta tutkimusta.\\
+eletunnistus menetelmiä. Tämä kandinaatin työ tutustuu kilpailutöihin ja kartoittaa niiden avulla alan uusinta tutkimusta. \\
 
 
 
@@ -29,21 +29,26 @@ monimutkaisia ja videokuvalla on paljon muuttujia kuten valaistus, tila tai koht
 asennon tunnistus (Pose Estimation) -ongelmasta. Asennon tunnistuksessa pyritään tunnistamaan henkilön asento videolla yhdessä pysäytyskuvassa
 käyttämättä lainkaa ajallista tietoa. \citep {hirsjarvilol2009} Yksittäisiä asentoja voidaan käyttää tunnistamaan ele, joskin se on laskennallisesti raskasta.\\
 Kiinnostus eletunnistusta kohtaan on lisääntynyt viime vuosina sen monien käyttötarkoitusten vuoksi. Eletunnistusta voidaan käyttää esimerkiksi elekäyttöliittymissä.
-\citep {1251144} Samalla parantunut laskentateho ja halvat syvyyskamerat luovat uusia mahdollisuuksia.\citep {6239178}\\
+\citep {1251144} Yksittäisiä eleitä voidaan käyttää esimerkiksi kodenkoneiden ohjailuun. Toisaalta eleentunnistusta voitaisiin käyttää hyödyksi tunnistamaan
+erilaisia vaaratilanteita. Esimerkiksi potilaan tilaa voitaisiin seurata eletunnistuskameralla mahdollisten poikkeavien eleiden varalta.
+Samalla parantunut laskentateho ja halvat syvyyskamerat luovat uusia mahdollisuuksia.\citep {6239178}\\
 
 Videokuvan tunnistuksessa voidaan hyödyntää perinteisiä hahmontunnistusmenetelmiä. Monet menetelmistä ovat laskennallisti liian raskaita 
 reaaliaikaseen videokuvan tunnistukseen. \citep {1251144} Monet hahmontunnistusmenetelmät vaativat myös paljon opetusdataa. Kuluttajille suunnatuissa
-sovelluksissa olisi toivottavaa, että uuden eleen voi opettaa muutaman testinäytteen perusteella \citep {1251144}.
+sovelluksissa olisi toivottavaa, että uuden eleen voi opettaa muutaman testinäytteen perusteella \citep {1251144}.\\
+
+Eletunnistuksessa, kuten muussakin koneoppimisessa, pyritään matkimaan ihmisen toimintamalleja. Käytännössä huimaa vauhtia kehittynyt tekniikka on kuitenkin
+viime aikoina ajanut tutkimuksen ohi ja monet menetelmät on kehitetty nopeasti lähinnä vastaamaan käytännön tarpeisiin. (Results and Analysis of the ChaLearn Gesture Challenge 2012)
 
 
 \subsection{Eletunnistus video ja 3D-videokuvalta}
 
 Eleentunnistus videokuvalta koostuu tyypillisesti seuraavista vaiheista. Videokuvaa esikäsitellään, siitä poistetaan häiriötä tai kuvaa esimerkiksi 
-pienennetään laskennan helpottamiseksi. Videolle suoritetaan usein myös jonkinlainen ajallinen jako. Videokuva jaetaan
-osioihin, joiden sisällä ei ole suurta vaihtelua pysäytyskuvien välillä. Videopätkät saatetaan tiivistää yksittäiseen kuvaan tai niitä voidaan käsitellä 
-pysäytyskuva kerrallaan. Jako voi tapahtua myös luokitteluprosessin aikana tai sitä ei välttämättä ole ollenkaan.\\
+pienennetään laskennan helpottamiseksi. Kinectin syvyyskuvan avulla voidaan myös erotta ihmishahmo taustasta. Videolle suoritetaan usein myös 
+jonkinlainen ajallinen jako. Videokuva jaetaan osioihin, joiden sisällä ei ole suurta vaihtelua pysäytyskuvien välillä. Videopätkät saatetaan 
+tiivistää yksittäiseen kuvaan tai niitä voidaan käsitellä pysäytyskuva kerrallaan. Jako voi tapahtua myös luokitteluprosessin aikana tai sitä ei välttämättä ole ollenkaan.\\
 
-Kuten tyypillisesti hahmon tunnistuksessa ratkaiseva vaihe on usein oikeiden piirteiden valinta. Videokuvasta voidaan tutkia esimerkiksi 
+Hahmon tunnistuksessa ratkaiseva vaihe on usein oikeiden piirteiden valinta. Videokuvasta voidaan tutkia esimerkiksi 
 tietyn suuntaista liikettä ajan funktiona. Pysäytyskuvista voidaan arvioida kontrastivaihteluita ja sitä kautta hahmottaa viivoja tai muotoja kuvassa.
 Valitut piirteet riippuvat siitä käsitelläänkö videokuvaan kokonaisuutena vai tarkastellaanko pysäytyskuvia. Piirrevalinnassa voidaan 
 myös yhdistellä molempia näkökulmia. Yksittäisistä pysäytyskuvista voidaan valita kiinnostavat pisteet tutkimalla videokuvalla tapahtuvaa liikettä \citep {6239185}. \\
@@ -60,33 +65,36 @@ Markovin piilomallia \citep. Tässäkin voidaan yhdistellä molempia näkökulmi
 
 \subsection{Kilpailun esittely}
 ChaLearn Gesture Challenge kilpailun tarkoituksena oli lisätä kiinnostusta eletunnistukseen syvyyskameroilla.
-Kilpailussa jaettiin 50 000 Kinect-sensorilla kuvattua videonäytettä. Videonäytteet sisälsivät esimerkiksi viittomia
-tai poliisin käsimerkkejä. Kilpailijoiden tarkoitus oli kehittää eletunnistusmenetelmä jonka avulla eleet opitaan yhdestä opetusnäytteestä.
-Eleitä oli jaettu kategorioihin käyttötilanteen mukaan esimerksi poliisin käsimerkit olivat yksi kategoria. Eleet joilla kilpailutöitä
+Kilpailu alkoi vuoden 2012 aikana ja se päättyi alkuvuonna 2013.
+Kilpailussa tarjottiin tietokanta, joka sisälsi 50 000 Kinect-sensorilla kuvattua videonäytettä. Videonäytteet sisälsivät yksittäisiä
+eleitä esimerkiksi viittomia tai poliisin käsimerkkejä. Kilpailijoiden tarkoitus oli kehittää eletunnistusmenetelmä, jonka avulla eleet
+opitaan yhdestä opetusnäytteestä. Eleitä oli jaettu kategorioihin käyttötilanteen mukaan esimerksi poliisin käsimerkit olivat yksi kategoria. Eleet joilla kilpailutöitä
 testattiin olivat eri eleitä kuin opetusdatassa mutta samoista kategorioista.  \\
 
-Videoklipeillä esiintyi aina yksi ihminen kerrallaan suorittamassa tiettyä elesarjaa. Kuva rajatttiin yläruumiiseen ja eleet tehtiin
+Videonäytteillä esiintyi aina yksi ihminen kerrallaan suorittamassa tiettyä elettä. Kuva rajatttiin yläruumiiseen ja eleet tehtiin
 pääasiallisesti käsillä. Liikkeet lopetettiin ja aloitettiin aina samasta lepoasennosta. Videonäytteet sisälsivät syvyyskamerakuvan sekä värikuvan 
 mutta ei ranganseurausta. Haasteita toivat vaihtelevat taustat ja valaistukset videoilla. \\
 
 Kilpailijoille jaettiin kolme datajoukko: kehitysdata, validointidata ja lopullinen arviointidata. Dataa oli luokiteltu kategorioihin sen mukaan
-oliko kyseessä esimerkiksi viittoma, luonnollinen ele vai tanssiasento. Opetusdatassa näytteille annettiin laabelit kuvaamaan oikeaa ratkaisua.
-Validointi ja arviointi datassa vain osalla oli oikeat laabelit. Kilpailun loppupuolella paljastettiin lopullinen testidata jonka avulla tuloksia arvioitiin.
+oliko kyseessä esimerkiksi viittoma, luonnollinen ele vai tanssiasento. Opetusdatan näytteille tarjottiin oikeat ratkaisut.
+Kilpailun loppupuolella paljastettiin lopullinen testidata jonka avulla tuloksia arvioitiin.
 \citep {6239178} \\
 
 
 \subsection{Katsaus kilpailutöihin}
-Kilpailijoiden metodeja selvitettiin lyhyellä kyselyllä, johon vastasi 20 ryhmää 22 parhaan ryhmän joukosta.
-Lähes kaikki tiimit tekivät jonkinlaista kuvien esikäsittelyä. Kuvista poistetiin häiriötä, asiaanliittymättömiä kohteita tai tausta.
-Huomioitavaa on kuitenkin, että jotkin hyvin menestyneistä ryhmistä eivät tehneet minkäänlaista esikäsittelyä kuville.\\
+Kilpailijoiden metodeja selvitettiin ensimmäisen kierroksen jälkeen lyhyellä kyselyllä, johon vastasi 20 ryhmää 22 parhaan ryhmän joukosta.
+Vastauksista kävi ilmi, että lähes kaikki tiimit tekivät jonkinlaista kuvien esikäsittelyä. Kuvista poistetiin häiriötä, asiaanliittymättömiä 
+kohteita tai tausta. Huomioitavaa on kuitenkin, että jotkin hyvin menestyneistä ryhmistä eivät tehneet minkäänlaista esikäsittelyä kuville.\\
 
-Suurin osa osallistujista käytti HOG/HOF - piirteitä, SIFT/STIP piirteitä, kulmien tai nurkkien tunnistusta tai kehitti omia tälle datalle soveltuvia ominaisuuksia.
-Suurin osa käytti pelkkää syvyyskuvaa, osa molempia, sekä väri että syvyyskuvaa. Toisen sijan voittaja käytti pelkkää RGB-videokuvaa. 
-Tyypillisesti kilpailijat käyttivät ominaisuuksien valintaa, tiivistystä tai kuvausta toiseen lineaariavaruuteen.\\
+Suurin osa osallistujista käytti HOG/HOF - piirteitä, SIFT/STIP piirteitä, kulmien tai nurkkien tunnistusta tai kehitti omia tälle datalle 
+soveltuvia ominaisuuksia. Piirteitä saattettiin tunnistaa yksittäisistä pysäytyskuvista tai jonkinlaisista summakuvista.
+Suurin osa kilpailijoista käytti tunnistustuksessa pelkkää syvyyskuvaa, osa molempia, sekä väri että syvyyskuvaa. 
+Mielenkiintoista on, että toisen sijan voittaja käytti työssään pelkkää RGB-videokuvaa. 
+Kilpailijat käyttivät kaikki jonkilaista piirteiden tiivistystä tai kuvausta toiseen lineaariavaruuteen.\\
 
-Videokuva jaetaan ajallisesti osioihin perustuen videokuvan samankaltaisuuteen. Tunnistuksessa voidaan käytttää erilaisia graafisia malleja
+Videokuvaa jaettiin ajallisesti osioihin perustuen videokuvan samankaltaisuuteen. Tunnistuksessa voidaan käytettiin erilaisia graafisia malleja
 kuten Hidden Markov Model ja Conditional Random Fields. Itse luokittelu tapahtui KNN tai muilla yksinkertaisilla keinoilla. 
-Kilpailun järjestejien odottamaa metodia Transfer learning käytettiin, tosin kukaan menestyneistä kilpailijoista ei käyttänyt sitä.\\
+Kilpailun järjestejien odottamaa metodia Transfer learning käytettiin vähäisesti, eikä kukaan menestyneistä kilpailijoista ei käyttänyt sitä.\\
 \citep {6239178} 
 
 \begin{table}[th]
