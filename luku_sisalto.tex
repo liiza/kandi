@@ -121,19 +121,24 @@ Mielenkiintoista on, että toisen sijan voittaja käytti työssään pelkkää v
 Kaikki kilpailijat käyttivät jonkilaista piirteiden tiivistystä tai kuvausta toiseen lineaariavaruuteen.\\ 
 
 Ajallisen rakenteen mallintamiseen käytettiin erilaisia graafisia malleja kuten Markovin piilomuuttujaa ja Conditional Random Fields-menetelmää. 
-Kaikki tunnistusmenetelmät eivät kuitenkaan huomioineet videon ajallista rakennetta. 
 Markovin muuttuja kuvaa havainnon sarjana tiloja eli tässä tapauksessa videon sarjana pysäytyskuvia. Menetelmä kertoo kuinka todennäköisesti annettu havainto 
-kuuluu tiettyn luokkaan. Ajatuksena on, että annetun havainnon luokka on tuntematon, mutta voimme löytää sen etsimällä todennököisimmän luokan. 
-Ajatellaan, havainto koostuu peräkkäisistä tiloista eli tässä tapauksessa kuvista. Tietty tilasarja esittää tiettyä luokkaa.
-Tila esitetään ennalta valittujen piirteiden avulla. \citep {} Conditional Random Fields -menetelmä perustuu samankaltaiseen logiikkaan. \citep {}
-Lähtökohta on, että yksittäisen datapisteen sijaan luokitella datajoukkoja, jolla on sisäinen, tässä ajallinen, rakene.\\
+kuuluu tiettyn luokkaan. Ajatuksena on, että annetun havainnon luokka on tuntematon, mutta voimme löytää sen etsimällä todennäköisimmän luokan. 
+Ajatellaan, havainto koostuu peräkkäisistä tiloista eli tässä tapauksessa kuvista, jotka voidaan esittää ennalta sovittujen piirteiden avulla.
+Havainnon tiloja verrataan luokkien tilojen kanssa ja valitaan se luokka, mihin havainto todennöisimmin kuuluu. Luokkien tiheysfunktiot
+luodaan suurimman todennäköisyyden (Most Likelihood) -menetelmällä. Kyseessä on Bayesialainen menetelmä: jakauma tunnetaan, mutta ei parametreja.
+Parametrien arvot optimoidaan niin, että todennäköisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri. Luokkien tiheysfunktioiden
+avulla voidaan laskea, kuinka todennäköisesti annettu havainto kuuluu tiettyyn luokkaan.\citep {}  \\
 
-Ite luokittelu tapahtui k-lähimmän naapurin luokittimella tai muilla yksinkertaisilla luokittelumenetelmillä. 
+Conditional Random Fields -menetelmä perustuu samankaltaiseen logiikkaan. \citep {} Lähtökohta molemmissa on, että yksittäisen 
+datapisteen sijaan luokitellaan datajoukkoja, joilla on sisäinen, tässä ajallinen, rakenne.
+On kuitenkin muistettava, että kaikki tunnistustusmenetelmät eivät huomioineet videon ajallista rakennetta. \\
+
+Itse luokittelu tapahtui k-lähimmän naapurin luokittimella tai muilla yksinkertaisilla luokittelumenetelmillä. 
 Kilpailun järjestejien odottamaa metodia Transfer learning -metodia käytettiin vähäisesti, eikä kukaan menestyneistä kilpailijoista käyttänyt sitä. \\
 \citep {6239178} 
 
 Kahdeksan menestyneintä työtä esitellään taulukossa ~\ref{table:dvbt_param}. Taulukosta huomataan, että parhaiten menestyneiden töiden
-joukossa suurin osa käytti tunnistuksssa menetelmää, joka huomioi videon ajallisen ulottovuuden. Videokuvasta valitaan piirteet, joiden
+joukossa suurin osa käytti tunnistuksssa menetelmää, joka huomioi videon ajallisen rakenteen. Videokuvasta valitaan piirteet, joiden
 muutosta seurataan ajan funktiona. Poikkeuksen tekevät ryhmät Zonga ja Xiaozhuwudi, joiden menetelmä perustuu videon käsittelyyn erilaisten liikekuvien avulla.
 Lisäksi ensimmäiseksi sijoittuneen ryhmän Alfnie menetelmästä ei ole saatavilla tarkkaa kuvausta. 
 
@@ -175,20 +180,22 @@ Zonga ja Xiaozhuwudi ovat esimerkkeinä omaperäisemmistä menetelmistä.\\
 \newpage
 \section {Katsaus menestyneisiin kilpailutöihin}
 
-\subsection{xiaozhuwudi ja laajennettu MHI}
+\subsection{Xiaozhuwudi ja laajennettu MHI-menetelmä}
 Ryhmä xiaozhuwudi lähti liikkeelle MHI eli Motion History Image -tekniikasta. \citep {6239179} MHI tutkii liikkeen määrää videokuvalla.
 Videopätkä tiivistetään yhteen liikekuvaan, joka kuvaa liikkeen viimeaikaisuutta. Kohdat, joissa videokuvalla on ollut
 liikettä esitetään harmaasävyillä. Mitä viimeaikasempaa liike on ollut sitä valkoisempana se näkyy kuvassa. Liikkumattomat
 alueet näkyvät täysin mustana. Videokuvalta tutkitaan siis vain liikettä, eikä pyritä esimerkiksi tunnistamaan kuvalla olevia kohteita
 tai ihmiskehon osia. Tämä menetelmä matkii ihmisen tapaa tunnistaa eleitä. Ihminen tunnistaa erittäin hyvin inhimilliset eleet  
 sumealtakin videokuvalta vaikka ei yksittäisestä framesta tunnistaisi edes ihmishahmoa. \citep {910878}  \\
+
 \begin{figure}[htb]
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{mhi_ex.jpg}
+    \includegraphics[width=0.9\textwidth]{mhi_ex.jpg}
     \caption{Kuvassa vasemmalta oikealle MHI, INV ja MEI. \citep {6239179}}
     \label{fig:mhiinvmei}
   \end{center}
 \end{figure}
+
 Xiaozhuwudi-ryhmä tunnistaa MHI:ssa kuitenkin ongelmia. MHI ei tunnista kovin hyvin eleitä, jotka sisältävät toistuvaa liikkeitä esimerkiksi vilkutusta.
 Liikkeen toistuessa MHI -kuva muuttuu helposti sekavaksi ja on vaikea erottaa tarkkaa liikerataa. Xiaozhuwudi ehdottaa MHI:n laajentamista INV ja GEI -kuvilla.
 INV oon käänteinen kuvaus MHI:ille. INV:ssa katsotaan videokuvaa alusta loppuun päin.
@@ -201,13 +208,13 @@ liikkeen tunnistuksessa. \citep {6239179} Katso tarkemmin kuvasta  ~\ref{fig:mhi
 Datan esikäsittelyssä xiaozhuwudi hyödynsi Kinectin syvyyskuvaa poistamalla taustan ihmishahmolta. Lisäksi esikäsittelyssä poistettiin häiriöitä.
 MHI, GEI ja INV -kuville suoritettiin dimensioiden vähennys. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa. \citep {6239179}\\
 
-xiaozhuwudi sijoittui kilpailussa kahdeksannelle sijalle. 
+Xiaozhuwudi sijoittui kilpailussa kahdeksannelle sijalle. 
 
 
 
-\subsection{immortals ja Hidden Markov Model}
+\subsection{Immortals ja Markovin piilomalli}
 
-Ryhmä Immostals lähti kilpailutyössään liikkeelle oletuksesta, että ele koostuu ennen kaikkia useista yksittäisistä liikkeistä. 
+Ryhmä Immortals esittää kilpailutyössään oletuksen, että ele koostuu ennen kaikkia useista yksittäisistä liikkeistä. 
 Sen mukaan eleet tunnistetaan parhaiten käsittelmällä elettä jokkona liikkeitä. Tämä eroaa ryhmän mukaan tyypillisestä 
 tavasta lähestyä ongelmaa.\\
 
@@ -216,18 +223,16 @@ jonka avulla ne voidaan tunnistaa. Allekirjoituksen luominen on monivaiheinen op
 tärkeät pisteet eli pisteet joilla on merkitystä liikkeen tunnistamisen kannalta. Tässä Immortals hyödynsi Kinectin syvyyskuvaa.
 Immortals arvioi, että ne kohdat kuvasta joissa on tapahtunut muutosta syvyyskameran kuvassa ovat kyseisen videon pysäytyskuvan
 tärkeitä pisteitä. Tämän jälkeen tärkeille pisteille lasketaan HOG (Histogram of oriented gradients) ja HOF (Histogram of Flow). 
-Tämän jälkeen histogrammit ryhmitellään tavallisen ryhmittelyalgoritmin avulla.
-Histogrammeja kutsutaan tässä "visuaalisiksi sanoiksi". Tarkoituksena on tutkia sanojen esiintymistä yhdessä ja muodostaa niistä aihepiirejä. 
+Tämän jälkeen kaikkien kuvien kaikki histogrammit ryhmitellään tavallisen ryhmittelyalgoritmin avulla.
+Histogrammeja kutsutaan ryhmittelyn jälkeen "visuaalisiksi sanoiksi". Yhdessä ryhmässä ovat kaikki tietyn sanan esiintymät.
+Tarkoituksena on tutkia visuaalisten sanojen esiintymistä yhdessä ja muodostaa niistä aihepiirejä. 
 Yksittäistä pysäytyskuvaa voidaan kuvata sillä, mitä sanoja ja mistä aihepiireistä esiintyy siinä.\\
 
 Liikkeelle luodaan sanojen perusteella perusteella malli, jota käytetään tunnistusvaiheesa. Mallin perustana on Markovin muuttuja
 eli HMM (Hidden Markov Model). Koska tutkitaan kahta piirrettä, HOG ja HOF, käytetään monikanavaista Markovin piilomallia eli McHMM. 
-HOG ja HOF piirteet paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan.\\
-
-McHMM parametreja ovat alkutila, todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja tilan kuvaus visuaalisten sanojen avulla. 
-Tilalla tarkoitetaan tässä yksittäistä pysäytyskuvaa. Kyseessä on Bayesiamlainen menetelmä: jakauma tunnetaan, mutta ei parametreja.
-Parametrien arvot optimoidaan niin, että todennököisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri.\\
-tähän joku kaava? \\
+HOG ja HOF piirteet paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan. McHMM parametreja ovat alkutila, 
+todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja tilan kuvaus HOG ja HOF-piirteiden avulla. 
+Tilalla tarkoitetaan tässä yksittäistä pysäytyskuvaa. Malli opetetaan parametrien avulla niin, että se tunnistaa tietyn liikkeen. \\
 
 Tunnistusongelma pelkistyy lopulta kysymykseen: Mikä liikejoukko kaikken todennäköisimmin on muodostanut tämän videon?
 Tämän tyylinen ongelma voidaan ratkaista Viterbin algoritmillä. Tämä vaatii kuitenkin, että ele rajataan koostumaan tietystä määrästä liikkeitä.
