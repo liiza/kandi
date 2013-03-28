@@ -126,7 +126,7 @@ esinettä ei erehdytä pitämään ihmisen osana. Esikäsittelyssä voidaan suor
 voidaan esimerkiksi jakaa ajallisiin jaksoihin perustuen videokuvan samankaltaisuuteen. Ajallisen jaon 
 tarkoitus on auttaa hahmottamaan kuvalla tapahtuvaa liikesarjaa ja helpottaa tunnistusta.\citep{6239178} \\
 
-Hahmontunnistuksessa ratkaiseva vaihe on usein oikeiden piirteiden valinta. Videokuvasta voidaan valita piirteeksi esimerkiksi 
+Hahmontunnistuksessa ratkaiseva vaihe on usein oikeiden piirteiden valinta eli piirreirroitus. Videokuvasta voidaan valita piirteeksi esimerkiksi 
 tietyn suuntainen liike ajan funktiona. Liike näkyy peräkkäisten pysäytyskuvien välisenä erona. Tutkimalla liikettä
 videokuvat voidaan tiivistää liikekuviin, joita voidaan luokitella yksinkertaisilla luokittelualkoritmeillä. 
 Videokuvaa voidaan tarkastella myös yksittäisten pysäytyskuvien kautta. 
@@ -189,37 +189,48 @@ kohteita tai ihmishahmon tausta. Huomioitavaa on kuitenkin, että jotkin hyvin m
 \citep {6239178}\\
 
 Suurin osa osallistujista käytti piirteinä HOG/HOF-piirteitä (Histogram of oriented Gradients/ Histogram of Flow), SIFT/STIP-piirteitä (Scale Invariant Feature Transformation), 
-kulmien tai nurkkien tunnistusta tai kehitti omia, tälle datalle soveltuvia piirteitä.\\
+kulmien tai nurkkien tunnistusta tai kehitti omia, tälle datalle soveltuvia piirteitä.\citep {6239178}\\
 
 Käytetyt piirteet perustuvat pääosin kuvan värityksen intensiteettivaihteluun.
-HOG -piirteet kuvaavat kuvan intensitettivaihtelun gradienttien suuntaa. Kuva jaetaan pieniin alueisiin, soluihin, 
+HOG-piirteet kuvaavat kuvan intensitettivaihtelun gradienttien suuntaa. Kuva jaetaan pieniin alueisiin, soluihin, 
 joissa tarkastellaan alueen värityksen intensiteettivaihtelua. Soluille lasketaan intensiteettivaihtelun gradienttien suuntien histogrammi. 
 Ajatuksena on päätellä, minkä suuntaisia viivoja tai nurkkia alueelta voidaan erottaa.\citep {1467360} Histogrammit kertovat kuvassa esiintyvistä
 muodoista, eivätkä ne ole riippuvaisia hahmon sijainnista kuvassa tai kuvan yleisestä värimaailmasta.
-HOG-piirteet soveltuvatkin hyvin tämänkaltaiseen hahmontunnistusongelmaan, jossa kohteen sijainti voi vaihdella kuvalla.\\
+HOG-piirteet soveltuvatkin hyvin tämänkaltaiseen hahmontunnistusongelmaan, jossa kohteen sijainti ja väritys voivat vaihdella kuvalla.\\
 
 SIFT-piirteet toimivat HOG-piirteitä hienostuneemmin valiten kuvista tärkeät pisteet. Tärkeät pisteet valitaan niin, että ne ovat riippumattomia
-kuvan muutoksista kuten kiertämisestä tai skaalauksesta. \citep {790410} Esimerkiksi kuvassa, jossa näkyy ovi, tärkeitä pisteitä voisivat olla oven kulmat.
+kuvan muutoksista kuten kiertämisestä tai skaalauksesta. Esimerkiksi kuvassa, jossa näkyy ovi, tärkeitä pisteitä voisivat olla oven kulmat.
 Vaikka kuvaa kierrettäisiin tai sen kokoa muutettaisiin, tärkeät pisteet eli kulmat voidaan löytää kuvasta.
-Pisteiden valinnassa hyödynnetään värityksen intensiteettivaihtelua ja tilastolllisia menetelmiä. \\
+Pisteiden valinnassa hyödynnetään värityksen intensiteettivaihtelua ja tilastolllisia menetelmiä.  \citep {790410} \\
 
 Piirteitä voidaan tutkia syvyys- ja värikuvasta. Syvyyskuvan etu verrattuna värikuvaan on, että siinä
 ei esiinny värejä tai tekstuureja, jotka häiritsisivät hahmon erottumista tai videoiden vertailua.
 Suurin osa kilpailijoista käyttikin töissään pelkkää syvyyskuvaa. Osa käytti sekä väri- että syvyyskuvaa. 
 Mielenkiintoista on, että ensimmäisen kierroksen toisen sijan voittaja käytti työssään pelkkää värikuvaa. 
-Kaikki kilpailijat käyttivät jonkilaista piirteiden tiivistystä tai kuvausta toiseen lineaariavaruuteen.\\ 
+Kaikki kilpailijat käyttivät jonkilaista piirteiden tiivistystä tai kuvausta toiseen lineaariavaruuteen. \citep {6239178}\\ 
 
-Ajallisen rakenteen mallintamiseen käytettiin erilaisia graafisia malleja kuten Markovin piilomuuttujaa ja Conditional Random Fields-menetelmää. Kaikki tunnistustusmenetelmät eivät huomioineet videon ajallista rakennetta ollenkaan.\\
+Ajallisen rakenteen mallintamiseen käytettiin erilaisia graafisia malleja kuten Markovin piilomuuttujaa ja Conditional Random Fields-menetelmää.
+Kaikki tunnistustusmenetelmät eivät huomioineet videon ajallista rakennetta ollenkaan. \citep {6239178}\\ 
 
-Markovin muuttuja kuvaa havainnon sarjana tiloja eli tässä tapauksessa videon sarjana pysäytyskuvia. Menetelmä kertoo kuinka todennäköisesti annettu havainto 
-kuuluu tiettyn luokkaan. Ajatuksena on, että annetun havainnon luokka on tuntematon, mutta voimme löytää sen etsimällä todennäköisimmän luokan. 
-Ajatellaan, havainto koostuu peräkkäisistä tiloista eli tässä tapauksessa kuvista, jotka voidaan esittää ennalta sovittujen piirteiden avulla.
-Havainnon tiloja verrataan ennalta opittujen luokkien tilojen kanssa ja valitaan se luokka, mihin havainto todennöisimmin kuuluu. Luokkien tiheysfunktiot
-lasketaan suurimman todennäköisyyden (Most Likelihood) -menetelmällä. Kyseessä on Bayesialainen menetelmä, jakauma tunnetaan, mutta ei parametreja.
-Parametrien arvot optimoidaan niin, että todennäköisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri. Luokkien tiheysfunktioiden
-avulla lasketaan, kuinka todennäköisesti annettu havainto kuuluu tiettyyn luokkaan.\citep {}  \\
+Markovin muuttuja kuvaa havainnon sarjana tiloja eli tässä tapauksessa videon sarjana pysäytyskuvia. 
+Tilat esitetään sopivien piirteiden avulla eli esimerkiksi kuvat voidaan esittää HOG/HOF-piirteiden avulla. 
+Menetelmä kertoo kuinka todennäköisesti annettu havainto kuuluu tiettyyn luokkaan. 
+Ajatuksena on, että annetun havainnon luokka on tuntematon, mutta se voidaan löytää sen etsimällä todennäköisin luokka. 
+Luokat saadaan opetusdatasta. Luokkien tiheysfunktiot lasketaan suurimman todennäköisyyden
+(Most Likelihood) -menetelmällä. Kyseessä on Bayesialainen menetelmä eli jakauma tunnetaan, mutta ei parametreja.
+Parametrien arvot optimoidaan niin, että todennäköisyys opetusliikkeelle kuulua kuvaamaansa luokkaan on mahdollisimman suuri.
+Luokan tiheysfunktion avulla voidaan laskea kuinka todennäköisesti tietty tilasarja esiintyy tässä luokassa.
+Luokassa on kuitenkin useita mahdollisia tilasarjoja. Todennäköisyys annetulle havainnolle $O = O_{1}, O_{2}...O_{n}$ kuulua 
+luokkaan $\lambda$ saadaan siis seuraavasti:
+\begin{equation}
+P(O,Q|\lambda) = \sum\limits_{all Q}P(O|Q, \lambda)P(Q|\lambda)
+\end{equation}
+jossa $Q = Q_{1}, Q_{2} ... Q_{n}$ eli Q on määrätyn mittainen tilasarja. Todennäköisyys havainnolle O esittää
+tiettyä tilasarjaa Q kerrotaan todenäköisyydellä $P(Q|\lambda)$ eli todenäköisyydellä tilasarjalle Q esiintyyä luokassa $\lambda$. 
+Lopuksi summataan yhteen todennäköisyydet sarjalle O kuulua luokkaan $\lambda$ kaikilla tilasarjoilla Q. 
+Näin saadaan lopullinen todennäköisyys havainnolle O kuulua luokkaan $\lambda$. \citep {18626}\\
 
-Conditional Random Fields -menetelmä perustuu samankaltaiseen logiikkaan. \citep {} Lähtökohta molemmissa on, että yksittäisen 
+Conditional Random Fields -menetelmä perustuu samankaltaiseen logiikkaan. \citep {1315232} Lähtökohta molemmissa on, että yksittäisen 
 datapisteen sijaan luokitellaan datajoukkoja, joilla on sisäinen, tässä ajallinen, rakenne. \\
 
 Itse luokittelu tapahtui k-lähimmän naapurin luokittimella tai muilla yksinkertaisilla luokittelumenetelmillä. 
@@ -229,9 +240,10 @@ Kilpailun varsinainen haaste, yhdestä eleestä oppiminen, jäi siis vähemmäll
 Kahdeksan menestyneintä työtä esitellään taulukossa ~\ref{table:dvbt_param}. Taulukosta huomataan, että parhaiten menestyneiden töiden
 joukossa suurin osa käytti tunnistukssa menetelmää, joka huomioi videon ajallisen rakenteen. Videokuvasta valitaan piirteet esimerkiksi HOG-piirteet, joiden
 muutosta seurataan ajan funktiona. Poikkeuksen tekevät ryhmät Zonga ja Xiaozhuwudi, joiden menetelmä perustuu videon käsittelyyn erilaisten liikekuvien avulla. 
+\citep {6239178}
 
 \begin{table}[th]
-\caption{ChaLearn Challenge kahdeksan parhaiten sijoittunutta ryhmää}
+\caption{ChaLearn Gesture Challenge -kilpailun kahdeksan parhaiten sijoittunutta ryhmää}
 \label{table:dvbt_param}
 \begin{center}
 \begin{tabular}{|p{0.35\textwidth}|p{0.45\textwidth}|} 
@@ -437,6 +449,37 @@ Immortals sijoittui kilpailussa viidenneksi, Zonga kuudenneksi ja Xiaozhuwudi ka
 menetelmä vaikuttaa raskaimmalta, mutta ilmoituksen perusteella se on vain lineaarinen suhteessa opetusnäytteiden määrään.
 Muut ryhmät ilmoittivat samankaltaisia lukemia.
 
+Kaikki kolme ryhmää käyttivät sekä väri että syvyyskuvaa.
+
+\begin{table}[th]
+\caption{Vertailussa ryhmien Xiaozhuwudi, Immortals ja Zonga kilpailutyöt}
+\label{table:kolmetyötä}
+\begin{center}
+\begin{tabular}{|p{0.15\textwidth}|p{0.25\textwidth}|p{0.25\textwidth}|p{0.25\textwidth}|} 
+    \hline
+ & Xiaozhuwudi & Immortals & Zonga\\
+    \hline
+    \hline
+ Kuvan esikäsittely & Taustan poisto, melun poisto, värimaailman tasoittaminen& Taustan poisto & Ei esikäsittelyä\\
+    \hline
+ Piirreirroitus & HOG/HOF-piirteet & HOG/HOF-piirteet & HOSVD-hajotelma \\
+    \hline
+ Dimensioiden pienennys & Tekijöihin jako& Datan ryhmittely & Tekijöihin jako\\
+    \hline	
+ Ajallinen jako &Perustuu kuvan eroon lepotilan välillä &Viterbin jako &Perustuu kuvan eroon lepotilan välillä\\
+     \hline
+ Eleen esitys &Summakuva &Joukko piirteitä &Kolmiuloitteinen tensori\\
+     \hline
+ Luokittelu &Maksimikorrelaatioon perustuva luokittelija &Markovin piilomuuttuja &Lähimmän naapurin luokittelija\\
+      \hline
+ Siirto-oppiminen &Kehitysdataa käytetty eleiden mallintamiseen&Ei huomioitu&Kehitysdataa käytetty eleiden mallintamiseen\\
+      \hline
+ Suoritusaika &Lineaarinen näytteiden määrään&Lineaarinen näytteiden määrään &Neliöllinen kuvan kokooon, Lineaarinen näytteiden määrään\\
+      \hline
+	  \hline
+\end{tabular}
+\end{center}
+\end{table}
 
 \section {Johtopäätökset}
 
