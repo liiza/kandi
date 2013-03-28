@@ -236,7 +236,8 @@ kuvan intensiteettivaihteluihin perustuvat piirteet yhdistettynä Markovin piilo
 vastaavaan malliin olivat suosituin menetelmä.\\
 
 Molemmilla kierroksilla oli sama voittaja, ryhmä Alfnie. 
-Voittajaryhmä väittää työnsä matkivan ihmisen hahmontunnistuskykyä. Työtä ei ole kuitenkaan vielä tämän kandinaatintyön kirjoittamisen aikaan julkaistu, joten siihen ei päästä tutustumaan tarkemmin. Työ perustuu
+Voittajaryhmä väittää työnsä matkivan ihmisen hahmontunnistuskykyä. Työtä ei ole kuitenkaan vielä tämän kandinaatintyön kirjoittamisen aikaan julkaistu,
+ joten siihen ei päästä tutustumaan tarkemmin. Työ perustuu
 ryhmän ilmoituksen mukaan jonkinlaiseen kustomoituun Markovin piilomuuttujaan. Mielenkiintoista on,
 että huolimatta hyvästä sijoituksestaan meneltemä oli myös yksi kilpailun nopeimmista.\\
 
@@ -274,13 +275,13 @@ sumealtakin videokuvalta vaikka ei yksittäisestä framesta tunnistaisi edes ihm
   \end{center}
 \end{figure}
 
-Xiaozhuwudi-ryhmä tunnistaa MHI:ssa kuitenkin ongelmia. MHI ei tunnista kovin hyvin eleitä, jotka sisältävät toistuvaa liikkeitä esimerkiksi vilkutusta.
-Liikkeen toistuessa MHI -kuva muuttuu helposti sekavaksi ja on vaikea erottaa tarkkaa liikerataa. Xiaozhuwudi ehdottaa MHI:n laajentamista INV ja GEI -kuvilla.
-INV oon käänteinen kuvaus MHI:ille. INV:ssa katsotaan videokuvaa alusta loppuun päin.
+Xiaozhuwudi-ryhmä tunnistaa MHI-kuvassa kuitenkin ongelmia. MHI-kuvan avulla on vaikeaa tunnistaa eleitä, jotka sisältävät toistuvaa liikkeitä esimerkiksi vilkutusta.
+Liikkeen toistuessa MHI-kuva muuttuu helposti sekavaksi ja on vaikea erottaa tarkkaa liikerataa. Xiaozhuwudi ehdottaakin MHI-kuvan laajentamista INV- ja GEI-kuvilla.
+INV-kuva on MHI-kuvalle käänteinen kuva. INV-kuvassa katsotaan videokuvaa alusta loppuun päin.
 Mitä aikasemmin liike esiintyy videolla sitä vaalempana se näytetään kuvassa. INV:n avulla saadaan kuvaus videon alkutilanteesta, mikä täydentää MHI kuvaa. 
 GEI-kuva esittäää liikkeen määrää keskimäärin koko videon aikana. Siinä summataan koko videon liike yhdelle kuvalle ja jaetaan lopuksi koko aikavälille.
-GEI muistuttaa MEI:tä (Motion Energy Image), jossa myös lasketaan liikkeelle summa. Voidaan ajatella että siinä missä MHI ja INV mittaavat liikettä 
-MEI ja GEI mittaavat energiaa, joka on kulunut liikkeeseen. GEI:n avulla liikkeestä saadaan hyvä kokonaiskuva ja se on hyödyllinen etenkin toistuvan
+GEI muistuttaa MEI:tä (Motion Energy Image), jossa myös lasketaan liikkeelle summa. Voidaan ajatella, että siinä missä MHI- ja INV-kuvat kuvaavat liikettä ,
+MEI- ja GEI-kuvat mittaavat energiaa, joka on kulunut liikkeeseen. GEI-kuvan avulla liikkeestä saadaan hyvä kokonaiskuva ja se on hyödyllinen etenkin toistuvan
 liikkeen tunnistuksessa. \citep {6239179} \\
 
 Kuvassa ~\ref{fig:mhiinvmei} on esitetty kahdelle
@@ -325,42 +326,57 @@ Liikesarja liitetään tunnistusvaiheessa tiettyyn eleeseen. \citep {6239185}\\
 
 \subsection{Zonga ja pieninimmän neliösumman menetelmä sovelluttuna monistoon}
 Ryhmä Zonga käyttää kehittämäänsä menetelmää, joka soveltuu yleisesti videokuvan luokitteluun. 
-Menetelmää on kuitenkin kustomoitu eleentunnistusta varten tähän haasteeseen.\\
+Menetelmää on hieman kustomoitu eleentunnistusta varten, mutta lähtökohdiltaan se on hyvin 
+matemaattinen eikä juuri hyödynnä perinteisiä kuvankäsittelymenetelmiä. \citep {6239180}\\
 
-Videonkuvan käsittelyssä ensimmäinen tehtävä on usein kuvata videokuva vektoriksi tai tensoriksi, joka voidaan esittää tila-avaruudessa. 
-Videokuva ei ole lähtökohtaisesti piste Euklidisessa avaruudessa, vaan monimuotoinen datajoukko. Datan käsittelymenetelmillä, kuten dimensioiden pienennyksellä, video saadaan kuitenkin kuvattua yksittäiseksi pisteeksi tila-avaruudessa. Avaruudessa olevia pisteitä voidaan käsitellä
-ja esimerkiksi luokitella yksinkertaisten algoritmien avulla.\\
+Videokuva on helppo mieltää kolmiuloitteiseksi datajoukoksi. Videokuvan ulottuvuuksia ovat korkeus, leveys ja aika.
+Ryhmä Zonga käsitteleekin videokuvaa kolmiulotteisena tensorina. Tensorin ulottovuudet vastaavat videon ulottuvuuksia.
+Voidaan ajatella, että yksi matriisi kuvaa yhtä pysäytyskuvaa, jolloin tensorin tuoma kolmas ulottuvuus on aikaulottovuus. \citep {6239180}\\
 
-Ryhmä Zonga ehdottaa videon kuvamista pisteenä Grassmannin monistossa. Videokuvan kolme ulottuvuutta (leveys, korkeus ja aika) ovat moniston ulottuvuudet. 
-Monisto säilyttää alkuperäisen havainnon geometrisen rakenteen paremmin kuin Euklidinen avaruus.
-Havainnon alkuperäinen rakenne usein kadotetaan muissa eleentunnistusmenetelmissä. Monistojen käyttäminen ei ole uusi asia eletunnistuksessa, mutta
-ryhmä Zonga yhdistää monistoihin pienimmän neliösumman menetelmän, mikä tekee ryhmän tekniikasta ainutlaatuisen. \\
+Tensorin käsittely sellaisenaan on hankalaa sen suuren datamäärän vuoksi. Helpottaaksen videon käsittelyä
+ryhmä laskee tensorille HOSVD(Higher-order singular value decomposition)-hajotelman. Hajotelma on kustomoitu versio
+singulaarihajotelmasta. Hajotelma avaa tensorin kolmeksi matriisiksi.
+Matriisit kuvaavat videon vaakasuoraa liikettä, pystysuoraista liikettä ja summakuvan videon yli. \citep {HOSVD} 
+Tensori hajotetaan tekijöihinsä aputensorin (Core Tensor) S avulla:
 
-Videokuvasta on helposti erotettavissa kolme ulottovuutta: leveys, korkeus ja aika. Tämän takia videokuvaa on luonnollista käsitellä sitä kolmiulotteisessa monistossa.
-Pienimmän neliösumman menetelmä on regressio-ongelma, eli siinä etsitään jonkinlaista suhdetta havainnon ja luokan välille. Opetusvaiheessa tunnetaan havainto ja sen luokka, joiden väälille pyritään löytämään
-funktio. Tunnistusvaiheessa luokat haavaintojen luokat lasketaan regressiofunktion avaulla.\\
+\begin{equation}
+A = S *_{1} V_{appearance}^{(1)} *_{2} V_{h-motion}^{(2)} *_{3} V_{v-motion}*^{(3)}
+\end{equation}
 
-Regressio-ongelma on tyypillisesti muotoa y = A * beta, jossa y -vektori esittää pisteet tulosavaruudessa, A on havaintomatriisi 
-ja b -vektori on painovektori, joka kuvaa havaintomatriisin pisteet tulospisteiksi.
+Jossa A on havaintomatriisi, S on aputensori ja V-matriisit ovat tensorin hajotelma. $V_{appereance}$-matriisi on
+videon summakuva ajan yli. $V_{h-motion}$-matriisi kuvaa vaakasuuntaista liikettä videolla ja $V_{v-motion}$-matriisi
+kuvaa pystysuoraa liikettä videolla. \citep {6239180}\\
+
+Matriisihajotelman avulla video voidaan kuvata pisteenä kolmiulotteisessa monistossa (manifold). Moniston ulottuvuudet
+vastaavat tensorihajotelman ulottuvuuksia. Monisto säilyttää videon 
+alkuperäisen geometrisen rakenteen Euklidista avaruutta paremmin. \citep {Lui2012380} Monistokuvauksen avulla videoita voidaan käsitellä yksittäisinä
+pisteinä, jolloin niiden luokittelu helpottuu. Monistojen käyttö videonkuvan kanssa ei ole uusi asia eleentunnistuksessa. 
+Ryhmä Zonga kuitenkin yhdistää monistokuvaukseen pienimmän neliösumman menetelmän, joka tekee ryhmän mukaan heidän lähestymistavastaan
+ainutlaatuisen.\citep {6239180}\\
+
+Pienimmän neliösumman menetelmä on regressio-ongelma, eli siinä etsitään jonkinlaista suhdetta havainnon ja luokan välille. 
+Opetusvaiheessa tunnetaan havainto ja sen luokka, joiden välille pyritään löytämään funktio. Funktiota kutsutaan regressiofunktioksi.
+Tunnistusvaiheessa havaintojen luokat lasketaan regressiofunktion avaulla.\citep {?}\\
+
+Regressio-ongelma on muotoa $y = A * \beta$, jossa $y$-vektori esittää pisteet tulosavaruudessa, A-matriisi on havaintomatriisi 
+ja $\beta$-vektori on painovektori, joka kuvaa havaintomatriisin pisteet tulospisteiksi.
 Opetusvaiheessa pyritään löytämään painovektori, joka kuvaa havainnon mahdollisimman lähelle oikeaa luokkaa
-tulosavaruudessa. Pienimmän neliösumman menetelmässä pyritään minimoimaan luokitteluvirheen neliötä eli oikean tulokset ja arvioidun tuloksen erotuksen neliötä.
-Minimoidaan siis funktiota: \\
-R(beta) = ||y-A*beta|| \\
-jolloin b:lle saadaan funktio\\
-funktio tähän\\
+tulosavaruudessa. \citep {6239180} Pienimmän neliösumman menetelmässä pyritään minimoimaan luokitteluvirheen neliötä eli oikean tuloksen 
+ja arvioidun tuloksen erotuksen neliötä \citep{?}.
+Minimoidaan siis funktiota:
+\begin{equation}
+R(\beta) = ||y-A\beta||^2 \\
+\end{equation}
 
-Havaintomatriisi A muodostetaan kolmesta tekijästä: videon korkeussuuntaisesta kuvaajasta, leveyssuuntaisesta sekä ajallisesta vaihtelusta.
-Havaintomatriisin luomisessa käytetään HOSVD:ia. Painovektori b kuvaa havaintomatriisin A tulosavaruuteen, missä kadotetaan tieto alkuperäisistä moinston tekijöistä. 
-Lopullista luokittelua varten halutaan kuitenkin palauttaa pisteet monistoon.
-Näin luokittelussa huomioidaan alkuperäisen havainnon rakenne. 
-Lopullinen regressiokaava on siis muotoa\\
-tähän se lopullinen kaava pisteen kera\\
-Pistefunktio on operaatio joka kuvaa havainnot monistossa. Grasmanin monisto parametrisoi jokaisen vektoriavaruuden aliavaruuden.
-Tässä tapauksessa parametreja on kolme, jokaiselle havainnon tekijälle.
-Zonga suorittaa kuvauksen Karcher -keskiarvomenetelmää muistuttavalla menetelmällä.\\
+Paintovektorin avulla muodostetaan regressiofunktio, jonka avulla havainnot kuvataan samaan tulosavaruuteen. Havaintonnot kuvataan
+regressiöfunktion avulla samaan tulosavaruuteen, jossa ne luokitellaan etäisyyden perusteella. Luokittelufunktio on muotoa:
+\begin{equation}
+j*=argmin_{j}D(Y,\psi_{j}(Y))
+\end{equation}
 
-Tunnistus tapahtuu vertaamalla kuvaamalla annetut pisteet monistoon ja vertaamalla niitä luokkiin etäisyyden avulla. \citep {6239180}\\
-
+Jossa Y on annettu havainto, j on luokka ja $\psi_{j}$ on luokan j regressiofunktio. D-funktio laskee annetun havainnon ja regression välisen erotuksen.
+Tarkoitus on löytää luokka, joka antaa pienimmän etäisyyden. 
+ 
 
 \subsection{Yhteenveto menestyneistä kilpailutöistä}
 Menestyneet kilpailutyöt lähestyivät ongelmaa varsin erilaisin menetelmin ja panostivat eri vaiheesiin eleentunnistuksessa.\\
