@@ -198,12 +198,14 @@ Esimerkiksi HOG-piirteet kuvaavat kuvan intensitettivaihtelun gradienttien suunt
 joissa tarkastellaan alueen värityksen intensiteettivaihtelua. Soluille lasketaan intensiteettivaihtelun gradienttien suuntien histogrammi. 
 Ajatuksena on päätellä, minkä suuntaisia viivoja tai nurkkia alueelta voidaan erottaa.\citep {1467360} Histogrammit kertovat kuvassa esiintyvistä
 muodoista, eivätkä ne ole riippuvaisia hahmon sijainnista kuvassa tai kuvan yleisestä värimaailmasta.
-HOG-piirteet soveltuvatkin hyvin tämänkaltaiseen hahmontunnistusongelmaan, jossa kohteen sijainti ja väritys voivat vaihdella kuvalla.\\
+HOG-piirteet soveltuvatkin hyvin tämänkaltaiseen hahmontunnistusongelmaan, jossa kohteen sijainti ja väritys voivat vaihdella kuvalla.
+HOF-piirteet toimivat samoin kuin HOG-piirteet, paitsi kuvien sijaan ne tutkivat liikettä, optista virtaa, videolla \citep{Pers20101369}.\\
 
 SIFT-piirteet toimivat HOG-piirteitä hienostuneemmin valiten kuvista tärkeät pisteet. Tärkeät pisteet valitaan niin, että ne ovat riippumattomia
 kuvan muutoksista kuten kiertämisestä tai skaalauksesta. Esimerkiksi kuvassa, jossa näkyy ovi, tärkeitä pisteitä voisivat olla oven kulmat.
 Vaikka kuvaa kierrettäisiin tai sen kokoa muutettaisiin, tärkeät pisteet eli kulmat voidaan löytää kuvasta.
-Pisteiden valinnassa hyödynnetään värityksen intensiteettivaihtelua ja tilastolllisia menetelmiä.  \citep {790410} \\
+Pisteiden valinnassa hyödynnetään värityksen intensiteettivaihtelua ja tilastolllisia menetelmiä.  \citep {790410}
+STIP-piirteet perustuvat samankaltaiseen menetelmään \citep{1238378}. \\
 
 Piirteitä voidaan tutkia syvyys- ja värikuvasta. Syvyyskuvan etu verrattuna värikuvaan on, että siinä
 ei esiinny värejä tai tekstuureja, jotka häiritsisivät hahmon erottumista tai videoiden vertailua.
@@ -303,9 +305,9 @@ Toisen sijan voittaja toisella kierroksella, ryhmä Turtle Tamers, käytti saman
 ensimmäisen kierroksen toisen sijan voittaja, ryhmä Pennect. Molemmat ryhmät käyttivät HOG/HOF-piirteitä sekä Markovin piilomuuttujaa. 
 Kolmannen sijan saavuttanut ryhmä Joewan sen sijaan käytti hyvin erilaista menetelmää. Ryhmä käytti Bag of MOSIFT -
 piirteitä yhdistettynä lähimmän naapurin luokittimeen. \citep{chalearn2} Bag of MOSIFT -piirteet on kustoimoitu versio
-yleisestä Bag of features -menetelmästä. Bag of features -menetelmät kuvaavat kuinka usein tietty 
-arvo esiintyy näytteessä. Ne hajottavat näytteen sisäisen rakenteen ja eroavat siis Markovin piilomallista,
-joka säilyttää näytteen sisäisen rakenteen \citep{?}. \\
+yleisestä Bag of features -menetelmästä. Bag of features -menetelmät kuvaavat tietyn piirteen avulla
+kuinka usein tietty arvo esiintyy näytteessä. Ne mittaavat siis ainoastaan kuinka usein tietty arvo esiintyy näytteessä ja
+hajottavat näin näytteen sisäisen rakenteen \citep{bagoffeatures}. \\
 
 Varsinaisen validoinnin lisäksi kilpailutöille suoritettiin palautuksen jälkeen vielä yksi testaus. Tässä testauksessa tutkittiin kuinka 
 hyvin kilpailijoiden menetelmät tunnistivat eleen, jos videokuvaa oli tietoisesti käännetty hieman. Oikeissa sovelluksissa on tärkeää,
@@ -363,29 +365,41 @@ tavasta lähestyä ongelmaa.\citep {6239185}\\
 Ryhmä lähti liikkeelle opetusvaiheessa yksittäisistä liikkeistä. Yksittäisille liikkeille luodaan allekirjoitus eli malli,
 jonka avulla ne voidaan tunnistaa. Allekirjoituksen luominen on monivaiheinen operaatio. Ensin kuvista poimitaan niin sanotut
 tärkeät pisteet eli pisteet joilla on merkitystä liikkeen tunnistamisen kannalta. Tässä Immortals hyödynsi Kinectin syvyyskuvaa.
-Immortals arvioi, että ne kohdat kuvasta joissa on tapahtunut syvyyssuuntaista muutosta syvyyskameran kuvassa ovat kyseisen videon pysäytyskuvan
-tärkeitä pisteitä. Tärkeille pisteille lasketaan HOG (Histogram of oriented gradients) ja HOF (Histogram of Flow). 
+Immortals arvioi, että ne kohdat kuvasta, joissa on tapahtunut syvyyssuuntaista muutosta syvyyskameran kuvassa ovat kyseisen videon pysäytyskuvan
+tärkeitä pisteitä. Tärkeille pisteille lasketaan HOG(Histogram of Oriented Gradients)- ja HOF(Histogram of Flow)-histogrammit. 
 Tämän jälkeen kaikkien kuvien kaikki histogrammit ryhmitellään tavallisen ryhmittelyalgoritmin avulla.
 Histogrammeja kutsutaan ryhmittelyn jälkeen "visuaalisiksi sanoiksi". Yhdessä ryhmässä ovat kaikki tietyn sanan esiintymät.
 Tarkoituksena on tutkia visuaalisten sanojen esiintymistä yhdessä ja muodostaa niistä aihepiirejä. 
 Yksittäistä pysäytyskuvaa voidaan kuvata sillä, mitä sanoja ja mistä aihepiireistä siinä esiintyy.\citep {6239185}\\
 
 Liikkeelle luodaan sanojen perusteella perusteella malli, jota käytetään tunnistusvaiheesa. Mallin perustana on Markovin muuttuja
-eli HMM (Hidden Markov Model). Koska tutkitaan kahta piirrettä, HOG- ja HOF-piirrettä, käytetään monikanavaista Markovin piilomallia eli McHMM. 
-HOG- ja HOF-piirteet paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan. McHMM parametreja ovat alkutila, 
-todennäköisyys tilojen väliselle muutokselle sekä tilan todennäköisyys ja tilan kuvaus HOG ja HOF-piirteiden avulla. 
+eli HMM (Hidden Markov Model). Koska tutkitaan kahta piirrettä, HOG- ja HOF-piirrettä, käytetään monikanavaista Markovin piilomallia eli McHMM (Multi Channel Hidden Markov Model). 
+HOG- ja HOF-piirteet paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan. McHMM-mallin parametreja ovat alkutila, 
+todennäköisyys tilojen väliselle siirtymälle sekä tilan todennäköisyys ja tilan kuvaus visuaalisten sanojen eli HOG- ja HOF-piirteiden avulla. 
 Tilalla tarkoitetaan tässä yksittäistä pysäytyskuvaa. Malli opetetaan parametrien avulla niin, että se tunnistaa tietyn liikkeen eli tietyn
-sarjan pysäytyskuvia.\citep {6239185} \\
+sarjan pysäytyskuvia.\citep {6239185} Kuvassa ~\ref{fig:HMM} on tarkennettu vielä Markovin piilomallin toimintaa. Kuvassa on 
+esitetty havainto ja Markovin piilomuuttujan mahdolliset tilat, sekä niiden väliset siirtymätodennäköisyydet. Tarkoitus on löytää
+tilasarja, joka todennököisimmin on muodostanut tämän havainnon. Parametrit eli tilat ja todennäköisyydet on opetettu mallien perusteella. \\
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{HMModfcropped.jpg}
+    \caption{Markovin piilomuuttujan käyttö eleentunnistuksessa. Viivan yläpuolella on havainto esitetty pysäystyskuvien avulla. Viivan alla ovat mahdolliset tilat,
+	sekä niiden väliset siirtymätodennäköisyydet b1-bn. Todennäköisyydet a1-an kuvaavat kuinka todennäköisesti tila esittää havaittua tilaa.
+	Tarkotuksena on löytää tilasarja, joka kaikken todennäköisimmin muodostaa havainnon. Kuvan esittämässä tilanteessa todennäköisin tilasarja
+	olisi varmaankin: seisoo, käsi nousee, käsi on ylhäällä.}
+    \label{fig:HMM}
+  \end{center}
+\end{figure}
 
 Tunnistusongelma pelkistyy lopulta kysymykseen: Mikä liikesarja kaikken todennäköisimmin on muodostanut tämän videonäytteen?
 Tämän tyylinen ongelma voidaan ratkaista Viterbin algoritmillä. Tämä vaatii kuitenkin, että ele rajataan koostumaan tietystä määrästä liikkeitä.
-Kilpailussa on määritelty, että jokainen elenäyte sisältää viisi liikettä.
+Tässä tapauksessa on määritelty, että jokainen elenäyte sisältää viisi liikettä.
 Viterbin alkorytmi pyrkii löytämään todennököismmän polun eri liikkeiden välillä. Alkorytmi käy videota läpi liike kerrallaan ja laskee mikä
 on mallien perusteella todennäköisin liike. Lopuksi saadaan liikesarja, josta videonäyte todennäköisimmin koostuu.
-Liikesarja liitetään tunnistusvaiheessa tiettyyn eleeseen. \citep {6239185}\\ 
-
-On huomiotava, että Viterbin algoritmiä käytetään kahdella tasolla. Menetelmän alimmalla tasolla algoritmiä käytetään Markovin piilomallin
-kanssa tunnistamaan yksittäinen liike. Toisaalta Viterbin algoritmiä käytetään myös ylemmällä tasolla tunnistamaan todennäköisin liikesarja.\citep {6239185}\\
+Liikesarja liitetään tunnistusvaiheessa tiettyyn eleeseen. \citep {6239185} On huomiotava, että Viterbin algoritmiä käytetään ryhmän menetelmässä 
+kahdella tasolla. Menetelmän alimmalla tasolla algoritmiä käytetään Markovin piilomallin kanssa tunnistamaan yksittäinen liike pysäytyskuvien perusteella. 
+Toisaalta Viterbin algoritmiä käytetään myös ylemmällä tasolla tunnistamaan todennäköisin liikesarja liikkeiden perusteella.\citep {6239185}\\
 
 Immortals kertoo lähestymistapansa olevan peräisin puheentunnistusmenetelmistä. Ryhmä on kokeillut menetelmää menestyksekkäästi myös muille videotietokannoilla,
 jotka sisälsivät pelkää värivideokuvaa. \citep {6239185}\\
@@ -432,13 +446,13 @@ ainutlaatuisen.\citep {6239180}\\
 
 Pienimmän neliösumman menetelmä on regressio-ongelma, eli siinä etsitään jonkinlaista suhdetta havainnon ja luokan välille. 
 Opetusvaiheessa tunnetaan havainto ja sen luokka, joiden välille pyritään löytämään funktio. Funktiota kutsutaan regressiofunktioksi.
-Tunnistusvaiheessa havaintojen luokat lasketaan regressiofunktion avaulla.\citep {?}\\
+Tunnistusvaiheessa havaintojen luokat lasketaan regressiofunktion avaulla.\citep{leastsquares}\\
 
 Regressio-ongelma on muotoa $y = A * \beta$, jossa $y$-vektori esittää pisteet tulosavaruudessa, A-matriisi on havaintomatriisi 
 ja $\beta$-vektori on painovektori, joka kuvaa havaintomatriisin pisteet tulospisteiksi.
 Opetusvaiheessa pyritään löytämään painovektori, joka kuvaa havainnon mahdollisimman lähelle oikeaa luokkaa
 tulosavaruudessa. \citep {6239180} Pienimmän neliösumman menetelmässä pyritään minimoimaan luokitteluvirheen neliötä eli oikean tuloksen 
-ja arvioidun tuloksen erotuksen neliötä \citep{?}.
+ja arvioidun tuloksen erotuksen neliötä \citep{leastsquares}.
 Minimoidaan siis funktiota:
 \begin{equation}
 R(\beta) = ||y-A\beta||^2 \\
