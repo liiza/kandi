@@ -6,39 +6,22 @@
 % Avainsanojen lista pitää merkitä main.tex-tiedoston kohtaan \KEYWORDS.
 
 \begin{fiabstract}
-  Tiivistelmä on muusta työstä täysin irrallinen teksti, joka
-  kirjoitetaan tiivistelmälomakkeelle vasta, kun koko työ on
-  valmis. Se on suppea ja itsenäinen teksti, joka kuvaa olennaisen
-  opinnäytteen sisällöstä. Tavoitteena selvittää työn merkitys
-  lukijalle ja antaa yleiskuva työstä. Tiivistelmä markkinoi työtäsi
-  potentiaalisille lukijoille, siksi tutkimusongelman ja tärkeimmät
-  tulokset kannattaa kertoa selkeästi ja napakasti. Tiivistelmä
-  kirjoitetaan hieman yleistajuisemmin kuin itse työ, koska teksti
-  palvelee tiedonvälitystarkoituksessa laajaa yleisöä.
+Tämä kandinaatintyö käsittelee eleentunnistusta Kinect-sensorilla.
+Työssä esitellään yleisesti eleentunnistusongelmaa ja miten Kinectin 3D-videokuva vastaa eleentunnistuksen haasteisiin.
+Työssä tutustutaan ChaLearn Gesture Challenge -kilpailun kilpailutöihin ja sitä kautta alan uusimpaan tutkimukseen.
 
-  Tiivistelmän rakenne: 
-teksti jäsennetään kappaleisiin (3--5 kappaletta);
-ei väliotsikkoja; 
-ei mitään työn ulkopuolelta; 
-ei tekstiviitteitä tai lainauksia;
-vähän tai ei ollenkaan viittauksia työhön 
-(ei ollenkaan: ``luvussa 3'' tms., mutta koko työhön voi 
-viitata esim. sanalla ``kandidaatintyössä'';
-ei kuvia ja taulukoita.
+Työssä havaitaan, että eleentunnistuksen suurimpia haasteita on luokkien sisäinen varianssi. Sama ele näyttää erilaiselta
+esittäjästä ja tilanteesta riippuen. Syvyyskuva kuitenkin pienentää tekstuureista ja värityksestä johtuvaa varianssia.
+Syvyyskuvan avulla voidaan luotettavasti erottaa myös ihmishahmotaustasta ja tunnistaa syvyyssuunnassa tapahtuvia liikkeitä.
 
-Tiivistelmässä otetaan ``löysät pois'':
-ei työn rakenteen esittelyä;
-ei itsestäänselvyyksiä;
-ei turhaa toistoa;
-älä jätä lukijaa nälkäiseksi, eli kerro asiasisältö, 
-älä vihjaa, että työssä kerrotaan se.
+3D-kuvan luokittelussa voidaan käyttää pitkälti samoja menetelmiä kuin 2D-kuvan luokittelussa. ChaLearn Gesture Challenge -kilpailussa
+suurin osa menestyneistä töistä hyödynisikin menetelmiä 2D-videokuvan, puheen tai pelkän kuvan tunnistuksessa. Suosituin menetelmä
+menestyneiden töiden joukussa oli HOG/HOF-piirteet yhdistettynä Markovin piilomalliin.  Toinen 
+näkökulma kilpailussa oli eleen esittäminen summa- tai liikekuvien avulla. Tällöin ohitetaan videon ajallinen rakenne ja tiivistetään
+koko ele yhteen kuva. Tällöinkin luokittelussa hyödynnettiin HOG/HOF-piirteitä tai muita vastaavia kuvan intensiteettivaihteluun perustuvia piirteitä.
 
-Tiivistelmän tyypillinen rakenne: 
-(1) aihe, tavoite ja rajaus 
-(heti alkuun, selkeästi ja napakasti, ei johdattelua);
-(2) aineisto ja menetelmät (erittäin lyhyesti);
-(3) tulokset (tälle enemmän painoarvoa); 
-(4) johtopäätökset (tälle enemmän painoarvoa).
+Johtopäätöksiä ovat, että syvyyskamera on jo itsessään helpottanut eleentunnistusta ja vanhoja menetelmiä voidaan hyödyntää
+pienin muutoksin myös 3D-kuvaan. Kehittettävää löytyy kuitenkin vielä erityisesti yleistettävyydessä ja opetusdatan määrän vähentämisessä.
 %
 %Tiivistelmätekstiä tähän (\languagename). Huomaa, että tiivistelmä tehdään %vasta kun koko työ on muuten kirjoitettu.
 \end{fiabstract}
@@ -52,3 +35,5 @@ Tiivistelmän tyypillinen rakenne:
 % Here goes the abstract 
 %%(\languagename)
 %\end{enabstract}
+
+

@@ -108,8 +108,7 @@
 %\title{\LaTeX{}-pohja kandidaatintyölle \\[5mm] Pitkiä rivejä kokeilun vuoksi.}
 
 % Otsikko tiivistelmään. Jos lisäksi engl. tiivistelmä, niin viimeisin:
-\TITLE{\LaTeX{}-pohja kandidaatintyötä varten ohjeiden kera ja varuilta %
-kokeillaan vähän ylipitkää otsikkoa}
+\TITLE{Eleentunnistus Kinect-sensorilla}
 %\TITLE{\LaTeX{} för kandidatseminariet med jättelång rubrik som fortsätter och
 % fortsätter ännu}
 \ENTITLE{\LaTeX{} template for Bachelor thesis with a pretty long title %
@@ -118,7 +117,7 @@ line which continues ynd continues}
 %\TITLE{\LaTeX{}-pohja kandidaatintyölle. Pitkiä rivejä kokeilun vuoksi.}
 
 % Ohjaajan laitos suomi/ruotsi ja tarvittaessa eng (tiivistelmän kieli/kielet)
-\DEPT{Poimi tähän ohjaajasi laitos, DEPT, main.tex}
+\DEPT{Tietojenkäsittelytieteen laitos}
 % suomi:
 %\DEPT{Tietotekniikan laitos}               % T
 %\DEPT{Tietojenkäsittelytieteen laitos}     % TKT
@@ -133,15 +132,15 @@ line which continues ynd continues}
 %\ENDEPT{Department of Media Technology}                 % ME
 
 % Vuosi ja päivämäärä, jolloin työ on jätetty tarkistettavaksi.
-\YEAR{2011}
-\DATE{28. marraskuuta 2011}
+\YEAR{2013}
+\DATE{25. huhtikuuta 2013}
 %\DATE{31. helmikuuta 2011}
 %\DATE{Den 31 februari 2011}
 \ENDATE{February 31, 2011}
 
 % Kurssin vastuuopettaja ja työsi ohjaaja(t)
-\SUPERVISOR{Ma professori Tomi Janhunen}
-\INSTRUCTOR{Ohjaajantitteli Sinun Ohjaajasi}
+\SUPERVISOR{Tomi Janhunen}
+\INSTRUCTOR{D.Sc.(Tech) Markus Koskela}
 %\INSTRUCTOR{Ohjaajantitteli Sinun Ohjaajasi, ToinenTitt Matti Meikäläinen}
 % DI       // på svenska DI diplomingenjör
 % TkL      // TkL teknologie licentiat
@@ -150,8 +149,8 @@ line which continues ynd continues}
 % Professori Prof. // Prof. Professor
 % 
 % Jos tiivistelmä englanniksi, niin:
-\ENSUPERVISOR{Professor (pro tem) Tomi Janhunen}
-\ENINSTRUCTOR{Your instructor, titleOfInstructor}
+%\ENSUPERVISOR{Professor (pro tem) Tomi Janhunen}
+%\ENINSTRUCTOR{Your instructor, titleOfInstructor}
 % M.Sc. (Tech)  // M.Sc. (Eng)
 % Lic.Sc. (Tech)
 % D.Sc. (Tech)   // FT filosofian tohtori, PhD Doctor of Philosophy
@@ -161,8 +160,8 @@ line which continues ynd continues}
 % Kirjoita tänne HOPS:ssa vahvistettu pääaineesi.
 % Pääainekoodit TIK-opinto-oppaasta.
 
-\PAAAINE{Tähän sinun pääaineesi nimi, kts main.tex}
-\CODE{Txxxx tai ILyyyy}
+\PAAAINE{Tietojenkäsittelytiede}
+\CODE{IL3010}
 
 %\PAAAINE{Ohjelmistotuotanto ja -liiketoiminta}
 %\CODE{T3003}
@@ -193,9 +192,8 @@ line which continues ynd continues}
 
 % Avainsanat tiivistelmään. Tarvittaessa myös englanniksi:
 
-\KEYWORDS{avain, sanoja, niitäkin, tähän, vielä, useampi, vaikkei, %
-niitä, niin, montaa, oikeasti, tarvitse}
-\ENKEYWORDS{key, words, the same as in FIN/SWE}
+\KEYWORDS{Kinect, eleentunnistus, syvyyskuva, syvyyskamera, ChaLearn, hahmontunnistus}
+%\ENKEYWORDS{key, words, the same as in FIN/SWE}
 
 % Tiivistelmään tulee opinnäytteen sivumäärä.
 % Kirjoita lopulliset sivumäärät käsin tai kokeile koodia. 
@@ -213,8 +211,8 @@ niitä, niin, montaa, oikeasti, tarvitse}
 % VANHA //  sivunumerolla 1. %   Toisin sanoen, viimeisen lähdeluettelosivun 
 % VANHA //  sivunumero EI ole sivujen määrä vaan se pitää laskea tähän käsin
 
-\PAGES{Kirjoita tähän oikea määrä, tässä esimerkissä 23}
-%\PAGES{23}  % kaikki sivut laskettuna nimiölehdestä lähdeluettelon tai 
+\PAGES{28}
+%\PAGES{22}  % kaikki sivut laskettuna nimiölehdestä lähdeluettelon tai 
              % mahdollisten liitteiden loppuun. Tässä 23 sivua
 
 %\thispagestyle{empty}  % nimiölehdellä ei ole sivunumerointia; tyylin mukaan ei tehdäkään?!
@@ -223,13 +221,11 @@ niitä, niin, montaa, oikeasti, tarvitse}
 
 % -------------- Tiivistelmä / abstract -------------------------------
 % Lisää abstrakti kandikielellä (ja halutessasi lisäksi englanniksi).
-
 % Edelleen sivunumerointiin. Eräs ohje käskee aloittaa sivunumeroiden
 % laskemisen nimiösivulta kuitenkin niin, että sille ei numeroa merkitä
 % (Kauranen, luku 5.2.2). Näin ollen ensimmäisen tiivistelmän sivunumero
 % on 2. \maketitle komento jotenkin kadottaa sivunumeronsa.
 \setcounter{page}{2}    % sivunumeroksi tulee 2
-
 \input{luku_abstraktit}
 \newpage                       % pakota sivunvaihto
 
