@@ -555,42 +555,41 @@ toisiaan enemmän piirreirroituksen (HOG/HOF-piirteet) ja kuvien käsittelyn osa
 
 \section {Johtopäätökset}
 
-3D-videokuva on tuonut ratkaisuja eleentunnistuksen ongelmiin. Yksivärinen syvyyskuva pienentää erilaisista tekstuureista
+Kinect-kameran ja muiden vastaavien kameroiden 3D-videokuva on tuonut ratkaisuja eleentunnistuksen ongelmiin. Yksivärinen syvyyskuva pienentää erilaisista tekstuureista
 ja väreistä johtuvaa vaihtelua, jolloin luokkien sisäinen vaihtelu pienenee ja luokittelutehtävä helpottuu. Syvyyskuvan avulla
-saadaa lisätietoa eleestä jolloin toisiaan muistuttavat eleet voidaan erottaa entistä varmemmin. Syvyyskamera on jo itsessään
-helpottanut eleentunnistusta ja näyttäisi antavan parempia tuloksia vanhoilla, jo tunnetuilla eleentunnistusmenetelmillä. Uusia menetelmiä
+saadaa lisätietoa eleestä, jolloin toisiaan muistuttavat eleet voidaan erottaa entistä varmemmin. Syvyyskamera on jo itsessään
+helpottanut eleentunnistusta ja saattaa antaa parempia tuloksia vanhoilla, jo tunnetuilla eleentunnistusmenetelmillä. Uusia menetelmiä
 pyritään kuitenkin kehittämään, jotta syvyyskameran saadut hyödyt saataisiin entisestä paremmin hyödynnettyä.\\
 
-Kilpailutöiden perusteella 3D-videokuvan tunnistuksessa käytetään pitkälti samoja keinoja kuin 2D-videokuvan tunnistuksessa.
-Kilpailutyöt eivät huomioineet 3D-kuvaa erityisesti piirrevalinnassa tai tunnistusmenetelmissä tai ainakaan tätä näkökulmaa ei tuotu erityisesti
-esille kilpailutöiden kuvauksissa. 3D-videokuvaa hyödynnettiin esikäsittelyvaiheessa taustan irrottamiseen 
-(lähes kaikki kilpailutyöt) ja ainakin yhdessä työssä (Immortals) tärkeiden pisteiden valinnassa. 
-Lähes kaikki kilpailijat toki käyttivät syvyyskuvaa, osa jopa pelkästään sitä, mutta eivät juurikaan
-kuvailleet miten heidän menetelmänsä olisi eronnut, jos käytössä olisi ollut pelkästään värikuva.
-Kuvaavaa on, että kilpailussa toiseksi tullut työ hyödynsi pelkkää värikuvaa.
+ChaLearn Gesture Challenge -kilpailun kilpailutöiden perusteella 3D-videokuvan tunnistuksessa käytetään pitkälti samoja 
+menetelmiä kuin 2D-videokuvan tunnistuksessa. Kilpailutyöt eivät huomioineet 3D-kuvaa erityisesti piirrevalinnassa tai tunnistusmenetelmissä 
+tai ainakaan tätä näkökulmaa ei tuotu erityisesti esille kilpailutöiden kuvauksissa. 3D-videokuvaa hyödynnettiin kilpailutöissä lähinnä esikäsittelyvaiheessa taustan irrottamiseen 
+(lähes kaikki kilpailutyöt) ja ainakin yhdessä työssä (Immortals) tunnistuksen kannalta tärkeiden pisteiden valinnassa. Lähes kaikki kilpailijat 
+toki käyttivät syvyyskuvaa, osa jopa pelkästään sitä, mutta eivät juurikaan kuvailleet miten heidän menetelmänsä olisi eronnut, jos käytössä olisi ollut pelkästään värikuva.
+Kuvaavaa on, että kilpailussa toiseksi tullut työ hyödynsi pelkkää värikuvaa.\\
 
-Videolta valitaan piirteitä, joiden avulla videokuva luokitellaan. Tunnettuja keinoja eleen esittämiseen ovat ajallisen rakenteen mallintamiseen
-käytetyt graafiset mallit ja erilaiset liikekuvat. Piirteinä käytetään kuvankäsittelystä tuttuja, kuvan intensiteettivaihteluihin perustuvia piirteitä.
-Piirteet valitaan niin, että ne ovat mahdollisimman vähän riippuvaisia värikuvan yleisestä värimaailmasta, hahmon sijainnista tai koosta kuvalla tai
-muista videokuvalle spesifeistä seikoista. Esimerkiksi liikekuvat huomioivat vain videokuvalla tapahtuneen liikkeen välittämättä kuvan värityksestä
-tai hahmon muodosta. Liikekuvalla sama liike näyttää hyvin samanlaiselta esittäjästä riippumatta. Liikekuvaa tai videokuvaa voidaan käsitellä esimerkiksi
-HOG-piirteiden avulla. Kun HOG-histogrammit hajotetaan Bag of features -esitykseen katoaa tieto esimerkiksi hahmon sijainnista kuvalla.
-Bag of features -esitys tietää enää, että minkä suuntaisia viivoja kuvassa esiintyyi ja kuinka paljon. Tällöin Bag of features -esitys on sama
-riippumatta siitä onko elettä tekevä hahmo kuvan oikeassa vai vasemmassa reunassa. Kilpailijoiden käyttämistä menetelmistä lähes kaikki perustuivat ajallisen rakenteen mallintamiseen 
-Markovin piilomuuttujan tai muun vastaavan menetelmän avulla. Piirteinä käytettiin HOG/HOF-piirteet. 
+Kilpailutöissä esitettyjä menetelmiä olivat ajallisen rakenteen mallintamiseen käytetyt graafiset mallit ja erilaiset liikekuvat. Piirteinä käytettiin 
+kuvankäsittelystä tuttuja, kuvan intensiteettivaihteluihin perustuvia piirteitä. Piirteet valitiin niin, että ne ovat mahdollisimman vähän riippuvaisia
+ värikuvan yleisestä värimaailmasta, hahmon sijainnista tai koosta kuvalla tai muista videokuvasta riippuvista seikoista. Esimerkiksi liikekuvat huomioivat 
+vain videokuvalla tapahtuneen liikkeen, välittämättä kuvan värityksestä tai hahmon muodosta. Liikekuvalla sama liike näyttää melko samanlaiselta esittäjästä 
+riippumatta. Näin voidaan tunnistaa ele sen esittäjästä riippumatta.\\
+
+Liikekuvalle tai videokuvalle voidaan sitten tehdä piirreirroitus esimerkiksi 
+HOG-piirteiden avulla. Kun HOG-histogrammit luokitellaan Bag of features -esityksen avulla, katoaa tieto esimerkiksi hahmon sijainnista kuvalla.
+Bag of features -esityksessä säilyy vain tieto siitä minkä suuntaisia viivoja kuvassa esiintyy ja kuinka paljon. Tällöin Bag of features -esitys on sama
+riippumatta esimerkiksi siitä onko elettä tekevä hahmo kuvan oikeassa vai vasemmassa reunassa. Suurin osa menestyneistä kilpailutöistä
+perustui ajallisen rakenteen mallintamiseen Markovin piilomuuttujan avulla yhdistettynä HOG/HOF-piirteisiin. 
 Erityisiä perusteluita tälle ei kuitenkaan esitetty. Kilpailussa menestyi hyvin myös muutama työ, jotka käyttivät täysin tästä poikkeavia menetelmiä.\\
 
-Jatkotutkimuksen kannalta olisi mielenkiintoista selvittää kuinka hyvin kilpailutyöt pärjäisivät
-muulle kuin tässä kilpailussa annetulle datalle. Toisen kierroksen kilpailutöiden tuloksissa oli viitteitä
-siitä, että menetelmät olivat "ylioppineet" tälle datalle.(Chalearn2) Silloin ne tuottavat hyviä tuloksia juuri
-tälle datalle, mutta eivät menestyisi yhtä hyvin muille datajoukoille. Esimerkiksi näytteille, jotka on esimerkiksi kuvattu kauempaa 
-kohteesta tai jollain muulla tapaa eroavat tästä datasta. Olisi mielenkiintoista tutustua myös voittajatyöhön, joskaan sen käyttämät menetelmät eivät pinnallisen
-kuvauksen perusteella juuri eronneet kilpailun yleisestä suuntauksesta.\\
+Olisi mielenkiintoista selvittää, kuinka hyvin kilpailutyöt pärjäisivät muulle kuin tässä kilpailussa annetulle datalle. 
+Toisen kierroksen kilpailutöiden tuloksissa oli viitteitä siitä, että menetelmät olivat "ylioppineet" tälle datalle \citep {chalearn2}. 
+Silloin ne tuottavat hyviä tuloksia juuri tälle datalle, mutta eivät menestyisi yhtä hyvin muille datajoukoille. Olisi mielenkiintoista 
+tutustua myös voittajatyöhön, joskaan sen käyttämät menetelmät eivät pinnallisen kuvauksen perusteella juuri eronneet kilpailun yleisestä suuntauksesta.\\
 
-Syvyyskamera on tuonut eleentunnistukseen aivan uusia mahdollisuuksia, vaikka toistaiseksi sitä ei välttämättä osata vielä täysin hyödyntää.
-Tulevaisuuden haasteita on kehittää entistä varmempaa ja nopeampaa eleentunnista. Alan kasvupotentiaali on kuitenkin huikea, sillä eletunnistuksella
-on paljon käyttökohteita. Haasteita ovat kuitenkin juurikin eleentunnisuksen luotettavasuus ja nopeus sekä Chalearn kilpailun järjestäjien
-esittämä siirtovaikutusoppiminen. \\
+Yhteenvetona voisi todeta, että syvyyskamera on tuonut eleentunnistukseen uusia mahdollisuuksia, joita ei välttämättä osata vielä edes täysin hyödyntää.
+Tulevaisuuden haasteita on kehittää entistä varmempia ja nopeampia eleentunnistusmenetelmiä, jotka soveltuvat kuluttajasovelluksiin.
+Myös ChaLearn Gesture Challenge -kilpailun järjestäjien esittämä yhdestä eleestä oppimisen -ongelma on yksi haasteista, johon eleentunnistusmenetelmien on 
+vastattava tulevaisuudessa. Alan kasvupotentiaali on huikea, sillä eleentunnistuksella on paljon käyttökohteita. \\
 
 
 % --------------------------------------------------------------------
