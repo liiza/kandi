@@ -11,25 +11,25 @@ on kuitenkin monia käyttötarkoituksia esimerkiksi elekäyttöliittymissä. \ci
 eleentunnistusmenetelmät eivät ole olleet riittävän luotettavia ja nopeita, jotta niitä olisi voitu
 laajasti hyödyntää kuluttajasovelluksissa.\\
 
-Kehittynyt tekniikka kuten Microsoftin Kinect-sensori ja kehittynyt laskentateho tuovat alalle uusia mahdollisuuksia. 
-Kinect-sensori on Microsoftin kehittämä 3D-kamera, joka tarjoaa 3D-videokuvaa eli tavallisen värikuvan 
+Kehittynyt tekniikka kuten Microsoftin Kinect-sensori ja kasvanut laskentateho tuovat alalle uusia mahdollisuuksia. 
+Kinect-sensori on Microsoftin tuotteistama 3D-kamera, joka tarjoaa 3D-videokuvaa eli tavallisen värikuvan 
 lisäksi Kinect-kamera antaa infrapunakameralla mitattua syvyyskuvaa. \citep{kinectkuva}
 3D-videokuva tuo monia etuja eleentunnistukseen verrattuna 2D-videokuvaan. 3D-kuva ei ole kuitenkaan 
 vielä toistaiseksi radikaalisti kehittänyt tai muuttanut olemassa olevia eleentunnistusmenetelmiä.\\
 
 Lisätäkseen kiinnostusta 3D-kuvaan järjestettiin ChaLearn Gesture Challenge -eleentunnistuskilpailu, 
-jossa kilpailijat kehittivät Kinect-sensorin datalle suunnattuja 
-eleentunnistusmenetelmiä. Tämä kandinaatintyö tutustuu kilpailutöihin ja kartoittaa niiden avulla alan uusinta tutkimusta. Kilpailu on hyvä tutkimuskohde,
+jossa kilpailijat kehittivät Kinect-sensorin datalle soveltuvia 
+eleentunnistusmenetelmiä. Tässä kandidaatintyössä tutustutaan kilpailutöihin ja kartoitetaan niiden avulla alan uusinta tutkimusta. Kilpailu on hyvä tutkimuskohde,
 sillä sen avulla voidaan puolueettomasti vertailla erilaisia menetelmiä. Eleentunnistukselle on tyypillistä, 
-että menetelmät oppivat liiankin hyvin opetusdatajoukkoon, eivätkä ole enää yleistettävissä muille datajoukoille.
+että menetelmät sovittuvat liiankin hyvin opetusdatajoukkoon, eivätkä ole enää yleistettävissä muille datajoukoille.
 Jotta saadaan vertailtavissa olevia tuloksia, on eri menetelmiä testattava samalla ja mielellään kokonaan uudella datajoukolla.\\
 
-ChaLearn Gesture Challenge -kilpailussa jaettiin Kinect-sensorilla kuvattuja näytteitä erilaisista eleistä.
+ChaLearn Gesture Challenge -kilpailussa osaanottajille jaettiin Kinect-sensorilla kuvattuja näytteitä erilaisista eleistä.
 Jokaisesta eleestä annettiin yksi näyte, koska kilpailijoita haluttiin kannustaa kehittämään yhdestä 
-eleestä oppimiseen sopivia menetelmiä (One Shot Learning). Kilpailutöiden menetelmät olivat pääasiallisesti sellaisia,
+näytteestä oppimiseen sopivia menetelmiä (One Shot Learning). Kilpailutöiden menetelmät olivat pääasiallisesti sellaisia,
 että ne soveltuisivat myös tavalliselle 2D-videokuvalle. Menetelmät yhdistelivät tunnettuja menetelmiä kuvan-, videon- ja äänentunnistuksesta.\\
 
-Luvussa kaksi esitellään tarkemmin eleentunnistusongelmaa ja 3D-videokuvaa. Luvussa kolme kerrotaan
+Tämän työn luvussa 2 esitellään tarkemmin eleentunnistusongelmaa ja 3D-videokuvaa. Luvussa 3 kerrotaan
 ChaLearn Gesture Challenge -kilpailusta ja luodaan yleiskatsaus kilpailutöihin. Luvussa neljä esitellään
 tarkemmin kolme kilpailutöistä. Kilpailutyöt on valittu menestyneiden kilpailutöiden joukosta edustamaan erilaisia näkökulmia ongelmaan.\\
 
@@ -44,50 +44,49 @@ teknisiin ominaisuukseen, vaan kameraa esitellään ainoastaan ongelman ymmärt�
 
 
 \subsection{Eleentunnistus ongelmana}
-Eleentunnistuksella tarkoitetaan tässä työssä ihmisen suorittaman eleen tunnistamista videokuvalta. Eleitä voisivat olla esimerkiksi
+Eleentunnistuksella tarkoitetaan tässä työssä ihmisen suorittaman eleen tunnistamista videokuvalta. Tällaisia eleitä voisivat olla esimerkiksi
 viittomakielen eleet tai yksinkertaiset toiminnot kuten istuminen. Eleentunnistus on haastava ongelma. Ihmisen eleet ovat
 monimutkaisia ja videokuvalla on paljon muuttujia kuten valaistus, tila tai kohteen etäisyys kamerasta \citep {1251144}. 
 Luokan sisällä on paljon vaihtelua eli sama ele näyttää erilaiselta videonäytteestä riippuen.
 Yhtenä haasteena on ollutkin riittävän monipuolisen opetus- ja testitietokannan kerääminen.
 \citep{4587756} Microsoftin Kinect-sensorin tapaisten syvyyskameroiden avulla haasteisiin voidaan kuitenkin vastata entistä tehokkaammin \citep {6239178}.\\
 
-Eleentunnistus on hyvä erottaa asennontunnistus-ongelmasta (Pose Estimation).
+Eleentunnistus on hyvä erottaa asennontunnistusongelmasta (Pose Estimation).
 Asennontunnistuksessa pyritään tunnistamaan ihmisen asento videolla yhdessä pysäytyskuvassa
 käyttämättä lainkaan ajallista tietoa. Tunnistuksessa pyritään usein tunnistamaan ihmishahmon ruumiinosat esimerkiksi nivelet,
-joiden pohjalta arvioidaan asento. \citep{5995316} Ongelmana asennontunnistus on tietyssä mielessä helpompi
-kuin eleentunnistus, sillä hahmontunnistus kuvalta on yksinkertaisempaa kuin videokuvalta ja sitä on tutkittu enemmän. 
-Yksittäisiä asentoja voidaan käyttää tunnistamaan kokonainen ele, joskin se on laskennallisesti raskasta.  \\
+joiden pohjalta asento arvioidaan. \citep{5995316} Ongelmana asennontunnistus on tietyssä mielessä helpompi
+kuin eleentunnistus, sillä hahmontunnistus yksittäiseltä kuvalta on yksinkertaisempaa kuin videokuvalta ja sitä on tutkittu enemmän. 
+Yksittäisiä asentoja voidaan käyttää myös tunnistamaan kokonainen ele, joskin se on laskennallisesti raskasta.  \\
 
 Kiinnostus eleentunnistusta kohtaan on lisääntynyt viime vuosina sen monien käyttötarkoitusten vuoksi.
-Eleentunnistusta voidaan käyttää monenlaisissa elekäyttöliittymissä.  Yksittäisiä eleitä voidaan 
+Eleentunnistusta voidaan käyttää monenlaisissa elekäyttöliittymissä. Yksittäisiä eleitä voidaan 
 käyttää esimerkiksi kodinkoneiden ohjailuun. \citep {1251144} Toisaalta eleentunnistusta voidaan käyttää hyödyksi tunnistamaan
 erilaisia vaaratilanteita. Esimerkiksi potilaan tilaa voidaan seurata eleentunnistuskameralla 
 mahdollisten poikkeavien eleiden varalta \citep{chalearn2}.\\
 
 Videokuvan tunnistuksessa voidaan hyödyntää perinteisiä hahmontunnistusmenetelmiä. Monet menetelmistä ovat kuitenkin laskennallisesti liian raskaita 
-reaaliaikaiseen videokuvan tunnistukseen, jota vaaditaan elekäyttöliittymissä \citep {1251144}.
+reaaliaikaiseen videokuvan tunnistukseen, jota elekäyttöliittymissä vaaditaan \citep {1251144}.
 Monet hahmontunnistusmenetelmät vaativat myös paljon opetusdataa. Kuluttajille suunnatuissa
-sovelluksissa olisi toivottavaa, että uuden eleen voi opettaa muutaman testinäytteen perusteella \citep {1251144}.
+sovelluksissa olisi toivottavaa, että järjestelmälle voi opettaa uuden eleen muutaman testinäytteen perusteella \citep {1251144}.
 Eleentunnistusmenetelmien on kyettävä vastaavaan näihin haasteisiin.\\
 
-Eleentunnistuksessa, kuten hahmontunnistuksessa yleensä, korkeimpana tavoitteena on jäljitellä ihmisen toimintamalleja.
+Monissa hahmontunnistuksen sovelluksissa kuten eleentunnistuksessa korkeimpana tavoitteena on jäljitellä ihmisen toimintamalleja.
 Ihmisen kyky tunnistaa ja oppia hahmoja on erinomainen. Ihminen kykenee oppimaan eleet yhden opetusnäytteen perusteella 
 ja tunnistaa eleet tehokkaasti ulkoisista muuttujista riippumatta. Käytännössä huimaa vauhtia kehittynyt tekniikka on kuitenkin
 viime aikoina ajanut tutkimuksen ohi ja monet menetelmät on kehitetty nopeasti lähinnä vastaamaan käytännön tarpeisiin. Samalla 
-ihmisen jäljittely -näkökulma on unohdettu.
-\citep{chalearn2}
+ihmisen jäljittelyyn pyrkivä näkökulma on unohdettu. \citep{chalearn2}
 
 \subsection{3D-videokuva}
-Kinect-sensori on Microsoftin kehittämä kaupallinen 3D-kamera. Se on tarkoitettu Microsoftin Xbox-pelikonsolin lisäosaksi.
+Kinect-sensori on Microsoftin tuotteistama kaupallinen 3D-kamera. Se on alunperin tarkoitettu Microsoftin Xbox-pelikonsolin lisäosaksi.
 Kamera kehitettiin ensisijaisesti viihdekäyttöön parantamaan Xbox-pelien käyttökokemusta. Microsoft on kuitenkin avannut
 Kinectille ohjelmointirajapintoja, joiden avulla Kinect-kameralle on kehitetty lukuisia alkuperäisestä käyttötarkoituksesta 
 irrallisia sovelluksia. \citep{kinect}\\
 
 Tavallisen värikuvan lisäksi Kinect-sensori tarjoaa syvyyskuvaa kohteesta. Syvyyskuva kertoo kohteen etäisyyden kamerasta ja luo näin kolmiulotteista videokuvaa. 
-Microsoft tarjoaa Kinectille myös ohjelmistokehitystyökaluja, jotka sisältävät erilaisia hahmontunnistustyökaluja.
-Niiden avulla kehittäjä saa käyttöönsä esimerkiksi ranganseurauksen eli tiedon ihmishahmon asennoista videokuvan eri hetkillä. \citep{kinect}\\
-Myöhemmin esiteltävässä ChaLearn Gesture Challenge -kilpailussa kilpailijat eivät kuitenkaan hyödyntäneet Microsoftin tarjoamia 
-valmiita hahmontunnistustyökaluja, vaan kilpailun tarkoitus oli kehittää omia menetelmiä. \\
+Microsoft tarjoaa Kinectille myös ohjelmistokehitystyökaluja, jotka sisältävät erilaisia hahmontunnistusmenetelmiä.
+Niiden avulla kehittäjä saa käyttöönsä esimerkiksi ranganseurannan eli tiedon ihmishahmon asennoista videokuvan eri hetkillä. \citep{kinect}\\
+Myöhemmin esiteltävässä ChaLearn Gesture Challenge -kilpailussa kilpailijat eivät kuitenkaan ole hyödyntäneet näitä Microsoftin tarjoamia 
+valmiita hahmontunnistustyökaluja, vaan kilpailun tarkoituksena oli kehittää omia menetelmiä. \\
 
 Eleentunnistuksen näkökulmasta syvyyskuvalla on monia etuja verrattuna värikuvaan. Syvyyskuva on yksiväristä
 eli siitä on riisuttu erilaiset värit ja tekstuurit, jotka usein aiheuttavat ongelmia värikuvan tunnistamisessa.
@@ -112,7 +111,7 @@ joka on vartalon edessä voidaan helposti erottaa omaksi raajakseen. \\
 Eleentunnistus videokuvalta noudattaa tavallisia hahmontunnistuksen vaiheita: esikäsittely, piirrevalinta ja
 luokittelu. Eleentunnistuksen erityishaasteet on huomioitava eri tavoin eri työvaiheissa. 3D-videokuva tuo 
 oman lisänsä, mutta se ei merkittävästi muuta työvaiheita. Eleentunnistus on hahmontunnistuksen termein
-luokitusongelma eli mahdolliset luokat tunnetaan ennalta. \citep{6239178}  \\
+luokitusongelma eli näytteiden mahdolliset luokat tunnetaan ennalta. \citep{6239178}  \\
 
 Esikäsittelyvaiheessa videokuvalta poistetaan häiriötä, jotka voisivat haitata eleentunnistusta.
 Näitä voivat olla esimerkiksi kuvassa esiintyvät ylimääräiset objektit tai videokuvan virheet kuten kohina.
@@ -121,24 +120,23 @@ ihmishahmo ei välttämättä erotu esimerkiksi väritykseltään taustasta. Kin
 värikuvan avulla. Ihmishahmon erottaminen taustasta helpottaa tunnistusta, sillä tällöin ihminen ei sekoitu taustaansa tai mitään taustassa olevaa
 esinettä ei erehdytä pitämään ihmisen osana. Esikäsittelyssä voidaan suorittaa myös jonkinlaista ajallista jakoa videolle. Videokuvaa
 voidaan esimerkiksi jakaa ajallisiin jaksoihin perustuen videokuvan samankaltaisuuteen. Ajallisen jaon 
-tarkoitus on auttaa hahmottamaan kuvalla tapahtuvaa liikesarjaa ja näin helpottaa tunnistusta. \citep{6239178} \\
+tarkoitus on auttaa hahmottamaan kuvassa tapahtuvaa liikesarjaa ja näin helpottaa tunnistusta. \citep{6239178} \\
 
 Hahmontunnistuksessa ratkaiseva vaihe on usein oikeiden piirteiden valinta eli piirreirrotus. Videokuvasta voidaan valita piirteeksi esimerkiksi 
 tietyn suuntainen liike ajan funktiona. Liike näkyy peräkkäisten pysäytyskuvien välisenä erona. Tutkimalla liikettä
-videokuvat voidaan tiivistää liikekuviin, joita voidaan luokitella yksinkertaisilla luokittelualgoritmeillä. 
-Videokuvaa voidaan tarkastella myös yksittäisten pysäytyskuvien kautta. 
+videokuva voidaan tiivistää liikekuvaan, jolloin poistetaan videon aikaulottovuus. Videokuvaa voidaan tarkastella myös yksittäisten pysäytyskuvien kautta. 
 Tällöin voidaan hyödyntää valokuvien tunnistuksessa käytettyjä menetelmiä.
-Pysäytyskuvista voidaan arvioida kontrastivaihteluita ja sitä kautta hahmottaa viivoja tai muotoja kuvassa. \citep{6239178}  \\
+Pysäytyskuvista voidaan esimerkiksi arvioida kontrastivaihteluita ja sitä kautta hahmottaa viivoja tai muotoja kuvassa. \citep{6239178}  \\
 
 Tunnistusvaiheessa näytteitä verrataan opetusdatan kuvaamiin luokkiin. Tunnistusmenetelmä riippuu valituista piirteistä.
 Jos videokuvaa käsitellään kokonaisuutena esimerkiksi liikekuvan avulla, kuvia voidaan luokitella yksinkertaisilla luokittelualgoritmeillä. 
 Näitä voisivat olla esimerkiksi k-lähimmän naapurin luokitin. Jos videokuva esitetään yksittäisillä pysäytyskuvilla, 
 on tunnistuksessa huomioitava videon aikaulottuvuus. On käytettävä rakenteellista mallia, jonka avulla voidaan tarkastella piirteen arvoa
-tietyllä ajanhetkellä. Tähän tarkoitukseen on erilaisia graafisia malleja, joita esitellään tarkemmin luvussa kolme. \citep{6239178} \\
+tietyllä ajanhetkellä. Tähän tarkoitukseen on kehitetty erilaisia graafisia malleja, joita esitellään tarkemmin luvussa 3. \citep{6239178} \\
 
 Luokittelun jälkeen menetelmälle lasketaan virheprosentti. Virheprosentti lasketaan testidatan avulla.
-Testidatassa on opetusdatan tavoin tiedossa näytteiden oikeat luokat, jolloin on mahdollista laskea, kuinka suuri prosentti
-näytteistä on luokiteltu oikeisiin luokkiin. Menetelmää voidaan kehittää edelleen kokeilemalla erilaisia
+Testidatalla on opetusdatan tavoin tiedossa näytteiden oikeat luokat, jolloin on mahdollista laskea, kuinka suuri osa
+näytteistä on luokiteltu oikeisiin luokkiin. Menetelmää voidaan kehittää edelleen esimerkiksi kokeilemalla erilaisia
 opetusdatajoukkoja ja valitsemalla joukko, joka tuottaa pienimmän virheprosentin testidatalle. \citep{6239178} 
 
 \section{ChaLearn Gesture Challenge -kilpailu}
@@ -147,15 +145,15 @@ opetusdatajoukkoja ja valitsemalla joukko, joka tuottaa pienimmän virheprosenti
 \subsection{Kilpailun esittely}
 ChaLearn Gesture Challenge -kilpailun tarkoituksena oli lisätä kiinnostusta eletunnistukseen syvyyskameralla.
 Kilpailun järjesti ChaLearn-yhteisö. ChaLearn-yhteisö on useiden eri yliopistojen asiantuntijoista koostuva yhdistys,
-jonka tavoitteena on herättää kiinnnostusta koneoppimiseen ja hahmontunnistukseen. \citep{kilpailunnettisivut} Kilpailu alkoi vuoden 2011 lopuilla ja se päättyi loppuvuonna 2012. Kilpailuun osallistui ensimmäisellä kierroksella 50 ryhmää,
-pääasiallisesti yliopistojen tutkimusryhmiä. Kilpailijoille annettiin tietokanta, joka sisälsi 50 000 Kinect-sensorilla kuvattua videonäytettä. 
-Videonäytteet sisälsivät yksittäisiä eleitä, esimerkiksi viittomia tai poliisin käsimerkkejä. Kilpailijoiden tarkoitus oli kehittää eleentunnistusmenetelmä, 
-jonka avulla eleet opitaan yhdestä opetusnäytteestä. Eleitä oli jaettu kategorioihin käyttötilanteen mukaan. Esimerkiksi poliisin käsimerkit olivat yksi kategoria.
+jonka tavoitteena on herättää kiinnnostusta koneoppimiseen ja hahmontunnistukseen. \citep{kilpailunnettisivut} Kilpailu alkoi vuoden 2011 lopussa ja se päättyi loppuvuonna 2012. Kilpailuun osallistui ensimmäisellä kierroksella 50 ryhmää,
+pääasiallisesti eri yliopistojen tutkimusryhmiä. Kilpailijoille annettiin tietokanta, joka sisälsi 50 000 Kinect-sensorilla kuvattua videonäytettä. 
+Videonäytteet sisälsivät yksittäisiä eleitä, esimerkiksi viittomia tai poliisin käsimerkkejä. Kilpailijoiden tarkoituksena oli kehittää eleentunnistusmenetelmä, 
+jonka avulla eleet opitaan yhdestä opetusnäytteestä. Eleet oli jaettu kategorioihin käyttötilanteen mukaan. Esimerkiksi poliisin käsimerkit olivat yksi kategoria.
 \citep{6239178} \\
 
 Annetuilla videonäytteillä esiintyi aina yksi ihminen kerrallaan suorittamassa tiettyä elettä. Kuva rajattiin yläruumiiseen ja eleet tehtiin
 pääasiallisesti käsillä. Liikkeet lopetettiin ja aloitettiin aina samasta lepoasennosta. Videonäytteet sisälsivät syvyyskamerakuvan sekä värikuvan, 
-mutta eivät ranganseurausta tai muuta valmista hahmontunnistustietoa. Haasteita toivat vaihtelevat taustat ja valaistukset videokuvalla.  \citep{6239178}\\
+mutta eivät ranganseurantaa tai muuta valmista hahmontunnistustietoa. Haasteita toivat vaihtelevat taustat ja valaistukset videokuvalla.  \citep{6239178}\\
 
 Kilpailijoille jaettiin kolme datajoukkoa: opetusdata, validointidata ja lopullinen arviointidata. 
 Opetusdatan näytteille tarjottiin oikeat luokat, joiden avulla järjestelmän opetus onnistui.
@@ -179,47 +177,48 @@ oikeita luokkia kuvaavan merkkijonon ja kilpailijoiden antaman vastausmerkkijono
 
 \subsection{Katsaus kilpailutöihin}
 \subsubsection {Ensimmäinen kierros}
-Kilpailijoiden metodeja selvitettiin ensimmäisen kierroksen jälkeen lyhyellä kyselyllä, johon vastasi 20 ryhmää 22 parhaan ryhmän joukosta.
+Kilpailijoiden metodeja selvitettiin ensimmäisen kierroksen jälkeen lyhyellä kyselyllä, johon vastasi 20 ryhmää 22 parhaiten menestyneen ryhmän joukosta.
 Ryhmiltä kysyttiin muun muassa minkälaista esikäsittelyä he olivat tehneet videokuvalle, minkälaista tunnistusmenetelmää tai mitä piirteitä oli käytetty ja
 mikä oli heidän menetelmänsä suoritusaika. Kyselyn tarkoituksena oli saada yleiskatsaus kilpailutöihin, sillä monet kilpailijat eivät
 halunneet julkaista yksityiskohtaista kuvausta menetelmästään kilpailun ollessa vielä kesken. \citep {6239178}. \\
 
 Vastauksista kävi ilmi, että lähes kaikki ryhmät tekivät jonkinlaista kuvan esikäsittelyä. Videokuvasta poistettiin häiriötä, asiaankuulumattomia 
-kohteita tai ihmishahmon tausta. Huomioitavaa on kuitenkin, että jotkin hyvin menestyneistä ryhmistä eivät tehneet minkäänlaista esikäsittelyä kuvalle.
+kohteita tai ihmishahmon tausta. Huomioitavaa on kuitenkin, että osa hyvin menestyneistä ryhmistä ei tehnyt minkäänlaista esikäsittelyä kuvalle.
 \citep {6239178}\\
 
 Suurin osa osallistujista käytti HOG/HOF-piirteitä (Histogram of oriented Gradients/ Histogram of Flow), SIFT/STIP-piirteitä 
 (Scale Invariant Feature Transformation/Space-time interest points), 
-kulmien tai nurkkien tunnistusta tai kehitti omia, tälle datalle soveltuvia piirteitä.\citep {6239178}\\
+kulmien tai nurkkien tunnistusta tai kehitti omia, tälle datalle soveltuvia piirteitä .\citep {6239178}\\
 
 Käytetyt piirteet perustuvat pääosin kuvan värityksen intensiteettivaihteluun.
 Esimerkiksi HOG-piirteet kuvaavat kuvan intensiteettivaihtelun gradienttien suuntaa. Kuva jaetaan pieniin alueisiin, soluihin, 
-joissa tarkastellaan alueen värityksen intensiteettivaihtelua. Soluille lasketaan intensiteettivaihtelun gradienttien suuntien histogrammi. 
+joille lasketaan intensiteettivaihtelun gradienttien suuntien histogrammi. 
 Ajatuksena on päätellä, minkä suuntaisia viivoja tai nurkkia alueelta voidaan erottaa. \citep {1467360} Histogrammit kertovat kuvassa esiintyvistä
 muodoista, eivätkä ne ole riippuvaisia hahmon sijainnista kuvassa tai kuvan yleisestä värimaailmasta.
 HOG-piirteet soveltuvatkin hyvin tämänkaltaiseen hahmontunnistusongelmaan, jossa kohteen sijainti ja väritys voivat vaihdella kuvalla.
-HOF-piirteet toimivat samoin kuin HOG-piirteet, paitsi yksittäisten kuvien sijaan ne tutkivat peräkkäisten kuvien vaihtelua eli liikettä videolla \citep{Pers20101369}.\\
+HOF-piirteet toimivat samoin kuin HOG-piirteet, paitsi yksittäisten kuvien sijaan ne tutkivat peräkkäisten kuvien vaihtelua eli liikettä videolla (Optical flow) \citep{Pers20101369}.\\
 
 SIFT-piirteet toimivat HOG-piirteitä hienostuneemmin valiten kuvista tärkeät pisteet. Tärkeät pisteet valitaan niin, että ne ovat riippumattomia
 kuvan muutoksista kuten kiertämisestä tai skaalauksesta. Esimerkiksi kuvassa, jossa näkyy ovi, tärkeitä pisteitä voisivat olla oven kulmat.
-Vaikka kuvaa kierrettäisiin tai sen kokoa muutettaisiin, tärkeät pisteet eli kulmat voidaan löytää kuvasta.
-Pisteiden valinnassa hyödynnetään värityksen intensiteettivaihtelua ja tilastollisia menetelmiä.  \citep {790410}
+Vaikka kuvaa kierrettäisiin tai sen kokoa muutettaisiin, tärkeät pisteet eli kulmat voidaan yhä löytää kuvasta.
+Pisteiden valinnassa hyödynnetään värityksen intensiteettivaihtelua ja tilastollisia menetelmiä. \citep {790410}
 STIP-piirteet perustuvat samankaltaiseen menetelmään, mutta huomioivat myös videon aikaulottuvuuden \citep{1238378}. \\
 
 Piirteitä voidaan tutkia syvyys- ja värikuvasta. Syvyyskuvan etu verrattuna värikuvaan on, että siinä
 ei esiinny värejä tai tekstuureja, jotka häiritsisivät hahmon erottumista tai videoiden vertailua.
-Suurin osa kilpailijoista käyttikin töissään pelkkää syvyyskuvaa. Osa käytti sekä väri- että syvyyskuvaa. 
-Mielenkiintoista on, että ensimmäisen kierroksen toisen sijan voittaja käytti työssään pelkkää värikuvaa. 
+Suurin osa kilpailijoista käyttikin töissään pelkkää syvyyskuvaa ja osa käytti sekä väri- että syvyyskuvaa. 
+Mielenkiintoista on, että ensimmäisen kierroksen toiseksi sijoittunut ryhmä käytti työssään pelkkää värikuvaa. 
 Kaikki kilpailijat käyttivät jonkinlaista piirteiden tiivistystä tai kuvausta toiseen lineaariavaruuteen. \citep {6239178}\\ 
 
-Ajallisen rakenteen mallintamiseen käytettiin erilaisia graafisia malleja kuten Markovin piilomuuttujaa ja Conditional Random Fields -menetelmää.
+Ajallisen rakenteen mallintamiseen käytettiin erilaisia graafisia malleja kuten Markovin piilomallia ja Conditional Random Fields -menetelmää.
 Kaikki tunnistustusmenetelmät eivät kuitenkaan huomioineet videon ajallista rakennetta. \citep {6239178}\\ 
 
-Markovin muuttuja kuvaa havainnon sarjana tiloja eli tässä tapauksessa videon sarjana pysäytyskuvia. 
-Tilat esitetään sopivien piirteiden avulla eli esimerkiksi kuvat voidaan esittää HOG/HOF-piirteiden avulla. 
-Menetelmä kertoo kuinka todennäköisesti annettu havainto kuuluu tiettyyn luokkaan. 
-Ajatuksena on, että annetun havainnon luokka on tuntematon, mutta se voidaan löytää sen etsimällä todennäköisin luokka. 
-Luokat saadaan opetusdatasta.\\
+Markovin piilomalli kuvaa havainnon sarjana tiloja eli tässä tapauksessa videon sarjana pysäytyskuvia. 
+Kuvat esitetään sopivien piirteiden avulla, esimerkiksi HOG/HOF-piirteiden avulla. Kuville
+pyritään löytämään niitä vastaavat tilat. Kuvaa vastaava tila riipppuu kuvan piirteistä, sekä edellisestä tilasta.
+Tarkoitus on löytää todennäköisin tilasarja, joka on muodostanut tämän havainnon.
+Ajatuksena on, että annetun havainnon luokka on tuntematon, mutta se voidaan löytää sen etsimällä todennäköisimmän luokan
+eli sarjan tiloja, joka on kaikken todennäköisimmin tämän havainnon takana. Luokat ja niiden tilat saadaan opetusdatasta.\\
 
 Luokkien tiheysfunktiot lasketaan suurimman todennäköisyyden
 (Most Likelihood) -menetelmällä. Kyseessä on Bayesilainen menetelmä eli jakauma tunnetaan, mutta ei parametreja.
@@ -241,13 +240,13 @@ Conditional Random Fields -menetelmä perustuu samankaltaiseen intuitioon. Läht
 datapisteen sijaan luokitellaan datajoukkoja, joilla on sisäinen, tässä ajallinen, rakenne. \citep {1315232}\\
 
 Kilpailutöissä, joissa ei käytetty edellämainittuja ajallisen rakenteen mallintamista menetelmiä, 
-luokittelussa käytettiin k-lähimmän naapurin luokitinta tai muita yksinkertaisia luokittelumenetelmiä. \\
+luokittelussa käytettiin k:n lähimmän naapurin luokitinta tai muita yksinkertaisia luokittelumenetelmiä. \\
 
-Kilpailun järjestäjien odottamaa metodia, siirtovaikutusta käytettiin vähäisesti, eikä kukaan menestyneistä kilpailijoista käyttänyt sitä.
+Kilpailun järjestäjien odottamaa metodia, siirtovaikutusta käytettiin vain vähän, eikä kukaan parhaiten menestyneistä kilpailijoista käyttänyt sitä.
 Kilpailun varsinainen haaste, yhdestä eleestä oppiminen, jäi siis vähemmälle huomiolle. \citep {6239178} \\
 
 Kahdeksan menestyneintä työtä esitellään taulukossa ~\ref{table:dvbt_param}. Taulukosta huomataan, että parhaiten menestyneiden töiden
-joukossa suurin osa käytti tunnistuksesa menetelmää, joka huomioi videon ajallisen rakenteen. Tällöin videokuvasta valitaan piirteet, joiden
+joukossa suurin osa käytti tunnistuksessa menetelmää, joka huomioi videon ajallisen rakenteen. Tällöin videokuvasta valitaan piirteet, joiden
 muutosta seurataan ajan funktiona. Poikkeuksen tekevät ryhmät Zonga ja Xiaozhuwudi, joiden menetelmä perustuu videon käsittelyyn erilaisten liikekuvien avulla. 
 \citep {6239178}\\
 
@@ -260,7 +259,7 @@ muutosta seurataan ajan funktiona. Poikkeuksen tekevät ryhmät Zonga ja Xiaozhu
 Ryhmän nimi & Menetelmä \\
     \hline
     \hline
-Alfnie & Motion Signature analyses\\ 
+Alfnie & Motion Signature -analyysi\\ 
     \hline
 Pennect & Markovin piilomallin tapainen menetelmä ja HOG/HOF-piirteet.\\
     \hline
@@ -268,11 +267,11 @@ One Million Monkeys & Markovin piilomalli ja kulmien tunnistus\\
     \hline
 Immortals & Markovin piilomalli ja HOG/HOF-piirteet\\
     \hline
-Zonga & Pienimmänneliösumman menetelmä ja HOSVD -menetelmä\\
+Zonga & Pienimmän neliösumman menetelmä ja HOSVD-menetelmä\\
     \hline
 Balazs Godeny & Thumbnail Dynamic Time Warping” (DTW) ja HOG/HOF-piirteet sekä kulmien tunnistus.\\
     \hline
-SkyNet & Dynamic Time Warping(DTW) ja kulmien tunnistus\\
+SkyNet & Dynamic Time Warping (DTW) ja kulmien tunnistus\\
     \hline
 Xiaozhuwudi & MHI-kuva johon on lisätty GEI- ja INV-kuvat\\
     \hline	
@@ -284,26 +283,26 @@ Xiaozhuwudi & MHI-kuva johon on lisätty GEI- ja INV-kuvat\\
 \subsubsection {Toinen kierros}
 
 Kilpailun toinen kierros toteutettiin samoilla järjestelyillä kuin ensimmäinen. Koska kierros loppui
-vasta tämän kandinaatintyön kirjoittamisen aikoihin, on se jätetty työssä vähemmälle tarkastelulle.\\
+vasta tämän kandidaatintyön kirjoittamisen aikoihin, on se jätetty työssä vähemmälle tarkastelulle.\\
 
 Toisen kierroksen jälkeen kilpailijoiden metodeja selvitettiin kyselyllä samoin kuin ensimmäisen
 kierroksen jälkeen. Kyselyyn vastasi 28 ryhmää. Vastausten perusteella toisella kierroksella menestyneet 
 menetelmät olivat hyvin samantapaisia kuin ensimmäisen kierroksen menestyneet menetelmät. HOG/HOG-piirteet sekä muut
-kuvan intensiteettivaihteluihin perustuvat piirteet yhdistettynä Markovin piilomuuttujaan tai muuhun
+kuvan intensiteettivaihteluihin perustuvat piirteet yhdistettynä Markovin piilomalliin tai muuhun
 vastaavaan malliin olivat suosituin menetelmä. \citep{chalearn2}\\
 
 Molemmilla kierroksilla oli sama voittaja, ryhmä Alfnie. 
 Voittajaryhmä väittää työnsä matkivan ihmisen hahmontunnistuskykyä. Työtä ei ole kuitenkaan vielä tämän kandinaatintyön kirjoittamisen aikaan julkaistu,
  joten siihen ei päästä tutustumaan tarkemmin. Työ perustuu
-ryhmän ilmoituksen mukaan jonkinlaiseen mukautettuun Markovin piilomuuttujaan. Mielenkiintoista on,
+ryhmän ilmoituksen mukaan jonkinlaiseen mukautettuun Markovin piilomalliin. Mielenkiintoista on,
 että huolimatta hyvästä luokittelukyvystään menetelmä oli myös yksi kilpailun nopeimmista. Vaikka menetelmä oli siis 
 luokittelumielesssä tehokas, se ei kuitenkaan ollut laskennallisesti erityisen raskas. \citep{chalearn2}\\
 
 Toisen kierroksen toiseksi sijoittunut, ryhmä Turtle Tamers, käytti samankaltaista menetelmää kuin 
-ensimmäisen kierroksen toisen sijan voittaja, ryhmä Pennect. Molemmat ryhmät käyttivät HOG/HOF-piirteitä sekä Markovin piilomuuttujaa. 
+ensimmäisen kierroksen toisen sijan voittaja, ryhmä Pennect. Molemmat ryhmät käyttivät HOG/HOF-piirteitä sekä Markovin piilomallia. 
 Kolmannen sijan saavuttanut ryhmä Joewan sen sijaan käytti hyvin erilaista menetelmää. Ryhmä käytti Bag of MOSIFT -piirteitä 
 yhdistettynä lähimmän naapurin luokittimeen. \citep{chalearn2} Bag of MOSIFT -piirteet on muokattu versio
-yleisestä Bag of features -menetelmästä. Bag of features -menetelmät kuvaavat tietyn piirteen avulla
+yleisestä Bag of features -menetelmästä, jotka kuvaavat tietyn piirteen avulla
 kuinka usein jokainen arvo esiintyy näytteessä. Ne mittaavat siis ainoastaan kuinka usein tietty arvo esiintyy näytteessä eivätkä 
 välitä näytteen sisäisestä rakenteesta. \citep{bagoffeatures} \\
 
@@ -316,15 +315,15 @@ huonommin kuin varsinaisella kilpailudatalla. Tämä lisää ennestään mielenk
 
 \section {Katsaus eräisiin menestyneisiin kilpailutöihin}
 
-Tässä luvussa esitellään kolme menestyneistä töistä tarkemmin. Työt ovat eräitä esimerkkejä toimivista ratkaisuista. Ne on valittu tähän, 
-koska ne edustavat erilaisia näkökulmia ongelmaan. Valintamahdollisuuksia rajoitti se, että kaikki kilpailijat eivät olleet vielä julkaisseet 
-menetelmäänsä tämä työn kirjoittamisen aikana. Kolmesta valitusta työstä yksi, Immortals edustaa kilpailun yleislinjaa ja kaksi muuta valittua työtä,
-Zonga ja Xiaozhuwudi ovat esimerkkeinä omaperäisemmistä menetelmistä.\\
+Tässä luvussa esitellään kolme menestyneistä töistä tarkemmin. Työt ovat esimerkkejä toimivista ratkaisuista. Ne on valittu tähän, 
+koska ne edustavat erilaisia näkökulmia ongelmaan. Töiden valintamahdollisuuksia rajoitti se, että kaikki kilpailijat eivät olleet vielä julkaisseet 
+menetelmäänsä tämän työn kirjoittamisen aikana. Kolmesta valitusta työstä yksi, Immortals edustaa kilpailun yleislinjaa ja kaksi muuta valittua työtä,
+Zonga ja Xiaozhuwudi ovat esimerkkejä omaperäisemmistä menetelmistä.\\
 
 \subsection{Ryhmä Xiaozhuwudi ja laajennettu MHI-menetelmä}
-Ryhmä Xiaozhuwudi lähti liikkeelle MHI eli Motion History Image -menetelmästä \citep {6239179}. MHI-kuva esitää liikkeen määrän videokuvalla.
-Videopätkä tiivistetään yhteen liikekuvaan, joka kuvaa liikkeen viimeaikaisuutta. Kohdat, joissa videokuvalla on ollut
-liikettä esitetään harmaasävyillä. Mitä viimeaikaisempaa liike on ollut sitä valkoisempana se näkyy kuvassa. Liikkumattomat
+Ryhmä Xiaozhuwudi lähti liikkeelle MHI eli Motion History Image -menetelmästä \citep {6239179}. MHI-kuva esittää liikkeen määrän videokuvalla.
+Videonäyte tiivistetään yhteen liikekuvaan, joka kuvaa liikkeen viimeaikaisuutta. Kohdat, joissa videokuvassa on ollut
+liikettä esitetään harmaasävyillä. Mitä viimeaikaisempaa liike on ollut, sitä valkoisempana se näkyy kuvassa. Liikkumattomat
 alueet näkyvät täysin mustana. Videokuvalta tutkitaan siis vain liikettä, eikä pyritä esimerkiksi tunnistamaan kuvalla olevia kohteita
 tai ihmiskehon osia. Tämä menetelmä matkii ihmisen tapaa tunnistaa eleitä. Ihminen tunnistaa erittäin hyvin inhimilliset eleet  
 sumealtakin videokuvalta vaikka ei yksittäisestä pysäytyskuvasta tunnistaisi edes ihmishahmoa. \citep {910878}  \\
@@ -332,7 +331,7 @@ sumealtakin videokuvalta vaikka ei yksittäisestä pysäytyskuvasta tunnistaisi 
 \begin{figure}[htb]
   \begin{center}
     \includegraphics[width=0.9\textwidth]{mhi_ex.jpg}
-    \caption{Kuvassa vasemmalta oikealle MHI-, INV- ja MEI-kuva. \citep {6239179}}
+    \caption{Kuvassa vasemmalta oikealle MHI-, INV- ja GEI-kuva. \citep {6239179}}
     \label{fig:mhiinvmei}
   \end{center}
 \end{figure}
@@ -340,7 +339,7 @@ sumealtakin videokuvalta vaikka ei yksittäisestä pysäytyskuvasta tunnistaisi 
 Xiaozhuwudi-ryhmä tunnistaa MHI-kuvassa kuitenkin ongelmia. MHI-kuvan avulla on vaikeaa tunnistaa eleitä, jotka sisältävät toistuvaa liikkeitä, 
 esimerkiksi vilkutusta.
 Liikkeen toistuessa MHI-kuva muuttuu helposti sekavaksi ja on vaikea erottaa tarkkaa liikerataa. Ryhmä ehdottaakin MHI-kuvan laajentamista 
-INV(Inversed Recording)- ja GEI(Gait Energy Image)-kuvilla. INV-kuva on MHI-kuvalle käänteinen kuva. INV-kuvassa katsotaan videokuvaa alusta loppuun päin.
+INV (Inversed Recording)- ja GEI (Gait Energy Image)-kuvilla. INV-kuva on MHI-kuvalle käänteinen kuva. INV-kuvassa tarkastellaan videokuvaa lopusta alkuun päin.
 Mitä aikaisemmin liike esiintyy videolla sitä vaaleampana se näytetään kuvassa. INV-kuvan avulla saadaan kuvaus videon alkutilanteesta, mikä täydentää MHI-kuvaa. 
 GEI-kuva esittää paikallaan pysyviä kohteita. Mitä enemmän kohde on paikoillaan videolla sitä vaaleampana tämä alue näkyy kuvassa.
 Kohdissa joissa on liikettä, näkyy harmaa sävyä ja täysin paikallaan olevat kohteet ovat valkoisia. Tausta on erotettu kohteesta ja jätetty mustaksi. 
@@ -352,7 +351,7 @@ täydentävät MHI-kuvaa. Pelkän MHI-kuvan perusteella on vaikea erottaa liikke
 INV- ja GEI-kuvien avulla liikkeet erottuvat kuitenkin selkeämmin. \\
 
 Datan esikäsittelyssä Xiaozhuwudi hyödynsi Kinectin syvyyskuvaa poistamalla taustan ihmishahmolta. Lisäksi esikäsittelyssä poistettiin häiriöitä.
-MHI-, GEI- ja INV-kuville suoritettiin dimensioiden vähennys ja piirreirroitus. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa,
+MHI-, GEI- ja INV-kuville suoritettiin dimensioiden vähennys ja piirreirrotus. Eleiden tunnistukseen käytettiin Maximum Correlation Coeffient -luokittelijaa,
 joka perustuu kuvien väliseen korrelaatioon. \citep{6239179}\\
 
 Ryhmä väittää työnsä suoriutuvan eleentunnistusongelmasta huomattavasti nopeammin kuin muut paikalliseen tietoon perustuvat eleentunnistusmenetelmät \citep{firstround}.
@@ -369,44 +368,45 @@ Ryhmä lähti liikkeelle opetusvaiheessa yksittäisistä liikkeistä. Yksittäis
 jonka avulla ne voidaan tunnistaa. Allekirjoituksen luominen on monivaiheinen operaatio. Ensin kuvista poimitaan niin sanotut
 tärkeät pisteet eli pisteet joilla on merkitystä liikkeen tunnistamisen kannalta. Tässä Immortals hyödynsi Kinectin syvyyskuvaa.
 Immortals arvioi, että ne kohdat kuvasta, joissa on tapahtunut syvyyssuuntaista muutosta syvyyskameran kuvassa ovat kyseisen videon pysäytyskuvan
-tärkeitä pisteitä. Tärkeille pisteille lasketaan HOG(Histogram of Oriented Gradients)- ja HOF(Histogram of Flow)-histogrammit. 
+tärkeitä pisteitä. Tärkeille pisteille lasketaan HOG- ja HOF-histogrammit (katso luku 3.2.1). 
 Tämän jälkeen kaikkien kuvien kaikki histogrammit ryhmitellään tavallisen ryhmittelyalgoritmin avulla.
 Histogrammeja kutsutaan ryhmittelyn jälkeen "visuaalisiksi sanoiksi". Yhdessä ryhmässä ovat kaikki tietyn sanan esiintymät.
 Tarkoituksena on tutkia visuaalisten sanojen esiintymistä yhdessä ja muodostaa niistä aihepiirejä. 
 Yksittäistä pysäytyskuvaa voidaan kuvata sillä, mitä sanoja ja mistä aihepiireistä siinä esiintyy. \citep {6239185}\\
 
-Liikkeelle luodaan sanojen perusteella perusteella malli, jota käytetään tunnistusvaiheessa. Mallin perustana on Markovin piilomuuttuja
-eli HMM (Hidden Markov Model). Koska tutkitaan kahta piirrettä, HOG- ja HOF-piirrettä, käytetään monikanavaista Markovin piilomuuttujaa eli McHMM (Multi Channel Hidden Markov Model). 
-HOG- ja HOF-piirteet paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan. McHMM-muuttujan parametreja ovat alkutila, 
-todennäköisyys tilojen väliselle siirtymälle sekä tilan todennäköisyys ja tilan kuvaus visuaalisten sanojen eli HOG- ja HOF-piirteiden avulla. 
-Tilalla tarkoitetaan tässä yksittäistä pysäytyskuvaa. Malli opetetaan parametrien avulla niin, että se tunnistaa tietyn liikkeen eli tietyn
-sarjan pysäytyskuvia.\citep {6239185} Kuvassa ~\ref{fig:HMM} on tarkennettu vielä Markovin piilomuuttujan toimintaa. Kuvassa on 
-esitetty havainto ja Markovin piilomuuttujan mahdolliset tilat, sekä niiden väliset siirtymätodennäköisyydet. Tarkoitus on löytää
+Liikkeelle luodaan sanojen perusteella perusteella malli, jota käytetään tunnistusvaiheessa. Mallin perustana on Markovin piilomalli
+eli HMM (Hidden Markov Model). Koska tutkitaan kahta piirrettä, HOG- ja HOF-piirrettä, käytetään monikanavaista Markovin piilomallia
+ eli McHMM (Multi Channel Hidden Markov Model). HOG- ja HOF-piirteet paljastavat erilaista tietoa havainnosta ja tukevat tässä hyvin toisiaan. 
+ McHMM-mallin parametreja ovat alkutila, todennäköisyys tilojen väliselle siirtymälle sekä tilan todennäköisyys ja tilan kuvaus visuaalisten 
+ sanojen eli HOG- ja HOF-piirteiden avulla. Tilat vastaavat videon pysäytyskuvia. Malli opetetaan parametrien avulla niin, että se 
+ tunnistaa tietyn liikkeen eli tietyn sarjan pysäytyskuvia.\citep {6239185} Kuvassa ~\ref{fig:HMM} on tarkennettu vielä Markovin piilomallin toimintaa. 
+ Kuvassa on esitetty havainto ja Markovin piilomallin mahdolliset tilat, sekä niiden väliset siirtymätodennäköisyydet. Tarkoitus on löytää
 tilasarja, joka todennäköisimmin on muodostanut tämän havainnon. Parametrit eli tilat ja todennäköisyydet on opetettu mallien perusteella. \\
 
 \begin{figure}[htb]
   \begin{center}
     \includegraphics[width=0.9\textwidth]{HMModfcropped.jpg}
     \caption{Markovin piilomuuttujan käyttö eleentunnistuksessa. Viivan yläpuolella havainto on esitetty pysäytyskuvien avulla. Viivan alapuolella
-	ovat mahdolliset tilat,	sekä niiden väliset siirtymätodennäköisyydet b1-bn. Todennäköisyydet a1-an kuvaavat kuinka todennäköisesti tila esittää havaittua tilaa.
+	ovat mahdolliset tilat,	sekä niiden väliset siirtymätodennäköisyydet $b1-bn$. Todennäköisyydet $a1-an$ kuvaavat kuinka todennäköisesti tila 
+	esittää havaittua pysäytyskuvaa.
 	Tarkoituksena on löytää tilasarja, joka kaikkein todennäköisimmin muodostaa havainnon. Kuvan esittämässä tilanteessa todennäköisin tilasarja
-	olisi varmaankin: seisoo, käsi nousee, käsi on ylhäällä. On huomioitava, että oikessa tilanteessa tutkitaan täysin perättäisiä pysäytyskuvia, kun
+	voisi olla: seisoo, käsi nousee, käsi on ylhäällä. On huomioitava, että oikessa tilanteessa tutkitaan perättäisiä pysäytyskuvia, kun
 	tässä esitetyt kuvat ovat selkeyden vuoksi liikkeen eri vaiheista.}
     \label{fig:HMM}
   \end{center}
 \end{figure}
 
 Tunnistusongelma pelkistyy lopulta kysymykseen: Mikä liikesarja kaikken todennäköisimmin on muodostanut tämän videonäytteen?
-Tämän tyylinen ongelma voidaan ratkaista Viterbin algoritmillä. Tämä vaatii kuitenkin, että ele rajataan koostumaan tietystä määrästä liikkeitä.
+Tämän tyylinen ongelma voidaan ratkaista Viterbin algoritmillä. Tämä vaatii kuitenkin sen, että ele rajataan koostumaan tietystä määrästä liikkeitä.
 Tässä tapauksessa on määritelty, että jokainen elenäyte sisältää viisi liikettä.
-Viterbin algoritmi pyrkii löytämään todennököismmän polun eri liikkeiden välillä. Algoritmi käy videota läpi liike kerrallaan ja laskee mikä
+Viterbin algoritmi pyrkii löytämään todennäköismmän polun eri liikkeiden välillä. Algoritmi käy videota läpi liike kerrallaan ja laskee mikä
 on mallien perusteella todennäköisin liike. Lopuksi saadaan liikesarja, josta videonäyte todennäköisimmän koostuu.
 Liikesarja liitetään tunnistusvaiheessa tiettyyn eleeseen. On huomiotava, että Viterbin algoritmiä käytetään ryhmän menetelmässä 
 kahdella tasolla. Menetelmän alimmalla tasolla algoritmiä käytetään Markovin piilomuuttujan kanssa tunnistamaan yksittäinen liike pysäytyskuvien perusteella. 
 Toisaalta Viterbin algoritmiä käytetään myös ylemmällä tasolla tunnistamaan todennäköisin liikesarja eli ele liikkeiden perusteella. \citep {6239185}\\
 
-Ryhmä Immortals kertoo lähestymistapansa olevan peräisin puheentunnistusmenetelmistä. Ryhmä on kokeillut menetelmää menestyksekkäästi myös muille videotietokannoilla,
-jotka sisälsivät pelkää värivideokuvaa. \citep{firstround}\\
+Ryhmä Immortals kertoo lähestymistapansa olevan peräisin puheentunnistusmenetelmistä. Ryhmä on kokeillut menetelmää menestyksekkäästi 
+myös muille videotietokannoille, jotka sisälsivät pelkää värivideokuvaa. \citep{firstround}\\
 
 
 \subsection{Ryhmä Zonga ja pienimmän neliösumman menetelmä sovelluttuna monistoon}
@@ -415,11 +415,11 @@ Menetelmää on hieman mukautettu eleentunnistusta varten, mutta lähtökohdilta
 matemaattinen eikä juuri hyödynnä perinteisiä kuvankäsittelymenetelmiä. \citep {6239180}\\
 
 Videokuva on helppo mieltää kolmiulotteiseksi datajoukoksi. Videokuvan ulottuvuuksia ovat korkeus, leveys ja aika.
-Ryhmä Zonga käsitteleekin videokuvaa kolmiulotteisena tensorina. Tensorin ulottuvuudet vastaavat videon ulottuvuuksia.
+Ryhmä Zonga käsitteleekin videokuvaa kolmiulotteisena tensorina, jonka ulottuvuudet vastaavat videon ulottuvuuksia.
 Voidaan ajatella, että yksi matriisi kuvaa yhtä pysäytyskuvaa, jolloin tensorin tuoma kolmas ulottuvuus on aikaulottuvuus. \citep {6239180}\\
 
 Tensorin käsittely sellaisenaan on hankalaa sen suuren datamäärän vuoksi. Helpottaakseen videon käsittelyä
-ryhmä laskee tensorille HOSVD(Higher-order singular value decomposition)-hajotelman. Hajotelma on muokattu versio
+ryhmä laskee tensorille HOSVD-hajotelman (Higher-order singular value decomposition). Hajotelma on muokattu versio
 singulaarihajotelmasta. Hajotelma avaa tensorin kolmeksi matriisiksi.
 Matriisit kuvaavat videon vaakasuoraa liikettä, pystysuoraista liikettä ja summakuvan videon yli. \citep {HOSVD} 
 Tensori hajotetaan tekijöihinsä aputensorin (Core Tensor) S avulla:
@@ -441,20 +441,20 @@ Kuvasta nähdään selkeästi, että matriisihajotelman tekijät esittävät lii
   \end{center}
 \end{figure}
 
-Matriisihajotelman avulla video voidaan kuvata pisteenä kolmiulotteisessa monistossa (manifold). Moniston ulottuvuudet
+Tensorihajotelman avulla video voidaan kuvata pisteenä kolmiulotteisessa monistossa (manifold). Moniston ulottuvuudet
 vastaavat tensorihajotelman ulottuvuuksia. Monisto säilyttää videon 
 alkuperäisen geometrisen rakenteen Euklidista avaruutta paremmin. \citep {Lui2012380} Monistokuvauksen avulla videoita voidaan käsitellä yksittäisinä
 pisteinä, jolloin niiden luokittelu helpottuu. Monistojen käyttö videonkuvan kanssa ei ole uusi asia eleentunnistuksessa. 
 Ryhmä Zonga kuitenkin yhdistää monistokuvaukseen pienimmän neliösumman menetelmän, joka tekee ryhmän mukaan heidän lähestymistavastaan
 ainutlaatuisen.\citep {6239180}\\
 
-Pienimmän neliösumman menetelmä on regressio-ongelma, eli siinä etsitään jonkinlaista suhdetta havainnon ja luokan välille. 
-Opetusvaiheessa tunnetaan havainto ja sen luokka, joiden välille pyritään löytämään funktio. Funktiota kutsutaan regressiofunktioksi.
-Tunnistusvaiheessa havaintojen luokat lasketaan regressiofunktion avaulla.\citep{leastsquares}\\
+Pienimmän neliösumman menetelmä on regressiomenetelmä, eli siinä etsitään suhdetta havainnon ja sen vastemuuttujan välille. 
+Opetusvaiheessa tunnetaan molemmat ja niiden välille pyritään löytämään funktio, jota kutsutaan regressiofunktioksi.
+Tunnistusvaiheessa havainnoille lasketaan regressiofunktion avulla vastemuuttujan arvo, jonka perusteella havainnot luokitellaan. \citep{leastsquares}\\
 
-Regressio-ongelma on muotoa $y = A * \beta$, jossa $y$-vektori esittää pisteet tulosavaruudessa, A-matriisi on havaintomatriisi 
-ja $\beta$-vektori on painovektori, joka kuvaa havaintomatriisin pisteet tulospisteiksi.
-Opetusvaiheessa pyritään löytämään painovektori, joka kuvaa havainnon mahdollisimman lähelle oikeaa luokkaa
+Regressio-ongelma on muotoa $y = A\beta$, jossa $y$-vektori esittää vastemuuttujan arvon tulosavaruudessa, $A$-matriisi on havaintomatriisi 
+ja $\beta$-vektori on painovektori, joka kuvaa havaintomatriisin pisteet tulosavaruuteen.
+Opetusvaiheessa pyritään löytämään painovektori, joka kuvaa havainnon mahdollisimman lähelle tunnettua vastemuuttujan arvoja
 tulosavaruudessa. \citep {6239180} Pienimmän neliösumman menetelmässä pyritään minimoimaan luokitteluvirheen neliötä eli oikean tuloksen 
 ja arvioidun tuloksen erotuksen neliötä \citep{leastsquares}.
 Minimoidaan siis funktiota:
@@ -462,14 +462,14 @@ Minimoidaan siis funktiota:
 R(\beta) = ||y-A\beta||^2 \\
 \end{equation}
 
-Painovektorin avulla muodostetaan regressiofunktio, jonka avulla havainnot kuvataan samaan tulosavaruuteen kuin opetuspisteet. Havainnot
-luokitellaan tämän jälkeen etäisyyden perusteella. Luokittelufunktio on muotoa:
+Painovektorin avulla muodostetaan regressiofunktio, jonka avulla tunnistusvaiheessa havainnot kuvataan vastemuuttujiksi. 
+Havainnot luokitellaan tämän jälkeen etäisyyden perusteella. Luokittelufunktio on muotoa:
 \begin{equation}
 j*=argmin_{j}D(Y,\psi_{j}(Y))
 \end{equation}
 
-jossa Y on annettu havainto, j on luokka ja $\psi_{j}$ on luokan j regressiofunktio. D-funktio laskee annetun havainnon ja regression välisen erotuksen.
-Tarkoitus on löytää luokka, joka antaa pienimmän etäisyyden.\\ 
+jossa $Y$ on annettu havainto, $j$ on luokka ja $\psi_{j}$ on luokan $j$ regressiofunktio. $D$-funktio laskee annetun havainnon
+ja regression avulla lasketun vastemuuttujan välisen etäisyyden. Tarkoitus on löytää luokka, jonka regressiofunktio antaa pienimmän etäisyyden.\\ 
 
 Ryhmä Zonga kertoo menetelmänsä olevan yksinkertainen ja helppo toteuttaa. 
 Verrattuna muihin töihin se huomioi eyhmän mukaan erityisen hyvin eleen luonnollisen tila-avaruuden. \citep{firstround} 
@@ -482,12 +482,12 @@ niiden tuloksissa ei ollut huomattavaa eroa \citep{6239178}. Ryhmä Immortals ed
 kun taas ryhmät Zonga ja Xiaozhuwudi poikkesivat kilpailun valtavirrasta. Vaikka ryhmien Zonga ja Xiaozhuwudi menetelmät olivat keskenään
 kokonaisuudessaan melko erilaiset, ne muistuttivat kuitenkin toisiaan lähestymistavaltaan ja piirrevalinnan osalta.\\
 
-Ryhmä Immortals kiinnitti menetelmässään erityistä huomioita piirreirroitukseen. Ryhmän esittämä piirreirroitus on monivaiheinen operaatio,
+Ryhmä Immortals kiinnitti menetelmässään erityistä huomioita piirreirrotukseen. Ryhmän esittämä piirreirrotus on monivaiheinen operaatio,
 jossa hyödynnettiin paitsi paikkatietoa HOG-piirteiden avulla, myös liiketietoa HOF-piirteiden avulla.
 Ajallisen rakenteen mallintamiseen ryhmä käyttää Markovin piilomuuttujaa. Kaksi muuta ryhmää,
 Zonga ja Xiaozhuwudi mallinsivat eleitä yksittäisten summakuvien avulla ohittaen videon ajallisen rakenteen.
 Molemmat ryhmät hyödynsivät tunnistuksessa ensisijaisesti liiketietoa. Summakuvat esittivät videolla tapahtunutta liikettä.
-Ryhmä Xiaozhuwudi ilmoittaa tehneensä summakuville vielä HOG-piirreirroituksen ja dimensioiden vähennyksen LDA-menetelmällä (Linear Diskriminant Analysis) \citep{6239179}.
+Ryhmä Xiaozhuwudi ilmoittaa tehneensä summakuville vielä HOG-piirreirroituksen ja dimensioiden vähennyksen LDA-menetelmällä (Linear Discriminant Analysis) \citep{6239179}.
 Ryhmä Zonga ei ilmoittanut muuta piirreirroitusta kuin HOSVD-hajotelman. Ryhmän Zonga menetelmä poikkeaakin piirreirroituksen osalta
 muista kilpailutöistä ja tyypillisestä lähestymistavasta kuvan- tai videokuvankäsittelyssä. Tämä näkyy myös videon esikäsittelyssä. 
 Ryhmät Immortals ja Xiaozhuwudi esikäsittelivät videokuvaa eli muun muuassa irrottivat ihmishahmon taustastaan videokuvalla,
@@ -495,8 +495,8 @@ mutta ryhmä Xiaozhuwudi ei tehnyt videokuvalle minkäänlaista esikäsittelyä 
 
 Ryhmien käyttämät tunnistusmenetelmät heijastelivat piirrevalintoja. Ryhmät Xiaozhuwudi ja Zonga, jotka tiivistivät näytteet 
 yksittäisiin kuviin käyttivät luokittelumenetelmiä, jotka perustuvat etäisyyden laskemiseen 
-Euklidissa tai sen kaltaisessa tilassa. Ryhmä Immortals, joka lähti oletuksesta, että videokuva koostuu ennen kaikkea joukosta perättäisiä 
-yksittäisiä liikkeitä käytti tunnistuksessa Markovin piilomuuttujaa ja Viterbin algoritmiä kahdella tasolla. Ryhmä Immortals jakoi videokuvaa 
+Euklidissa tai sen kaltaisessa avaruudessa. Ryhmä Immortals, joka lähti oletuksesta, että videokuva koostuu ennen kaikkea joukosta perättäisiä 
+yksittäisiä liikkeitä, käytti tunnistuksessa Markovin piilomuuttujaa ja Viterbin algoritmiä kahdella tasolla. Ryhmä Immortals jakoi videokuvaa 
 ajallisesti Viterbin algoritmin käyttöä varten. Myös ryhmät Xiaozhuwudi ja Zonga ilmoittivat tehneensä videolle 
 jonkinlaista ajallista jakoa luokittelua varten \citep{firstround}. \\
 
@@ -507,12 +507,12 @@ nopeaa, lähes reaaliaikaista suoritusta. \\
 
 Ryhmät Xiaozhuwudi ja Zonga ilmoittivat käyttäneensä työssään kilpailussa toivottua siirtovaikutusoppimista. Molemmat ryhmät ilmoittivat,
 että opetusdataa oli käytetty eleiden mallintamiseen. Ryhmät eivät kuitenkaan tarkemmin esitelleet tätä näkökulmaa menetelmiensä kuvauksissa.
-Ryhmä Immortals ei ilmoittanut käyttänäänsä siirtovaikutusta. \citep{firstround}\\
+Ryhmä Immortals ei ilmoittanut käyttäneensä siirtovaikutusta. \citep{firstround}\\
 
 Kaikki kolme ryhmää hyödynsivät tunnistuksessa sekä väri- että syvyyskuvaa. Kaikki kolme kuvattua menetelmää olivat kuitenkin sellasia, 
 että ne soveltuisivat ainakin pienin muokkauksin myös pelkän värikuvan luokitteluun. Mikään menetelmistä ei perustunutt ihmishahmon 
 tai sen osien tunnistukseen, vaan videokuvaa käsiteltiin pikselidatana, vailla informaatiota sen esittämästä kohteesta.
-Kaikki menetelmät sopisivat siis  pienin muokkauksin myös muihin videokuvan luokitteluongelmiin kuin eleentunnistukseen. Ryhmien Xiaozhuwudi ja Zonga 
+Kaikki menetelmät sopisivat siis  pienin muokkauksin myös muihin videokuvan luokitteluongelmiin eleentunnistukseen lisäksi. Ryhmien Xiaozhuwudi ja Zonga 
 menetelmät perustuivat kuitenkin lähes yksinomaan liikkeen määrään videokuvalla, joten ne eivät välttämättä soveltuisi 
 kaikkiin luokitteluongelmiin.\\
 
@@ -530,15 +530,15 @@ toisiaan enemmän piirreirroituksen (HOG/HOF-piirteet) ja kuvien käsittelyn osa
  & Xiaozhuwudi & Immortals & Zonga\\
     \hline
     \hline
- Kuvan esikäsittely & Taustan poisto, melun poisto, värimaailman tasoittaminen& Taustan poisto & Ei esikäsittelyä\\
+ Kuvan esikäsittely & Taustan poisto, kohinan poisto, värimaailman tasoittaminen& Taustan poisto & Ei esikäsittelyä\\
     \hline
  Piirreirroitus & HOG/HOF-piirteet & HOG/HOF-piirteet & HOSVD-hajotelma \\
     \hline
  Dimensioiden pienennys & Tekijöihin jako (LDA)& Datan ryhmittely & Tekijöihin jako (HOSV-menetelmällä)\\
     \hline	
- Ajallinen jako &Perustuu kuvan eroon lepotilan välillä &Viterbin jako &Perustuu kuvan eroon lepotilan välillä\\
+ Ajallinen jako &Perustuu kuvan eroon lepotilan välillä &Viterbin alkoritmi &Perustuu kuvan eroon lepotilan välillä\\
      \hline
- Eleen esitys &Summakuva &Joukko piirteitä &Kolmiuloitteinen tensori (josta hajotelma liikekuviin)\\
+ Eleen esitys &Summakuva &Joukko piirteitä &Kolmiulotteinen tensori (josta hajotelma liikekuviin)\\
      \hline
  Luokittelu &Maksimikorrelaatioon perustuva luokittelija &Markovin piilomuuttuja &Lähimmän naapurin luokittelija\\
       \hline
@@ -553,7 +553,7 @@ toisiaan enemmän piirreirroituksen (HOG/HOF-piirteet) ja kuvien käsittelyn osa
 \newpage
 \section {Johtopäätökset}
 
-Kinect-kameran ja muiden vastaavien kameroiden 3D-videokuva on tuonut ratkaisuja eleentunnistuksen ongelmiin. Yksivärinen syvyyskuva pienentää erilaisista tekstuureista
+Kinect-kameran ja muiden vastaavien kameroiden 3D-videokuva on tuonut uusia ratkaisuja eleentunnistuksen ongelmiin. Yksivärinen syvyyskuva pienentää erilaisista tekstuureista
 ja väreistä johtuvaa vaihtelua, jolloin luokkien sisäinen vaihtelu pienenee ja luokittelutehtävä helpottuu. Syvyyskuvan avulla
 saadaa lisätietoa eleestä, jolloin toisiaan muistuttavat eleet voidaan erottaa entistä varmemmin. Syvyyskamera on jo itsessään
 helpottanut eleentunnistusta ja saattaa antaa parempia tuloksia vanhoilla, jo tunnetuilla eleentunnistusmenetelmillä. Uusia menetelmiä
@@ -583,9 +583,9 @@ Toisen kierroksen kilpailutöiden tuloksissa oli viitteitä siitä, että menete
 Silloin ne tuottavat hyviä tuloksia juuri tälle datalle, mutta eivät menestyisi yhtä hyvin muille datajoukoille. Olisi mielenkiintoista 
 tutustua myös voittajatyöhön, joskaan sen käyttämät menetelmät eivät pinnallisen kuvauksen perusteella juuri eronneet kilpailun yleisestä suuntauksesta.\\
 
-Yhteenvetona voisi todeta, että syvyyskamera on tuonut eleentunnistukseen uusia mahdollisuuksia, joita ei välttämättä osata vielä edes täysin hyödyntää.
+Yhteenvetona todetaan, että syvyyskamera on tuonut eleentunnistukseen uusia mahdollisuuksia, joita ei välttämättä osata vielä edes täysin hyödyntää.
 Tulevaisuuden haasteita on kehittää entistä varmempia ja nopeampia eleentunnistusmenetelmiä, jotka soveltuvat kuluttajasovelluksiin.
-Myös ChaLearn Gesture Challenge -kilpailun järjestäjien esittämä yhdestä eleestä oppimisen -ongelma on yksi haasteista, johon eleentunnistusmenetelmien on 
+Myös ChaLearn Gesture Challenge -kilpailun järjestäjien esittämä yhdestä eleestä oppimisen ongelma on yksi haasteista, johon eleentunnistusmenetelmien on 
 vastattava tulevaisuudessa. Alan kasvupotentiaali on huikea, sillä eleentunnistuksella on paljon käyttökohteita. Ehkä tulevaisuudessa elekäyttöliittymät
 ovat kosketuskäyttöliittymien tavoin arkipäivää. Lisätutkimusta on kuitenkin vielä tehtävä.\\
 
